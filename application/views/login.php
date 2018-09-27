@@ -1,13 +1,19 @@
 <?php
   require('header.php');
 ?>
+<style>
+ul#menu li {
+    display:inline;
+}
+</style>
  <div class="login" style="background: url('img/inicio-fondo.jpg'); ">
    <div class="container">   
     <div class="row ">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div-- class="card-body">
-            <h5 class="card-title text-center">Inicia sesión</h5>
+            <h4 class="card-title text-center">Inicia sesión</h4>
+            <hr class="my-4">
             <form class="form-signin" role="form" method="post" action="<?php echo base_url('index.php/plataforma/login_user'); ?>"> 
               <div class="d-flex  justify-content-center">
                 <fieldset>
@@ -39,14 +45,14 @@
                     ?>
                   </div>  
 
-                  <hr class="my-4">
+                  
                   <div class="form-label-group" style="text-align: justify">
-                    <a href="<?php echo site_url('index.php/plataforma/login_admin') ?>" >Administrador</a>
+                    <!--a href="<?php echo site_url('index.php/plataforma/login_admin') ?>" >Administrador</a-->                    
                     
-                  </div>                
+                  </div>                                  
                 </fieldset>
               </div>
-            </form>
+            </form>             
           </div>
         </div>
       </div>
