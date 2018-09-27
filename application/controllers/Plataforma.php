@@ -28,11 +28,33 @@
                 $this->session->set_userdata('nombre_us',$data['nombre_us']); 
                 $this->session->set_userdata('tipo_us',$data['tipo_us']); 
 
-                if($data['tipo_us']==0){                    
+                /*if($data['tipo_us']==0){                    
                     $this->load->view('Admin/home_admin.php');
                 }else{
                     $this->load->view('welcome_message.php');
+                }*/
+
+                switch ($data['tipo_us']) {
+                    case '0':
+                        $this->load->view('Admin/home_admin.php');
+                    break;
+                    case '1':
+                        $this->load->view('Cliente/home_admin.php');
+                    break;
+                    case '2':
+                        $this->load->view('CommunityManager/home_cm.php');
+                    break;
+                    case '3':
+                        $this->load->view('GeneradorContenido/home_gc.php');
+                    break;
+                    case '4':
+                        $this->load->view('Designer/home_d.php');
+                    break;                   
+                    default:
+                        $this->load->view('login.php');
+                    break;
                 }
+
             }else{
                 $this->session->set_flashdata('error_msg', 'Ha ocurrido un error, intente de nuevo');
                 $this->load->view("login.php");
