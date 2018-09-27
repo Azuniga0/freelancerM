@@ -28,15 +28,12 @@
                 $this->session->set_userdata('nombre_us',$data['nombre_us']); 
                 $this->session->set_userdata('tipo_us',$data['tipo_us']); 
 
-                /*if($data['tipo_us']==0){                    
-                    $this->load->view('Admin/home_admin.php');
-                }else{
-                    $this->load->view('welcome_message.php');
-                }*/
-
                 switch ($data['tipo_us']) {
                     case '0':
+                        $this->load->view('Admin/header_admin.php');
+                        $this->load->view('Admin/navbar_admin.php');
                         $this->load->view('Admin/home_admin.php');
+                        $this->load->view('Admin/footer_admin.php');
                     break;
                     case '1':
                         $this->load->view('Cliente/home_admin.php');
