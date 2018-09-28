@@ -1,6 +1,4 @@
-<?php
-  require('header.php');
-?>
+
  <div class="login" style="background: url('img/inicio-fondo.jpg'); ">
    <div class="container">   
     <div class="row ">
@@ -38,12 +36,12 @@
                     <?php 
                       echo $this->session->flashdata("error");
                     ?>
-                  </div>  
-
+                  </div> 
                   
+
                   <div class="form-label-group" style="text-align: justify">
-                    <!--a href="<?php echo site_url('index.php/plataforma/login_admin') ?>" >Administrador</a-->                    
-                    
+                    <!--a href="<?php echo site_url('index.php/plataforma/login_admin') ?>" >Administrador</a-->  
+
                   </div>                                  
                 </fieldset>
               </div>
@@ -54,6 +52,3 @@
     </div>
   </div>   
 </div>
-<?php
-  require('footer.php');
-?>

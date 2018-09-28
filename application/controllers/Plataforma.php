@@ -11,7 +11,9 @@
 
         public function index(){
             $data['title']='Code igniter tuto';
+            $this->load->view("header.php");
             $this->load->view("login.php");
+            $this->load->view("footer.php");
         }
 
         function login_user(){  
@@ -48,7 +50,9 @@
                         $this->load->view('Designer/home_d.php');
                     break;                   
                     default:
+                        $this->load->view('header.php');
                         $this->load->view('login.php');
+                        $this->load->view('footer.php');
                     break;
                 }
 
