@@ -1,11 +1,6 @@
 <?php
-  require('header.php');
+  $this->load->view('header.php');
 ?>
-<style>
-ul#menu li {
-    display:inline;
-}
-</style>
  <div class="login" style="background: url('img/inicio-fondo.jpg'); ">
    <div class="container">   
     <div class="row ">
@@ -60,5 +55,5 @@ ul#menu li {
   </div>   
 </div>
 <?php
-  require('footer.php');
+ $this->load->view('footer.php');
 ?>

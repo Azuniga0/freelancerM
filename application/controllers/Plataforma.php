@@ -19,7 +19,6 @@
                 'username'=>$this->input->post('username'),
                 'password'=>sha1($this->input->post('password'))
             );
-            //print_r ($user_login);
 
             $data=$this->plataforma_model->login_user($user_login['username'],$user_login['password']);
             if($data){
@@ -27,12 +26,6 @@
                 $this->session->set_userdata('username',$data['username']);
                 $this->session->set_userdata('nombre_us',$data['nombre_us']); 
                 $this->session->set_userdata('tipo_us',$data['tipo_us']); 
-
-                /*if($data['tipo_us']==0){                    
-                    $this->load->view('Admin/home_admin.php');
-                }else{
-                    $this->load->view('welcome_message.php');
-                }*/
 
                 switch ($data['tipo_us']) {
                     case '0':
