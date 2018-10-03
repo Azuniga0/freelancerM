@@ -47,7 +47,10 @@
                         $this->load->view('GeneradorContenido/home_gc.php');
                     break;
                     case '4':
-                        $this->load->view('Designer/home_d.php');
+                    $this->load->view('General/header_on.php');
+                    $this->load->view('designer/navbar_designer.php');
+                    $this->load->view('designer/home_designer.php');
+                    $this->load->view('General/footer_on.php');
                     break;                   
                     default:
                         $this->load->view('header.php');
