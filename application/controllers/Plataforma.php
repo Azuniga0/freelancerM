@@ -11,7 +11,9 @@
 
         public function index(){
             $data['title']='Code igniter tuto';
+            $this->load->view("header.php");
             $this->load->view("login.php");
+            $this->load->view("footer.php");
         }
 
         function login_user(){  
@@ -19,6 +21,7 @@
                 'username'=>$this->input->post('username'),
                 'password'=>sha1($this->input->post('password'))
             );
+            //print_r ($user_login);
 
             $data=$this->plataforma_model->login_user($user_login['username'],$user_login['password']);
             if($data){
@@ -29,7 +32,10 @@
 
                 switch ($data['tipo_us']) {
                     case '0':
+                        $this->load->view('Admin/header_admin.php');
+                        $this->load->view('Admin/navbar_admin.php');
                         $this->load->view('Admin/home_admin.php');
+                        $this->load->view('Admin/footer_admin.php');
                     break;
                     case '1':
                         $this->load->view('Cliente/home_admin.php');
@@ -44,7 +50,9 @@
                         $this->load->view('Designer/home_d.php');
                     break;                   
                     default:
+                        $this->load->view('header.php');
                         $this->load->view('login.php');
+                        $this->load->view('footer.php');
                     break;
                 }
 
