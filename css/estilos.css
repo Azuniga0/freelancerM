@@ -3,11 +3,16 @@
     
 }
 
-.texto1{
+.justificado{
     font-size: 12px;
     text-align: justify;
     margin-left: 5%;
     margin-bottom: 3%;
+}
+
+.centrado{
+    text-align: center;
+    color:red;
 }
 
 .login{
