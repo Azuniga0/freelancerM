@@ -15,6 +15,19 @@
             $this->load->view('designer/navbar_designer.php');
             $this->load->view('General/footer_on.php');
         }
+        public function diary(){
+            $this->load->view('General/header_on.php');
+            $this->load->view('designer/diary.php');
+            $this->load->view('designer/navbar_designer.php');
+            $this->load->view('General/footer_on.php');
+        }
+        public function perfil(){
+            $this->load->view('General/header_on.php');
+            $this->load->view('designer/perfil.php');
+            $this->load->view('designer/navbar_designer.php');
+            $this->load->view('General/footer_on.php');
+        }
+        
         
 
     }    
