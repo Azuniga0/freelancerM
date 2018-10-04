@@ -11,7 +11,7 @@
       <div class=" col-md-3 col-4">
     <div class="wrapper count-title d-flex text-center">
       <div class="name">
-        <button class="btn btn-primary">Nuevo empleado</button>
+        <a class="btn btn-primary" href="<?php echo base_url('index.php/admin_controller/vista_nuevo_empleado');?>">Nuevo empleado</a>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
                   <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Activos</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
                 </div>
                 <div id="updates-box" role="tabpanel" class="collapse show">
-                  <div class="tablas" style="padding:15px">
+                  <div class="" style="padding:15px">
                     <table class="table table-hover">
                       <thead>
                         <tr>
@@ -71,7 +71,7 @@
               <!-- Daily Feed Widget-->
               <div id="daily-feeds" class="card updates daily-feeds">
                 <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">Your daily Feeds </a></h2>
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">Inactivos </a></h2>
                   <div class="right-column">
                     <div class="badge badge-primary"></div><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"><i class="fa fa-angle-down"></i></a>
                   </div>
@@ -120,7 +120,7 @@
               <!-- Recent Activities Widget      -->
               <div id="recent-activities-wrapper" class="card updates activities">
                 <div id="activites-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">Recent Activities</a></h2><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box"><i class="fa fa-angle-down"></i></a>
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">No laborales</a></h2><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box"><i class="fa fa-angle-down"></i></a>
                 </div>
                 <div id="activities-box" role="tabpanel" class="collapse">
                   <div class="tablas" style="padding:15px">

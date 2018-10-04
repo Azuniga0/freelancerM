@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*!
  * jQuery Validation Plugin v1.17.0
  *
@@ -17,26 +16,6 @@
 	}
 }(function( $ ) {
 
-=======
-/*!
- * jQuery Validation Plugin v1.17.0
- *
- * https://jqueryvalidation.org/
- *
- * Copyright (c) 2017 Jörn Zaefferer
- * Released under the MIT license
- */
-(function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "./jquery.validate"], factory );
-	} else if (typeof module === "object" && module.exports) {
-		module.exports = factory( require( "jquery" ) );
-	} else {
-		factory( jQuery );
-	}
-}(function( $ ) {
-
->>>>>>> 7bf83b171c241415e0fef23e7ce36122acf9bc9c
 ( function() {
 
 	function stripHtml( value ) {

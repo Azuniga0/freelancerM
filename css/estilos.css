@@ -28,7 +28,17 @@ footer {
     height: 75px;   
 }
 
-.tablas{    
-    border: 3px solid #000;
+.div_centrado{
+    margin: auto;
+    width: 90%;
+    /*border: 3px solid #73AD21;*/
+    padding: 10px;
+    margin-bottom: 8%;
+    margin-top: 5%;
+    background-color: #e3e4e6;
+}
+
+.imagen_perfil{
+    height: 100px;
 }
 
