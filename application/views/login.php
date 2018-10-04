@@ -1,6 +1,3 @@
-<?php
-include 'header.php';
-?>
  <div class="login" style="background: url('img/inicio-fondo.jpg'); ">
    <div class="container">   
     <div class="row ">
@@ -54,6 +51,3 @@ include 'header.php';
     </div>
   </div>   
 </div>
-<?php
-include 'footer.php';
-?>

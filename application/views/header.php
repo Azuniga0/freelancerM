@@ -1,8 +1,3 @@
-<?php
-    defined('BASEPATH') OR exit('No direct script access allowed');
-    //echo base_url();
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
