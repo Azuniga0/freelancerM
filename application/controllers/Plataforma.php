@@ -10,7 +10,6 @@
         }
 
         public function index(){
-            $data['title']='Code igniter tuto';
             $this->load->view("header.php");
             $this->load->view("login.php");
             $this->load->view("footer.php");
@@ -25,37 +24,34 @@
 
             $data=$this->plataforma_model->login_user($user_login['username'],$user_login['password']);
             if($data){
-                $this->session->set_userdata('id_us',$data['id_us']);
+                $this->session->set_userdata('id_usuario',$data['id_usuario']);
                 $this->session->set_userdata('username',$data['username']);
-                $this->session->set_userdata('nombre_us',$data['nombre_us']); 
-                $this->session->set_userdata('tipo_us',$data['tipo_us']); 
+                //$this->session->set_userdata('nombre_us',$data['nombre_us']); 
+                $this->session->set_userdata('tipo_usuario',$data['tipo_usuario']); 
 
-                switch ($data['tipo_us']) {
-                    case '0':
+                switch ($data['tipo_usuario']) {
+                    case '1':
                         $this->load->view('Admin/header_admin.php');
                         $this->load->view('Admin/navbar_admin.php');
                         $this->load->view('Admin/home_admin.php');
                         $this->load->view('Admin/footer_admin.php');
                     break;
-                    case '1':
-                        $this->load->view('Cliente/home_admin.php');
-                    break;
                     case '2':
-                        $this->load->view('CommunityManager/home_cm.php');
+                        $this->load->view('CommunityManager/home_cm.php');                        
                     break;
                     case '3':
-                        $this->load->view('GeneradorContenido/home_gc.php');
+                        $this->load->view('General/header_on.php');
+                        $this->load->view('designer/navbar_designer.php');
+                        $this->load->view('designer/slopes.php');
+                        $this->load->view('General/footer_on.php');
                     break;
                     case '4':
-                    $this->load->view('General/header_on.php');
-                    $this->load->view('designer/navbar_designer.php');
-                    $this->load->view('designer/slopes.php');
-                    $this->load->view('General/footer_on.php');
+                        $this->load->view('Designer/home_d.php');
                     break;                   
                     default:
-                        $this->load->view('header.php');
+                        //$this->load->view('header.php');
                         $this->load->view('login.php');
-                        $this->load->view('footer.php');
+                        //$this->load->view('footer.php');
                     break;
                 }
 
@@ -63,6 +59,11 @@
                 $this->session->set_flashdata('error_msg', 'Ha ocurrido un error, intente de nuevo');
                 $this->load->view("login.php");
             }
+        }
+
+        public function salir(){
+            $this->session->sess_destroy();
+            redirect('index.php/plataforma/index', 'refresh');
         }
         
 

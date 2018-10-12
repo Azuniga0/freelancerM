@@ -1561,7 +1561,11 @@ $.extend( $.validator, {
 	}
 
 } );
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 7bf83b171c241415e0fef23e7ce36122acf9bc9c
 // Ajax mode: abort
 // usage: $.ajax({ mode: "abort"[, port: "uniqueport"]});
 // if mode:"abort" is used, the previous request on that port (port can be undefined) is aborted via XMLHttpRequest.abort()
@@ -1597,5 +1601,9 @@ if ( $.ajaxPrefilter ) {
 		return ajax.apply( this, arguments );
 	};
 }
+<<<<<<< HEAD
 return $;
+=======
+return $;
+>>>>>>> 7bf83b171c241415e0fef23e7ce36122acf9bc9c
 }));

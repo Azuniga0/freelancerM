@@ -3,11 +3,16 @@
     
 }
 
-.texto1{
+.justificado{
     font-size: 12px;
     text-align: justify;
     margin-left: 5%;
     margin-bottom: 3%;
+}
+
+.centrado{
+    text-align: center;
+    color:red;
 }
 
 .login{
@@ -20,8 +25,20 @@ footer {
     color: #fff;
     position: absolute;
     width: 100%;
-    height: 75px;
-    /*border: #000 solid 3px;*/
-    
+    height: 75px;   
+}
+
+.div_centrado{
+    margin: auto;
+    width: 90%;
+    /*border: 3px solid #73AD21;*/
+    padding: 10px;
+    margin-bottom: 8%;
+    margin-top: 5%;
+    background-color: #e3e4e6;
+}
+
+.imagen_perfil{
+    height: 100px;
 }
 

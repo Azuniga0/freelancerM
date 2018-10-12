@@ -7,7 +7,7 @@
         </footer>
     </body>
 
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/jquery-3.3.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/main.js"></script>
 </html>

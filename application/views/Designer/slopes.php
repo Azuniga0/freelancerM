@@ -1,71 +1,141 @@
+<section class="dashboard-counts section-padding">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Count item widget-->
+      <div class=" col-md-9 col-8">
+        <div class="wrapper count-title d-flex text-center">
+          <div class="name"><strong class="text-uppercase">Pendientes</strong>
+          </div>
+        </div>
+      </div>
+     
+  </div>  
+</section>
 
-    <div class="page">
-      <!-- navbar-->
-      <header class="header">
-        <nav class="navbar">
-          <div class="container-fluid">
-            <div class="navbar-holder d-flex align-items-center justify-content-between">
-              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
-                  <div class="brand-text d-none d-md-inline-block"><span>Bootstrap </span><strong class="text-primary">Dashboard</strong></div></a></div>
-              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-                <!-- Notifications dropdown-->
-                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span class="badge badge-warning">12</span></a>
-                  <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-envelope"></i>You have 6 new messages </div>
-                          <div class="notification-time"><small>4 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
-                          <div class="notification-time"><small>4 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-upload"></i>Server Rebooted</div>
-                          <div class="notification-time"><small>4 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
-                          <div class="notification-time"><small>10 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-bell"></i>view all notifications                                            </strong></a></li>
-                  </ul>
-                </li>
-                <!-- Messages dropdown-->
-                <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope"></i><span class="badge badge-info">10</span></a>
-                  <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="<?php echo base_url(); ?>assets/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Jason Doe</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="<?php echo base_url(); ?>assets/img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Frank Williams</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="<?php echo base_url(); ?>assets/img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Ashley Wood</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
-                  </ul>
-                </li>
-                <!-- Languages dropdown    -->
-                <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="<?php echo base_url(); ?>assets/img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
-                  <ul aria-labelledby="languages" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="<?php echo base_url(); ?>assets/img/flags/16/DE.png" alt="English" class="mr-2"><span>German</span></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="<?php echo base_url(); ?>assets/img/flags/16/FR.png" alt="English" class="mr-2"><span>French                                                         </span></a></li>
-                  </ul>
-                </li>
-                <!-- Log out-->
-                <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
-              </ul>
+<!-- Empleados -->
+      <section class="mt-30px mb-30px">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <!-- Recent Updates Widget          -->
+              <div id="new-updates" class="card updates recent-updated">
+                <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Campaña 1</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
+                </div>
+                <div id="updates-box" role="tabpanel" class="collapse">
+                  <div class="" style="padding:15px">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nombre de publicación</th>
+                          <th scope="col">Nodo</th>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Ir a publicación</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Poyoyon</th>
+                          <td>7</td>
+                          <td>10/12/2018</td>
+                          <td><a class="btn btn-primary" href="<?= base_url('index.php/Designer/publication.php') ?>">Ir</a></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Oferta de fin de semana</th>
+                          <td>2</td>
+                          <td>11/12/2018</td>
+                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- Recent Updates Widget End-->
+            </div>            
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-6">
+              <!-- Daily Feed Widget-->
+              <div id="daily-feeds" class="card updates daily-feeds">
+                <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">Campaña 2 </a></h2>
+                  <div class="right-column">
+                    <div class="badge badge-primary"></div><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"><i class="fa fa-angle-down"></i></a>
+                  </div>
+                </div>
+                <div id="feeds-box" role="tabpanel" class="collapse ">
+                  <div class="feed-box">
+                  <div class="tablas" style="padding:15px">
+                  <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nombre de publicación</th>
+                          <th scope="col">Nodo</th>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Ir a publicación</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Paul</th>
+                          <td>7</td>
+                          <td>10/12/2018</td>
+                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Paul</th>
+                          <td>2</td>
+                          <td>11/12/2018</td>
+                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Daily Feed Widget End-->
             </div>
           </div>
-        </nav>
-      </header>
+          <div class="row">            
+            <div class="col-lg-12 col-md-6">
+              <!-- Recent Activities Widget      -->
+              <div id="recent-activities-wrapper" class="card updates activities">
+                <div id="activites-header" class="card-header d-flex justify-content-between align-items-center">
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">Campaña 3</a></h2><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box"><i class="fa fa-angle-down"></i></a>
+                </div>
+                <div id="activities-box" role="tabpanel" class="collapse">
+                  <div class="tablas" style="padding:15px">
+                  <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nombre de publicación</th>
+                          <th scope="col">Nodo</th>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Ir a publicación</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Paul</th>
+                          <td>7</td>
+                          <td>10/12/2018</td>
+                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Paul</th>
+                          <td>2</td>
+                          <td>11/12/2018</td>
+                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+     

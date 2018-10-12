@@ -1,4 +1,3 @@
-
  <div class="login" style="background: url('img/inicio-fondo.jpg'); ">
    <div class="container">   
     <div class="row ">
