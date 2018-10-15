@@ -12,10 +12,6 @@
                     </div>
                     <div class="row">   
                         <form class="col-md-12">
-                            <div class="form-row" style="margin-top: 15px;">
-                                <label style="color:"><b>Datos personales:</b></label>
-                                <br><br>
-                            </div>
                             <div class="form-row">
                                 <div class="col-md-10 mb-3">
                                     <div class="input-group">
