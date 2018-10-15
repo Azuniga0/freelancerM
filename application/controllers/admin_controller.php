@@ -51,5 +51,19 @@
             $this->load->view('General/footer_on.php');
         }
 
+        public function vista_nuevo_cliente(){
+            $this->load->view('General/header_on.php');
+            $this->load->view('Admin/navbar_admin.php');
+            $this->load->view('Admin/nuevo_cliente.php');
+            $this->load->view('General/footer_on.php');
+        }
+
+        public function vista_nueva_camp(){
+            $this->load->view('General/header_on.php');
+            $this->load->view('Admin/navbar_admin.php');
+            $this->load->view('Admin/nueva_camp.php');
+            $this->load->view('General/footer_on.php');
+        }
+
     }    
 ?>
