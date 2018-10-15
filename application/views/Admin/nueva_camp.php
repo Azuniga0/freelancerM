@@ -6,21 +6,17 @@
                 <div class=" col-12">
                     <div class="row">
                         <div class="wrapper count-title d-flex text-center">
-                            <div class="name"><strong class="text-uppercase centrado">Nuevo empleado</strong><br><br>
+                            <div class="name"><strong class="text-uppercase centrado">Nueva campaña</strong><br><br>
                             </div>
                         </div> 
                     </div>
                     <div class="row">   
                         <form class="col-md-12">
-                            <div class="form-row" style="margin-top: 15px;">
-                                <label style="color:"><b>Datos personales:</b></label>
-                                <br><br>
-                            </div>
                             <div class="form-row">
-                                <div class="col-md-8 mb-3">
+                                <div class="col-md-10 mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Nombre completo:</span>
+                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Nombre de campaña:</span>
                                         </div>
                                         <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Susana Pérez" aria-describedby="validationTooltipUsernamePrepend" required>
                                         <div class="invalid-tooltip">
@@ -28,53 +24,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">RFC:</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
-                                        <div class="invalid-tooltip">
-                                            Por favor, inserte un RFC válido
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Dirección:</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
-                                        <div class="invalid-tooltip">
-                                            Por favor, inserte una dirección válida
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Colonia:</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
-                                        <div class="invalid-tooltip">
-                                            Por favor, inserte una colonia válida
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Ciudad:</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
-                                        <div class="invalid-tooltip">
-                                            Por favor, inserte una ciudad válida
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                            
                             <div class="form-row">
                                 <div class="form-group col-4">
                                     <div class="input-group">
@@ -88,7 +38,34 @@
                                         <div class="invalid-tooltip">
                                             Por favor, seleccione un estado válido
                                         </div>
-                                    </div>                                    
+                                    </div> 
+                                </div>
+                                <div class="form-group col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Estado:</span>
+                                        </div>
+                                        <select class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend"  require>
+                                            <option selected>Seleccione...</option>
+                                            <option>...</option>
+                                        </select>                                       
+                                        <div class="invalid-tooltip">
+                                            Por favor, seleccione un estado válido
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>                            
+                            <div class="form-row">
+                                <div class="form-group col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Usuario:</span>
+                                        </div>
+                                        <input type="date" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
+                                        <div class="invalid-tooltip">
+                                            Por favor, inserte un usuario válido
+                                        </div>
+                                    </div>                                   
                                 </div>
                                 <div class="form-group col-2">
                                     <div class="input-group">

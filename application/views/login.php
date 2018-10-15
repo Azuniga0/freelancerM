@@ -1,4 +1,4 @@
- <div class="login" style="background: url('img/inicio-fondo.jpg'); ">
+ <div class="login" style="background: url('img/login.jpg');  height: 100%;  background-position: center; background-repeat: no-repeat; background-size: cover; opacity: 0.85;">
    <div class="container">   
     <div class="row ">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">

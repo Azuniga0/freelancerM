@@ -16,7 +16,7 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
             <li><a href="<?php echo site_url('index.php/admin_controller/home') ?>"> <i class="icon-home"></i>Inicio                                </a></li>
             <li><a href="<?php echo site_url('index.php/admin_controller/empleados') ?>"> <i class="fa fa-male"></i>Empleados                            </a></li>
-            <li><a href="<?php echo site_url('index.php/admin_controller/clientes') ?>"> <i class="fa fa-briefcase"></i>Clientes                       </a></li>
+            <li><a href="<?php echo site_url('index.php/admin_controller/clientes') ?>"> <i class="fa fa-briefcase"></i>Empresas                       </a></li>
             <li><a href="<?php echo site_url('index.php/admin_controller/camp') ?>"> <i class="fa fa-archive"></i>Campañas                          </a></li>
             <li><a href="<?php echo site_url('index.php/admin_controller/perfil') ?>"> <i class="fa fa-child"></i>Mi perfil
                 </a></li>            
