@@ -27,6 +27,12 @@
             $this->load->view('designer/navbar_designer.php');
             $this->load->view('General/footer_on.php');
         }
+        public function publication(){
+            $this->load->view('General/header_on.php');
+            $this->load->view('Designer/publication.php');
+            $this->load->view('Designer/navbar_designer.php');
+            $this->load->view('General/footer_on.php');
+        }
         
         
 

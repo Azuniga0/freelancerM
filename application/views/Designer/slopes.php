@@ -38,13 +38,13 @@
                           <th scope="row">Poyoyon</th>
                           <td>7</td>
                           <td>10/12/2018</td>
-                          <td><a class="btn btn-primary" href="<?= base_url('index.php/Designer/publication.php') ?>">Ir</a></td>
+                          <td><a class="btn btn-primary" href="<? echo base_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
                         </tr>
                         <tr>
                         <th scope="row">Oferta de fin de semana</th>
                           <td>2</td>
                           <td>11/12/2018</td>
-                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                          <td><a class="btn btn-primary" href="<?php  echo base_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
                         </tr>
                       </tbody>
                     </table>
@@ -81,13 +81,13 @@
                           <th scope="row">Paul</th>
                           <td>7</td>
                           <td>10/12/2018</td>
-                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                          <td><a class="btn btn-primary" href="<?php echo site_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
                         </tr>
                         <tr>
                         <th scope="row">Paul</th>
                           <td>2</td>
                           <td>11/12/2018</td>
-                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                          <td><a class="btn btn-primary" href="<?php echo site_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
                         </tr>
                       </tbody>
                     </table>
@@ -121,7 +121,7 @@
                           <th scope="row">Paul</th>
                           <td>7</td>
                           <td>10/12/2018</td>
-                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                          <td><a class="btn btn-primary" href="<?php echo site_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
                         </tr>
                         <tr>
                         <th scope="row">Paul</th>
