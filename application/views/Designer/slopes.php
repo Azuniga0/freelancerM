@@ -38,7 +38,8 @@
                           <th scope="row">Poyoyon</th>
                           <td>7</td>
                           <td>10/12/2018</td>
-                          <td><a class="btn btn-primary" href="<? echo base_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
+                          <td><a class="btn btn-primary" href="<?php echo base_url('index.php/Designer_controller/publication');?>">Ir</a>
+                          </td>
                         </tr>
                         <tr>
                         <th scope="row">Oferta de fin de semana</th>
