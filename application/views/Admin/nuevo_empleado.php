@@ -11,29 +11,51 @@
                         </div> 
                     </div>
                     <div class="row">   
-                        <form class="col-md-12">
+                        <form class="col-md-12" method="post" <?php echo base_url('index.php/admin_controller/nuevo_empleado'); ?>>
                             <div class="form-row" style="margin-top: 15px;">
                                 <label style="color:"><b>Datos personales:</b></label>
                                 <br><br>
                             </div>
                             <div class="form-row">
-                                <div class="col-md-8 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Nombre completo:</span>
+                                            <span class="input-group-text" id="nombre_empleado">Nombre:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Susana Pérez" aria-describedby="validationTooltipUsernamePrepend" required>
+                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="nombre" required>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="col-md-3 mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">RFC:</span>
+                                            <span class="input-group-text" id="nombre_empleado">A. paterno:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
+                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="apellido_paterno" required>
+                                        <div class="invalid-tooltip">
+                                            Por favor, inserte un nombre válido
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="nombre_empleado">A. materno:</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="apellido_materno" required>
+                                        <div class="invalid-tooltip">
+                                            Por favor, inserte un nombre válido
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="rfc_empleado">RFC:</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="rfc" placeholder="" aria-describedby="rfc_empleado" name="rfc" required>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un RFC válido
                                         </div>
@@ -44,9 +66,9 @@
                                 <div class="form-group col-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Dirección:</span>
+                                            <span class="input-group-text" id="direccion_empleado">Dirección:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
+                                        <input type="text" class="form-control" id="direccion" placeholder="" aria-describedby="direccion_empleado" name="direccion" required>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte una dirección válida
                                         </div>
@@ -55,9 +77,9 @@
                                 <div class="form-group col-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Colonia:</span>
+                                            <span class="input-group-text" id="colonia_empleado">Colonia:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
+                                        <input type="text" class="form-control" id="colonia" placeholder="" aria-describedby="colonia_empleado" name="colonia" required>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte una colonia válida
                                         </div>
@@ -66,9 +88,9 @@
                                 <div class="form-group col-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Ciudad:</span>
+                                            <span class="input-group-text" id="ciudad_empleado">Ciudad:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
+                                        <input type="text" class="form-control" id="ciudad" placeholder="" aria-describedby="ciudad_empleado" name="ciudad" required>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte una ciudad válida
                                         </div>
@@ -79,9 +101,9 @@
                                 <div class="form-group col-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Estado:</span>
+                                            <span class="input-group-text" id="estado_empleado">Estado:</span>
                                         </div>
-                                        <select class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend"  require>
+                                        <select class="form-control" id="estado" aria-describedby="estado_empleado" name="estado_rep"  require>
                                             <option selected>Seleccione...</option>
                                             <option>...</option>
                                         </select>                                       
@@ -93,15 +115,25 @@
                                 <div class="form-group col-2">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">CP:</span>
+                                            <span class="input-group-text" id="codigo_p">CP:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
+                                        <input type="text" class="form-control" id="cp" placeholder="" aria-describedby="codigo_p" name="cp" required>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un código postal válido
                                         </div>
                                     </div>
                                 </div>
-                                <br><br>
+                                <div class="form-group col-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="email_empleado">Correo:</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="email" placeholder="" aria-describedby="email_empleado" name="correo" required>
+                                        <div class="invalid-tooltip">
+                                            Por favor, inserte un código postal válido
+                                        </div>
+                                    </div>
+                                </div>
                             </div>        
                             <div class="form-row" style="margin-top: 15px;">
                                 <label style="color:"><b>Datos de acceso:</b></label>
@@ -111,9 +143,9 @@
                                 <div class="form-group col-md-7">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Usuario:</span>
+                                            <span class="input-group-text" id="usuario_empleado">Usuario:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="" aria-describedby="validationTooltipUsernamePrepend" required>
+                                        <input type="text" class="form-control" id="usuario" placeholder="" aria-describedby="usuario_empleado" name="username" required>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
@@ -122,37 +154,64 @@
                                 <div class="form-group col-md-5">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Rol:</span>
+                                            <span class="input-group-text" id="rol_empleado">Rol:</span>
                                         </div>
-                                        <select class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend"  require>
+                                        <!--select-- class="form-control" id="rol" aria-describedby="rol_empleado" name="tipo_usuario" require>
                                             <option selected>Seleccione...</option>
                                             <option>...</option>
-                                        </select>                                       
+                                        </select-->        
+
+                                        <?php
+                                            $database=mysqli_connect("localhost", "root","","freelancer");
+
+                                            $query = "SELECT id_tipo_usuario, tipo_usuario FROM tipo_usuario ORDER BY id_tipo_usuario ASC";
+                                            $result = mysqli_query($database,$query) or die("no se encontraron datos");
+                                            mysqli_set_charset($database,"utf8");
+                                            ?>
+
+                                            <select class="form-control" id="rol" aria-describedby="rol_empleado" name="tipo_usuario" require>                                            
+                                                <?php 
+                                                    while ($row = mysqli_fetch_array($result))
+                                                    {
+                                                        echo "<option value='" . $row['id_tipo_usuario'] . "'>" . $row['tipo_usuario'] . "</option>";
+                                                    }
+                                                ?>        
+                                            </select>
+
                                         <div class="invalid-tooltip">
-                                            Por favor, seleccione un estado válido
+                                            Por favor, seleccione un rol válido
                                         </div>
                                     </div>    
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="col-3">
-                                    <a href="" class="btn btn-info">Generar contraseña:</a>
+                                <div class="col-2">
+                                    <a href="" class="btn btn-info" disabled>Generar contraseña:</a>
                                 </div>
                                 <div class="col-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Contraseña:</span>
+                                            <span class="input-group-text" id="password_empleado">Contraseña:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="********************" aria-describedby="validationTooltipUsernamePrepend" required disabled>
+                                        <?php
+                                        //echo $_SESSION['name'];
+                                        //$contra=$default_pass;
+                                        $contra="123";
+                                        //echo $contra;
+                                        echo "<input type='text' class='form-control' id='password' placeholder='********************' aria-describedby='password_empleado' name='password' required disabled value='$contra'>";
+                                        
+                                        ?>
+                                        <!--input type="text" class="form-control" id="password" placeholder="********************" aria-describedby="password_empleado" name="password" required disabled-->
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row ">                                
-                                <a href="" class="btn btn-danger">Cancelar</a>
-                                <button type="submit" class="btn btn-primary float-right" style="margin-top:15px;">Guardar</button>  
+                            <div class="form-row float-right ">                                
+                                <!--button type="submit" class="btn btn-danger " style="margin-top:15px;">Cancelar</button--> 
+                                <!--button type="submit" class="btn btn-primary " style="margin-top:15px;">Guardar</button-->  
+                                <input class="primary-btn btn" style="color:white; margin-top: 15px;" type="submit" value="Guardar" name="register" >
                             </div>
                         </form>
                     </div>
