@@ -1,3 +1,15 @@
+<section class="dashboard-counts section-padding">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Count item widget-->
+      <div class=" col-md-9 col-8">
+        <div class="wrapper count-title d-flex text-center">
+          <div class="name"><strong class="text-uppercase">Calendario</strong></div>
+        </div>
+      </div>
+  </div>  
+</section>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +17,7 @@
     <script src='<?php echo base_url(); ?>assets/fullcalendar/lib/moment.min.js'></script>
     <script src='<?php echo base_url(); ?>assets/fullcalendar/lib/jquery.min.js'></script>
     <script src='<?php echo base_url(); ?>assets/fullcalendar/fullcalendar.min.js'></script>
+    <script src='<?php echo base_url(); ?>assets/fullcalendar/locale/es.js'></script>
     <link href='<?php echo base_url(); ?>assets/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
     <link href='<?php echo base_url(); ?>assets/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />  
 <script>
@@ -84,9 +97,8 @@
 </script>
 <style>
   #calendar {
-    max-width: 900px;
-    max-height: 900px;
-    margin: auto;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
 </style>
