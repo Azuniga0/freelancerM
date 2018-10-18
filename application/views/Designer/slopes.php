@@ -1,200 +1,142 @@
-
-    <div class="page">
-      <!-- navbar-->
-      <header class="header">
-        <nav class="navbar">
-          <div class="container-fluid">
-            <div class="navbar-holder d-flex align-items-center justify-content-between">
-              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
-                  <div class="brand-text d-none d-md-inline-block"><span>Bootstrap </span><strong class="text-primary">Dashboard</strong></div></a></div>
-              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-                <!-- Notifications dropdown-->
-                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span class="badge badge-warning">12</span></a>
-                  <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-envelope"></i>You have 6 new messages </div>
-                          <div class="notification-time"><small>4 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
-                          <div class="notification-time"><small>4 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-upload"></i>Server Rebooted</div>
-                          <div class="notification-time"><small>4 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
-                          <div class="notification-time"><small>10 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-bell"></i>view all notifications                                            </strong></a></li>
-                  </ul>
-                </li>
-                <!-- Messages dropdown-->
-                <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope"></i><span class="badge badge-info">10</span></a>
-                  <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="<?php echo base_url(); ?>assets/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Jason Doe</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="<?php echo base_url(); ?>assets/img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Frank Williams</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="<?php echo base_url(); ?>assets/img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Ashley Wood</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
-                  </ul>
-                </li>
-                <!-- Languages dropdown    -->
-                <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="<?php echo base_url(); ?>assets/img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
-                  <ul aria-labelledby="languages" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="<?php echo base_url(); ?>assets/img/flags/16/DE.png" alt="English" class="mr-2"><span>German</span></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="<?php echo base_url(); ?>assets/img/flags/16/FR.png" alt="English" class="mr-2"><span>French                                                         </span></a></li>
-                  </ul>
-                </li>
-                <!-- Log out-->
-                <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
-              </ul>
-            </div>
+<section class="dashboard-counts section-padding">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Count item widget-->
+      <div class=" col-md-9 col-8">
+        <div class="wrapper count-title d-flex text-center">
+          <div class="name"><strong class="text-uppercase">Pendientes</strong>
           </div>
-        </nav>
-      </header>
-      <!-- Counts Section -->
-      <section class="dashboard-counts section-padding">
+        </div>
+      </div>
+     
+  </div>  
+</section>
+
+<!-- Empleados -->
+      <section class="mt-30px mb-30px">
         <div class="container-fluid">
           <div class="row">
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">New Clients</strong><span>Last 7 days</span>
-                  <div class="count-number">25</div>
+            <div class="col-lg-12 col-md-12">
+              <!-- Recent Updates Widget          -->
+              <div id="new-updates" class="card updates recent-updated">
+                <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Campaña 1</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
+                </div>
+                <div id="updates-box" role="tabpanel" class="collapse">
+                  <div class="" style="padding:15px">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nombre de publicación</th>
+                          <th scope="col">Nodo</th>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Ir a publicación</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Poyoyon</th>
+                          <td>7</td>
+                          <td>10/12/2018</td>
+                          <td><a class="btn btn-primary" href="<?php echo base_url('index.php/Designer_controller/publication');?>">Ir</a>
+                          </td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Oferta de fin de semana</th>
+                          <td>2</td>
+                          <td>11/12/2018</td>
+                          <td><a class="btn btn-primary" href="<?php  echo base_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-padnote"></i></div>
-                <div class="name"><strong class="text-uppercase">Work Orders</strong><span>Last 5 days</span>
-                  <div class="count-number">400</div>
+              <!-- Recent Updates Widget End-->
+            </div>            
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-6">
+              <!-- Daily Feed Widget-->
+              <div id="daily-feeds" class="card updates daily-feeds">
+                <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">Campaña 2 </a></h2>
+                  <div class="right-column">
+                    <div class="badge badge-primary"></div><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"><i class="fa fa-angle-down"></i></a>
+                  </div>
+                </div>
+                <div id="feeds-box" role="tabpanel" class="collapse ">
+                  <div class="feed-box">
+                  <div class="tablas" style="padding:15px">
+                  <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nombre de publicación</th>
+                          <th scope="col">Nodo</th>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Ir a publicación</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Paul</th>
+                          <td>7</td>
+                          <td>10/12/2018</td>
+                          <td><a class="btn btn-primary" href="<?php echo site_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Paul</th>
+                          <td>2</td>
+                          <td>11/12/2018</td>
+                          <td><a class="btn btn-primary" href="<?php echo site_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  </div>
                 </div>
               </div>
+              <!-- Daily Feed Widget End-->
             </div>
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-check"></i></div>
-                <div class="name"><strong class="text-uppercase">New Quotes</strong><span>Last 2 months</span>
-                  <div class="count-number">342</div>
+          </div>
+          <div class="row">            
+            <div class="col-lg-12 col-md-6">
+              <!-- Recent Activities Widget      -->
+              <div id="recent-activities-wrapper" class="card updates activities">
+                <div id="activites-header" class="card-header d-flex justify-content-between align-items-center">
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">Campaña 3</a></h2><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box"><i class="fa fa-angle-down"></i></a>
                 </div>
-              </div>
-            </div>
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-bill"></i></div>
-                <div class="name"><strong class="text-uppercase">New Invoices</strong><span>Last 2 days</span>
-                  <div class="count-number">123</div>
-                </div>
-              </div>
-            </div>
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-list"></i></div>
-                <div class="name"><strong class="text-uppercase">Open Cases</strong><span>Last 3 months</span>
-                  <div class="count-number">92</div>
-                </div>
-              </div>
-            </div>
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-list-1"></i></div>
-                <div class="name"><strong class="text-uppercase">New Cases</strong><span>Last 7 days</span>
-                  <div class="count-number">70</div>
+                <div id="activities-box" role="tabpanel" class="collapse">
+                  <div class="tablas" style="padding:15px">
+                  <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nombre de publicación</th>
+                          <th scope="col">Nodo</th>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Ir a publicación</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Paul</th>
+                          <td>7</td>
+                          <td>10/12/2018</td>
+                          <td><a class="btn btn-primary" href="<?php echo site_url('index.php/Designer_controller/publication') ?>">Ir</a></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Paul</th>
+                          <td>2</td>
+                          <td>11/12/2018</td>
+                          <td><a class="btn btn-primary" href="#<?php // echo base_url('#');?>">Ir</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <!-- Header Section-->
-      <section class="dashboard-header section-padding">
-        <div class="container-fluid">
-          <div class="row d-flex align-items-md-stretch">
-            <!-- To Do List-->
-            <div class="col-lg-3 col-md-6">
-              <div class="card to-do">
-                <h2 class="display h4">To do List</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <ul class="check-lists list-unstyled">
-                  <li class="d-flex align-items-center"> 
-                    <input type="checkbox" id="list-1" name="list-1" class="form-control-custom">
-                    <label for="list-1">Similique sunt in culpa qui officia</label>
-                  </li>
-                  <li class="d-flex align-items-center"> 
-                    <input type="checkbox" id="list-2" name="list-2" class="form-control-custom">
-                    <label for="list-2">Ed ut perspiciatis unde omnis iste</label>
-                  </li>
-                  <li class="d-flex align-items-center"> 
-                    <input type="checkbox" id="list-3" name="list-3" class="form-control-custom">
-                    <label for="list-3">At vero eos et accusamus et iusto </label>
-                  </li>
-                  <li class="d-flex align-items-center"> 
-                    <input type="checkbox" id="list-4" name="list-4" class="form-control-custom">
-                    <label for="list-4">Explicabo Nemo ipsam voluptatem</label>
-                  </li>
-                  <li class="d-flex align-items-center"> 
-                    <input type="checkbox" id="list-5" name="list-5" class="form-control-custom">
-                    <label for="list-5">Similique sunt in culpa qui officia</label>
-                  </li>
-                  <li class="d-flex align-items-center"> 
-                    <input type="checkbox" id="list-6" name="list-6" class="form-control-custom">
-                    <label for="list-6">At vero eos et accusamus et iusto </label>
-                  </li>
-                  <li class="d-flex align-items-center"> 
-                    <input type="checkbox" id="list-7" name="list-7" class="form-control-custom">
-                    <label for="list-7">Similique sunt in culpa qui officia</label>
-                  </li>
-                  <li class="d-flex align-items-center"> 
-                    <input type="checkbox" id="list-8" name="list-8" class="form-control-custom">
-                    <label for="list-8">Ed ut perspiciatis unde omnis iste</label>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- Pie Chart-->
-            <div class="col-lg-3 col-md-6">
-              <div class="card project-progress">
-                <h2 class="display h4">Project Beta progress</h2>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <div class="pie-chart">
-                  <canvas id="pieChart" width="300" height="300"> </canvas>
-                </div>
-              </div>
-            </div>
-            <!-- Line Chart -->
-            <div class="col-lg-6 col-md-12 flex-lg-last flex-md-first align-self-baseline">
-              <div class="card sales-report">
-                <h2 class="display h4">Sales marketing report</h2>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet officiis</p>
-                <div class="line-chart">
-                  <canvas id="lineCahrt"></canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+     

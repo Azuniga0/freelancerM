@@ -40,13 +40,13 @@
                         $this->load->view('CommunityManager/home_cm.php');                        
                     break;
                     case '3':
-                        $this->load->view('Designer/home_d.php');
+                        $this->load->view('General/header_on.php');
+                        $this->load->view('designer/navbar_designer.php');
+                        $this->load->view('designer/slopes.php');
+                        $this->load->view('General/footer_on.php');
                     break;
                     case '4':
-                        $this->load->view('GeneradorContenido/home_gc.php');
-                    break;
-                    case '5':
-                        $this->load->view('Cliente/home_cliente.php');
+                        $this->load->view('Designer/home_d.php');
                     break;                   
                     default:
                         //$this->load->view('header.php');

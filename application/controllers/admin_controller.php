@@ -78,15 +78,25 @@
             'apellido_paterno'=>$this->input->post('apellido_paterno'),
             'apellido_materno'=>$this->input->post('apellido_materno'),
             'rfc'=>$this->input->post('rfc'),
-            'id_estado_empleado'=>('1'),
-            'direccion'=>$this->input->post('direccion'),            
+            /*'direccion'=>$this->input->post('direccion'),            
             'colonia'=>$this->input->post('colonia'),
             'ciudad'=>$this->input->post('ciudad'),
-            'estado_rep'=>('1'),//modificar'estado_rep'=>$this->input->post('estado_rep'),
+            'estado_rep'=>$this->input->post('estado_rep'),
             'cp'=>$this->input->post('cp'),
-            'correo'=>$this->input->post('correo'),
+            'correo'=>$this->input->post('correo'),*/
+            'estado_rep'=>('1'),
             'creador'=>($id)
             );
+
+            $email_check=$this->admin_model->email_check($empleado['correo']);
+
+            if($email_check){
+                $this->admin_model->nuevo_empleado($empleado);
+                echo "entra";
+            }else{
+                redirect('index.php/user/camp'); //cambiar la url
+                echo "no entra";
+            }
 
             /*$usuario=array(
             'username'=>$this->input->post('username'),
@@ -99,7 +109,7 @@
 
             
             //$db = mysqli_connect("localhost","root","","freelancer");
-            $this->admin_model->nuevo_empleado($empleado,$id);
+            //$this->admin_model->nuevo_empleado($empleado,$id);
             /*$rec = $_POST['idRecipe'];
             $ingredientes = $_POST['ingredientes'];*/
             
@@ -117,7 +127,7 @@
                 echo "no entro<br>";
                 echo (mysqli_error($db));
             }*/
-            $this->load->view('home_admin.php');
+            //$this->load->view('home_admin.php');
         }
         
     }    
