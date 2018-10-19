@@ -8,12 +8,7 @@
   	 		$this->load->model('admin_model');
             $this->load->library('session');
         }
-        
-        public function generar_pass($length=10){
-            //Método con str_shuffle() 
-            return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
-        }
-
+            
         public function home(){
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
@@ -78,25 +73,17 @@
             'apellido_paterno'=>$this->input->post('apellido_paterno'),
             'apellido_materno'=>$this->input->post('apellido_materno'),
             'rfc'=>$this->input->post('rfc'),
-            /*'direccion'=>$this->input->post('direccion'),            
+            'direccion'=>$this->input->post('direccion'),            
             'colonia'=>$this->input->post('colonia'),
             'ciudad'=>$this->input->post('ciudad'),
             'estado_rep'=>$this->input->post('estado_rep'),
             'cp'=>$this->input->post('cp'),
-            'correo'=>$this->input->post('correo'),*/
+            'correo'=>$this->input->post('correo'),
             'estado_rep'=>('1'),
             'creador'=>($id)
             );
 
-            $email_check=$this->admin_model->email_check($empleado['correo']);
-
-            if($email_check){
-                $this->admin_model->nuevo_empleado($empleado);
-                echo "entra";
-            }else{
-                redirect('index.php/user/camp'); //cambiar la url
-                echo "no entra";
-            }
+           
 
             /*$usuario=array(
             'username'=>$this->input->post('username'),
@@ -106,28 +93,13 @@
             'id_estado'=>('1')
             );*/
 
+            print_r($empleado);
 
             
-            //$db = mysqli_connect("localhost","root","","freelancer");
-            //$this->admin_model->nuevo_empleado($empleado,$id);
-            /*$rec = $_POST['idRecipe'];
-            $ingredientes = $_POST['ingredientes'];*/
+            $this->admin_model->nuevo_empleado($empleado);
             
            
-
-            /*$filetmp = $_FILES["file_img"]["tmp_name"];
-            $filename = $_FILES["file_img"]["name"];
-            $filetype = $_FILES["file_img"]["type"];
-            $filepath = "C:/xampp/htdocs/comeon/img/comida/".$filename;
-
-            move_uploaded_file($filetmp,$filepath);
-            if(mysqli_query($db, "UPDATE recipe SET img_name='$filename', img_path='$filepath', img_type='$filetype' where idRecipe='$rec'")){
-                echo "img bien";
-            }else{
-                echo "no entro<br>";
-                echo (mysqli_error($db));
-            }*/
-            //$this->load->view('home_admin.php');
+            $this->load->view('home_admin.php');
         }
         
     }    

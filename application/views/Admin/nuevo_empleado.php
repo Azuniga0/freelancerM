@@ -1,3 +1,15 @@
+<script>
+    function gen_pass() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 6; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+</script>
+
 <section class="mt-30px mb-30px">
     <div class="container-fluid">
         <div class="row">            
@@ -62,7 +74,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--div class="form-row">
+                            <div class="form-row">
                                 <div class="form-group col-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -97,7 +109,7 @@
                                     </div>
                                 </div>
                             </div>                            
-                            <div-- class="form-row">
+                            <div class="form-row">
                                 <div class="form-group col-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -148,8 +160,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div-->        
-                            <!--div class="form-row" style="margin-top: 15px;">
+                            </div>        
+                            <div class="form-row" style="margin-top: 15px;">
                                 <label style="color:"><b>Datos de acceso:</b></label>
                                 <br><br>
                             </div>                    
@@ -174,7 +186,7 @@
                                         <?php
                                             $database=mysqli_connect("localhost", "root","","freelancer");
 
-                                            $query = "SELECT id_tipo_usuario, tipo_usuario FROM tipo_usuario ORDER BY id_tipo_usuario ASC";
+                                            $query = "SELECT id_tipo_usuario, n_tipo_usuario FROM tipo_usuario ORDER BY id_tipo_usuario ASC";
                                             $result = mysqli_query($database,$query) or die("no se encontraron datos");
                                             mysqli_set_charset($database,"utf8");
                                             ?>
@@ -183,7 +195,7 @@
                                                 <?php 
                                                     while ($row = mysqli_fetch_array($result))
                                                     {
-                                                        echo "<option value='" . $row['id_tipo_usuario'] . "'>" . $row['tipo_usuario'] . "</option>";
+                                                        echo "<option value='" . $row['id_tipo_usuario'] . "'>" . $row['n_tipo_usuario'] . "</option>";
                                                     }
                                                 ?>        
                                             </select>
@@ -194,34 +206,34 @@
                                     </div>    
                                 </div>
                             </div>
-                            <div-- class="form-row">
+                            <div class="form-row">
                                 <div class="col-2">
-                                    <a href="" class="btn btn-info" disabled>Generar contraseña:</a>
+                                    <a href="#" onclick="gen_pass();" class="btn btn-info" disabled>Generar contraseña:</a>
                                 </div>
                                 <div class="col-4">
                                     <div class="input-group">
-                                        <div-- class="input-group-prepend">
+                                        <div class="input-group-prepend">
                                             <span class="input-group-text" id="password_empleado">Contraseña:</span>
-                                        </div-->
+                                        </div>
                                         <?php
                                         //echo $_SESSION['name'];
-                                        //$contra=$default_pass;
-                                        $contra="123";
+                                        //$contra=gen_pass();
+                                        //$contra="123";
                                         //echo $contra;
-                                        echo "<input type='text' class='form-control' id='password' placeholder='********************' aria-describedby='password_empleado' name='password' required disabled value='$contra'>";
+                                        echo "<input type='text' class='form-control' id='password' placeholder='********************' aria-describedby='password_empleado' name='password' required disabled value='123'>";
                                         
                                         ?>
                                         <!--input type="text" class="form-control" id="password" placeholder="********************" aria-describedby="password_empleado" name="password" required disabled-->
-                                        <!--div class="invalid-tooltip">
+                                        <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
                                     </div>
                                 </div>
-                            </div-->
+                            </div>
                             <div class="form-row float-right ">                                
                                 <!--button type="submit" class="btn btn-danger " style="margin-top:15px;">Cancelar</button--> 
                                 <!--button type="submit" class="btn btn-primary " style="margin-top:15px;">Guardar</button-->  
-                                <input class="btn btn-primary" style="margin-top: 15px;" type="submit" value="Guardar" name="register" >
+                                <input class="primary-btn btn" style=" margin-top: 15px;" type="submit" value="Guardar" name="register" >
                             </div>
                         </form>
                     </div>
@@ -231,4 +243,4 @@
     </div>  
 </section>
 
-    
+     
