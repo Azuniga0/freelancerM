@@ -15,7 +15,7 @@
         <!-- Sidebar Header    -->
         <div class="sidenav-header d-flex align-items-center justify-content-center">
           <!-- User Info-->
-          <div class="sidenav-header-inner text-center">  <?php echo '<img class="img-fluid rounded-circle" src="../../img/perfiles/'.$_SESSION['img_name'].'"'; ?>  <img src="img/perfiles/" alt="person" >
+          <div class="sidenav-header-inner text-center">  <?php echo '<img class="img-fluid rounded-circle" src="../../img/perfiles/gato.png'; ?>  
             <h2 class="h5"><?php echo $_SESSION['username']; ?></h2><span><?php echo $_SESSION['n_tipo_usuario']; ?></span>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->

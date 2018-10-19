@@ -57,7 +57,9 @@
 
             }else{
                 $this->session->set_flashdata('error_msg', 'Ha ocurrido un error, intente de nuevo');
+                $this->load->view("header.php");
                 $this->load->view("login.php");
+                $this->load->view("footer.php");
             }
         }
 
