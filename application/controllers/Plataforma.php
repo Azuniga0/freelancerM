@@ -26,10 +26,10 @@
             if($data){
                 $this->session->set_userdata('id_usuario',$data['id_usuario']);
                 $this->session->set_userdata('username',$data['username']);
-                //$this->session->set_userdata('nombre_us',$data['nombre_us']); 
-                $this->session->set_userdata('tipo_usuario',$data['tipo_usuario']); 
+                $this->session->set_userdata('rol',$data['rol']); 
+                $this->session->set_userdata('n_tipo_usuario',$data['n_tipo_usuario']); 
 
-                switch ($data['tipo_usuario']) {
+                switch ($data['rol']) {
                     case '1':
                         $this->load->view('Admin/header_admin.php');
                         $this->load->view('Admin/navbar_admin.php');
