@@ -29,7 +29,7 @@
                 //$this->session->set_userdata('nombre_us',$data['nombre_us']); 
                 $this->session->set_userdata('tipo_usuario',$data['tipo_usuario']); 
 
-                switch ($data['tipo_usuario']) {
+                switch ($data['rol']) {
                     case '1':
                         $this->load->view('Admin/header_admin.php');
                         $this->load->view('Admin/navbar_admin.php');
