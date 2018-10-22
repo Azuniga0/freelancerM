@@ -3,7 +3,13 @@
 
         public function getslope()
         {
-            $this->db->query("SELECT c.nombre, t.titulo, t.contenido, t.fecha_entrega, t.id_usuario FROM campaña as c join tareas as t on c.id_campaña = t.id_campaña")->result();
+            $this->db->select()
+                     ->from("campaña")
+                     ->join("Detalle_CP","campaña.id_campaña=Detalle_CP.id_campaña")
+                     ->join("Publicaciones","Publicaciones.id_publicaciones=Detalle_CP.id_publicaciones")
+                     ->join("tareas","Publicaciones.id_publicaciones=tareas.id_publicaciones")
+                     ->get()
+                     ->result();
         }
 
         
