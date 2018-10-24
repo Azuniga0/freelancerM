@@ -12,7 +12,6 @@
         public function index(){
             $this->load->view("header.php");
             $this->load->view("login.php");
-            $this->load->view("footer.php");
         }
 
         function login_user(){  
@@ -28,6 +27,7 @@
                 $this->session->set_userdata('username',$data['username']);
                 $this->session->set_userdata('rol',$data['rol']); 
                 $this->session->set_userdata('n_tipo_usuario',$data['n_tipo_usuario']); 
+                $this->session->set_userdata('nombre',$data['nombre']); 
 
                 switch ($data['rol']) {
                     case '1':
@@ -47,11 +47,16 @@
                     break;
                     case '4':
                         $this->load->view('Designer/home_d.php');
+                    break;
+                    case '5':
+                        $this->load->view('General/header_on.php');
+                        $this->load->view('Admin/navbar_admin.php');
+                        $this->load->view('Cliente/home_cliente.php');
+                        $this->load->view('General/footer_on.php');
                     break;                   
                     default:
-                        //$this->load->view('header.php');
+                        $this->load->view('header.php');
                         $this->load->view('login.php');
-                        //$this->load->view('footer.php');
                     break;
                 }
 
@@ -59,7 +64,7 @@
                 $this->session->set_flashdata('error_msg', 'Ha ocurrido un error, intente de nuevo');
                 $this->load->view("header.php");
                 $this->load->view("login.php");
-                $this->load->view("footer.php");
+            
             }
         }
 
