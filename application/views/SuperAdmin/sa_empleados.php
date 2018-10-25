@@ -47,11 +47,10 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php for ($i=0; $i < count($empleado_activo) ; $i++) { ?>
+                        <?php /*for ($i=0; $i < count($empleado_activo) ; $i++) {*/ ?>
                           <tr>  
                             <td>
-                              <?php echo $empleado_activo[$i]['username'];
-                              ?>
+                              <?php /*echo $empleado_activo[$i]['username'];*/ ?>
                             </td>
                             <td>
                             </td>
@@ -62,7 +61,7 @@
                             <td>
                             </td>
                           </tr>
-                        <?php } ?>                        
+                        <?php /*} */?>                        
                       </tbody>
                     </table>
                   </div>

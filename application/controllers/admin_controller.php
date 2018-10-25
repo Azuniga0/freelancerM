@@ -8,7 +8,8 @@
   	 		$this->load->model('admin_model');
             $this->load->library('session');
         }
-            
+        
+        //Carga la vista home del admin
         public function home(){
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
@@ -16,17 +17,21 @@
             $this->load->view('General/footer_on.php');
         }
         
+        //Carga la vista que contiene la lista de empleados
         public function empleados(){
+            //$datos_empleado["result"] = $this->admin_model->empleado_activo();
             $datos_empleado=array(
-                'empleado_activo'=>$this->admin_model->empleado_activo()
+                'empleado_activo'=>$this->admin_model->empleado_activo(),
+                'empleado_inactivo'=>$this->admin_model->empleado_inactivo(),
+                'empleado_despedido'=>$this->admin_model->empleado_despedido()
             );
-            //$this->load->view("recetas.php",$r_data);
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
             $this->load->view('Admin/empleados.php',$datos_empleado);
             $this->load->view('General/footer_on.php');
         }
         
+        //Carga la vista que contiene la lista de empresas
         public function clientes(){
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
@@ -34,6 +39,7 @@
             $this->load->view('General/footer_on.php');
         }
         
+        //carga la vista que contiene la lista de campañas
         public function camp(){
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
@@ -41,6 +47,7 @@
             $this->load->view('General/footer_on.php');
         }
         
+        //Carga la vista del perfil del administrador
         public function perfil(){
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
@@ -48,6 +55,7 @@
             $this->load->view('General/footer_on.php');
         }
 
+        //Carga el formulario para un nuevo empleado
         public function vista_nuevo_empleado(){
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
@@ -55,6 +63,7 @@
             $this->load->view('General/footer_on.php');
         }
 
+        //Carga el formulario para una nueva empresa
         public function vista_nuevo_cliente(){
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
@@ -62,49 +71,15 @@
             $this->load->view('General/footer_on.php');
         }
 
+        //Carga el formulario para una nueva campaña
         public function vista_nueva_camp(){
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
             $this->load->view('Admin/nueva_camp.php');
             $this->load->view('General/footer_on.php');
-        }        
-
-        /*public function nuevo_empleado(){
-            $id=$_SESSION['id_usuario'];
-            $empleado=array(
-            'nombre'=>$this->input->post('nombre'),
-            'apellido_paterno'=>$this->input->post('apellido_paterno'),
-            'apellido_materno'=>$this->input->post('apellido_materno'),
-            'rfc'=>$this->input->post('rfc'),
-            'direccion'=>$this->input->post('direccion'),            
-            'colonia'=>$this->input->post('colonia'),
-            'ciudad'=>$this->input->post('ciudad'),
-            'estado_rep'=>$this->input->post('estado_rep'),
-            'cp'=>$this->input->post('cp'),
-            'correo'=>$this->input->post('correo'),
-            'estado_rep'=>('1'),
-            'creador'=>($id)
-            );*/
-
-           
-
-            /*$usuario=array(
-            'username'=>$this->input->post('username'),
-            'password'=>sha1("123"), //'password'=>sha1($this->input->post('password')),
-
-            'tipo_usuario'=>$this->input->post('tipo_usuario'),
-            'id_estado'=>('1')
-            );*/
-
-            /*print_r($empleado);
-
-            
-            $this->admin_model->nuevo_empleado($empleado);
-            
-           
-            $this->load->view('Admin/home_admin.php');
-        }*/
-
+        } 
+        
+        //Toma los datos del formulario de empleado y los envia al modelo para la inserción
         public function nuevo_empleado(){
             $id=$_SESSION['id_usuario'];
             $usuario=array(
@@ -139,6 +114,7 @@
                 redirect('index.php/admin_controller/empleados', 'refresh');     
         }
 
+        //Toma los datos del formulario de empresa y los envia al modelo para inserción
         public function nueva_empresa(){
             $id=$_SESSION['id_usuario'];
             $usuario=array(
@@ -173,6 +149,7 @@
                 redirect('index.php/admin_controller/clientes', 'refresh');     
         }
 
+        //Toma los datos del formulario de campaña y los envia al modelo para inserción
         public function nueva_camp(){
             $id=$_SESSION['id_usuario'];
             $camp=array(
@@ -189,6 +166,7 @@
             $this->admin_model->nueva_camp($camp);
             redirect('index.php/admin_controller/camp', 'refresh');
         }
+
         
     }    
 ?>

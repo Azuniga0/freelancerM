@@ -3,7 +3,7 @@
 
         //funcion para iniciar sesion
         public function login_user($username,$password){
-            $this->db->select('id_usuario, username, password, rol, n_tipo_usuario, nombre');
+            $this->db->select('id_usuario, username, password, rol, n_tipo_usuario, nombre, id_estado_us');
             $this->db->from('usuarios');
             $this->db->join('tipo_usuario','usuarios.rol = tipo_usuario.id_tipo_usuario');
             $this->db->where('username',$username);
