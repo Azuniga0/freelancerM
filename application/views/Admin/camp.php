@@ -1,3 +1,5 @@
+
+
 <section class="dashboard-counts section-padding">
   <div class="container-fluid">
     <div class="row">
@@ -11,7 +13,10 @@
       <div class=" col-md-3 col-4">
     <div class="wrapper count-title d-flex text-center">
       <div class="name">
-        <a class="btn btn-primary" href="<?php echo base_url('index.php/admin_controller/vista_nueva_camp');?>">Nueva campaña</a>
+        <a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/admin_controller/vista_nueva_camp');?>">Nueva campaña</a>
+      </div>
+      <div class="name">
+        <!--a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/sadmin_controller/vista_existente_sa_empleado');?>">Empleado existente</a-->
       </div>
     </div>
   </div>
@@ -27,37 +32,47 @@
               <!-- Recent Updates Widget          -->
               <div id="new-updates" class="card updates recent-updated">
                 <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Activos</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Activas</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
                 </div>
                 <div id="updates-box" role="tabpanel" class="collapse show">
                   <div class="" style="padding:15px">
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col">Número campaña</th>
+                          <th scope="col">Imagen</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Empresa</th>
+                          <th scope="col">Comunity Manager</th>
+                          <th scope="col">Fecha de alta</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td colspan="2">Larry the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
+                        <?php foreach ($data as $key => $value) { ?>
+                          <tr>  
+                            <td>
+                              <?php echo $value->id_usuario; ?>
+                            </td>
+                            <td>
+                              <?php 
+                              //echo $value->imagen; 
+                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen_camp.'">';
+                              ?>
+                            </td>
+                            <td>
+                              <?php echo $value->nombre_camp; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->nombre; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->nombre; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->fecha_creacion; ?>
+                            </td>
+                          </tr>
+                        <?php } ?>                        
                       </tbody>
                     </table>
                   </div>
@@ -71,7 +86,7 @@
               <!-- Daily Feed Widget-->
               <div id="daily-feeds" class="card updates daily-feeds">
                 <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">No activas </a></h2>
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">Inactivas </a></h2>
                   <div class="right-column">
                     <div class="badge badge-primary"></div><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"><i class="fa fa-angle-down"></i></a>
                   </div>
@@ -82,30 +97,40 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col">Número empleado</th>
+                          <th scope="col">Imagen</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Rol</th>
+                          <th scope="col">Correo electrónico</th>
+                          <th scope="col">Fecha de alta</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td colspan="2">Larry the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
+                        <?php foreach ($data2 as $key => $value) { ?>
+                          <tr>  
+                            <td>
+                              <?php echo $value->id_usuario; ?>
+                            </td>
+                            <td>
+                              <?php 
+                              //echo $value->imagen; 
+                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen.'">';
+                              ?>
+                            </td>
+                            <td>
+                              <?php echo $value->nombre; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->n_tipo_usuario; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->correo; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->fecha_alta; ?>
+                            </td>
+                          </tr>
+                        <?php } ?>                        
                       </tbody>
                     </table>
                   </div>

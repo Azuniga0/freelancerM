@@ -16,7 +16,7 @@
                         </div> 
                     </div>
                     <div class="row">   
-                        <form class="col-md-12" method="post" action="nueva_empresa">
+                        <form class="col-md-12" method="post" action="nueva_empresa" enctype="multipart/form-data" role="form">
                             <div class="form-row" style="margin-top: 15px;">
                                 <label style="color:"><b>Datos personales:</b></label>
                                 <br><br>
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="input-group mb-3 col-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="imagen" disabled>
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" >
                                         <label class="custom-file-label" for="inputGroupFile01">Presiona aquí</label>
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                                         //echo "<input type='text' class='form-control' id='password' placeholder='********************' aria-describedby='password_empleado' name='password'   disabled value=''>";
                                         
                                         ?>
-                                        <input type="text" class="form-control" id="password" placeholder="********************" aria-describedby="password_empleado" name="password"   readonly value="d5hkms" required>
+                                        <input type="text" class="form-control" id="password" placeholder="********************" aria-describedby="password_empleado" name="password"   readonly value="" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -171,10 +171,11 @@
                                 </div>
                             </div>
                             <!--a class="btn-info btn" onclick="myFunction()">Generar contraseña</a-->
+                            <a class="btn-info btn" onclick="myFunction()">Generar contraseña</a>
                             <div class="form-row float-right ">                                
                                 <!--button type="submit" class="btn btn-danger " style="margin-top:15px;">Cancelar</button--> 
                                 <!--button type="submit" class="btn btn-primary " style="margin-top:15px;">Guardar</button-->  
-                                <input class="primary-btn btn" style=" margin-top: 15px;" type="submit" value="Guardar" name="register" >
+                                <input class="btn-primary btn" style=" margin-top: 15px; display: none;" type="submit" id="guardar" name="register" value="Guardar">
                             </div>
                         </form>
                     </div>
@@ -183,25 +184,6 @@
         </div>
     </div>  
 </section>
-
-<?php
-          $db = mysqli_connect("localhost", "root","","freelancer");
-          //$usuario = $_SESSION['id'];
-          //$usuario = 1;
-          if(isset($_POST['register'])){//to run PHP script on submit
-            $filetmp = $_FILES["imagen"]["tmp_name"];
-            $filename = $_FILES["imagen"]["name"];
-            $filetype = $_FILES["imagen"]["type"];
-            //$filepath = "C:/xampp/htdocs/web-res/img/comida/".$filename;
-            $filepath = "C:/xampp/htdocs/freelancer/img/perfiles/".$filename;
-
-            move_uploaded_file($filetmp,$filepath);
-            //mysqli_query($db, "INSERT INTO recipe (img_name,img_path,img_type) VALUES ('$filename','$filepath','$filetype')");
-            //$result = mysql_query($sql);
-            //mysqli_query($db, "INSERT into recipedetails (idRecipeD, idIngredientR) VALUES ($rec, '0')");
-
-          }
-        ?>
 
  <script>
  function createRandomString( length ) {
@@ -222,5 +204,6 @@ document.addEventListener( "DOMContentLoaded", function() {
 
     function myFunction() {
         document.getElementById("password").value = createRandomString( 6 );
+        document.getElementById('guardar').style.display='block';
     }
- </script>   
+ </script> 

@@ -1,3 +1,16 @@
+<?php   
+  //print_r($empleado_activo);
+  /*print_r($empleado_inactivo);
+  print_r($empleado_despedido);*/
+  //$result = json_decode($empleado_activo, true);
+  $i=0;
+	/*while($row = mysqli_fetch_array( $empleado_activo, MYSQLI_FETCH_ASSOC)) {
+        $datos1[$i] = $row;
+        $i++;
+  } */
+  //$datos_empleado->empleado_activo();
+?>
+
 <section class="dashboard-counts section-padding">
   <div class="container-fluid">
     <div class="row">
@@ -12,6 +25,9 @@
     <div class="wrapper count-title d-flex text-center">
       <div class="name">
         <a class="btn btn-primary" href="<?php echo base_url('index.php/admin_controller/vista_nuevo_cliente');?>">Nueva empresa</a>
+      </div>
+      <div class="name">
+        <!--a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/sadmin_controller/vista_existente_sa_empleado');?>">Empleado existente</a-->
       </div>
     </div>
   </div>
@@ -34,30 +50,36 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col">Número empresa</th>
+                          <th scope="col">Imagen</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Correo electrónico</th>
+                          <th scope="col">Fecha de alta</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td colspan="2">Larry the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
+                        <?php foreach ($data as $key => $value) { ?>
+                          <tr>  
+                            <td>
+                              <?php echo $value->id_usuario; ?>
+                            </td>
+                            <td>
+                              <?php 
+                              //echo $value->imagen; 
+                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen.'">';
+                              ?>
+                            </td>
+                            <td>
+                              <?php echo $value->nombre; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->correo; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->fecha_alta; ?>
+                            </td>
+                          </tr>
+                        <?php } ?>                        
                       </tbody>
                     </table>
                   </div>
@@ -71,7 +93,7 @@
               <!-- Daily Feed Widget-->
               <div id="daily-feeds" class="card updates daily-feeds">
                 <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">No activas </a></h2>
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">Inactivos </a></h2>
                   <div class="right-column">
                     <div class="badge badge-primary"></div><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"><i class="fa fa-angle-down"></i></a>
                   </div>
@@ -82,30 +104,40 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col">Número empresa</th>
+                          <th scope="col">Imagen</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Rol</th>
+                          <th scope="col">Correo electrónico</th>
+                          <th scope="col">Fecha de alta</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td colspan="2">Larry the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
+                        <?php foreach ($data2 as $key => $value) { ?>
+                          <tr>  
+                            <td>
+                              <?php echo $value->id_usuario; ?>
+                            </td>
+                            <td>
+                              <?php 
+                              //echo $value->imagen; 
+                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen.'">';
+                              ?>
+                            </td>
+                            <td>
+                              <?php echo $value->nombre; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->n_tipo_usuario; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->correo; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->fecha_alta; ?>
+                            </td>
+                          </tr>
+                        <?php } ?>                        
                       </tbody>
                     </table>
                   </div>
