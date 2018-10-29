@@ -20,6 +20,12 @@
           <form action="<? echo base_url();?>Designer_controller/subirimgen" method="POST" enctype="multipart/from-data">
             <table class="table">
               <tr>
+                <td>Contenido</td>
+                <td>
+                  <textarea name="contenido"  cols="140" rows="10"></textarea>
+                </td>
+              </tr>
+              <tr>
                 <td>Imagen</td>
                 <td>
                   <input type="file" name="img" class="form-control">

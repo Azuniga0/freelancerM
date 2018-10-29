@@ -6,7 +6,7 @@
     $database=mysqli_connect("localhost", "root","","freelancer");
 
     $query = "SELECT img FROM usuarios where id_usuario = $id";
-    $result = mysqli_query($database,$query) or die("no se encontraron datos");
+    $result = mysqli_query($database,$query) ;
     mysqli_set_charset($database,"utf8");
 
     ?>

@@ -41,12 +41,15 @@
                     break;
                     case '3':
                         $this->load->view('General/header_on.php');
-                        $this->load->view('designer/navbar_designer.php');
-                        $this->load->view('designer/slopes.php');
+                        $this->load->view('GeneradorContenido/navbar_gc.php');
+                        $this->load->view('GeneradorContenido/slopes.php');
                         $this->load->view('General/footer_on.php');
                     break;
                     case '4':
-                        $this->load->view('Designer/home_d.php');
+                        $this->load->view('General/header_on.php');
+                        $this->load->view('designer/navbar_designer.php');
+                        $this->load->view('designer/slopes.php');
+                        $this->load->view('General/footer_on.php');
                     break;                   
                     default:
                         //$this->load->view('header.php');
