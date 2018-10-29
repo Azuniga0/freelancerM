@@ -18,7 +18,7 @@
           <div class="row">
             <div class="col-lg-12 col-md-12">
               <!-- Recent Updates Widget          -->
-                    <!-- <table class="table table-hover">
+                    <table class="table table-hover">
                       <thead>
                         <tr>
                           <th scope="col"> Campaña</th>
@@ -45,9 +45,9 @@
                           <td><a class="btn btn-primary" href="<?php  echo base_url('index.php/GC_controller/publication') ?>">Ir</a></td>
                         </tr>
                       </tbody>
-                    </table> -->
+                    </table> 
 
-                      <table class="table table-hover">
+                      <!-- <table class="table table-hover">
                       <thead>
                         <tr>
                           <th scope="col"> Titulo</th>
@@ -66,7 +66,7 @@
                         </tr>
                       <? } ?>                      
                       </tbody>
-                    </table>
+                    </table> -->
           </div>
         </div>
       </section>

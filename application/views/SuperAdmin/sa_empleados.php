@@ -17,14 +17,14 @@
       <!-- Count item widget-->
       <div class=" col-md-9 col-8">
         <div class="wrapper count-title d-flex text-center">
-          <div class="name"><strong class="text-uppercase">Empleados</strong>
+          <div class="name"><strong class="text-uppercase">Administradores</strong>
           </div>
         </div>
       </div>
       <div class=" col-md-3 col-4">
     <div class="wrapper count-title d-flex text-center">
       <div class="name">
-        <a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/admin_controller/vista_nuevo_empleado');?>">Nuevo empleado</a>
+        <a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/sadmin_controller/vista_nuevo_sa_empleado');?>">Nuevo administrador</a>
       </div>
       <div class="name">
         <!--a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/sadmin_controller/vista_existente_sa_empleado');?>">Empleado existente</a-->

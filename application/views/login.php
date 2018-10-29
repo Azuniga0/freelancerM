@@ -1,4 +1,7 @@
- <div class="login" style="background: url('img/login.jpg');  height: 100%;  background-position: center; background-repeat: no-repeat; background-size: cover; opacity: 0.85;">
+ 
+ 
+ 
+ <div class="login" style="  height: 100%;  background-position: center; background-repeat: no-repeat; background-size: cover; opacity: 0.85;">
    <div class="container">   
     <div class="row ">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -35,8 +38,7 @@
                     <?php 
                       echo $this->session->flashdata("error");
                     ?>
-                  </div> 
-                  
+                  </div>                   
 
                   <div class="form-label-group" style="text-align: justify">
                     <!--a href="<?php echo site_url('index.php/plataforma/login_admin') ?>" >Administrador</a-->  

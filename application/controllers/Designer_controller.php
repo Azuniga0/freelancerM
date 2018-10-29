@@ -11,9 +11,9 @@
         
         public function Slopes(){
             $id=$_SESSION['id_usuario'];
-            $data['slope'] = $this->Designer_model->getslope($id);
+            // $data['slope'] = $this->Designer_model->getslope($id);
             $this->load->view('General/header_on.php');
-            $this->load->view('designer/slopes.php',$data);
+            $this->load->view('designer/slopes.php');
             $this->load->view('designer/navbar_designer.php');
             $this->load->view('General/footer_on.php');
         }
