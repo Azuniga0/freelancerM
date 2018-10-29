@@ -114,6 +114,12 @@
                                         </div>
                                         <textarea  class="form-control" rows="3" id="validationTooltipUsername" placeholder="Objetivo de la campaña..." name="objetivo" aria-describedby="validationTooltipUsernamePrepend"  required></textarea>
                                     </div>
+                                </div>
+                                <div class="input-group mb-3 col-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" >
+                                        <label class="custom-file-label" for="inputGroupFile01">Presiona aquí</label>
+                                    </div>
                                 </div>                                
                             </div>
                             <input class="primary-btn btn" style=" margin-top: 15px; float:right;" type="submit" value="Guardar" name="register" >

@@ -63,7 +63,7 @@
                               <?php echo $value->nombre_camp; ?>
                             </td>
                             <td>
-                              <?php echo $value->nombre; ?>
+                              <?php echo $value->nombre_cliente; ?>
                             </td>
                             <td>
                               <?php echo $value->nombre; ?>
@@ -97,11 +97,11 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">Número empleado</th>
+                          <th scope="col">Número campaña</th>
                           <th scope="col">Imagen</th>
                           <th scope="col">Nombre</th>
-                          <th scope="col">Rol</th>
-                          <th scope="col">Correo electrónico</th>
+                          <th scope="col">Empresa</th>
+                          <th scope="col">Comunity Manager</th>
                           <th scope="col">Fecha de alta</th>
                         </tr>
                       </thead>
@@ -118,13 +118,13 @@
                               ?>
                             </td>
                             <td>
+                              <?php echo $value->nombre_camp; ?>
+                            </td>
+                            <td>
+                              <?php echo $value->nombre_cliente; ?>
+                            </td>
+                            <td>
                               <?php echo $value->nombre; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->n_tipo_usuario; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->correo; ?>
                             </td>
                             <td>
                               <?php echo $value->fecha_alta; ?>

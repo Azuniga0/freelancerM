@@ -13,7 +13,7 @@
 
         public function nueva_empresa($usuarios){
             $insert = $this->db->insert('usuarios',$usuarios);
-            $this->db->insert('clientes',$usuarios);
+            $this->db->insert('clientes',$usuario_c);
             //$this->db->insert('usuarios',$usuarios);
             if($insert){
                 return $this->db->insert_id();
@@ -65,17 +65,26 @@
         public function get_act_camp($datos){
             $this->db->select('*');
             $this->db->from('campain');
-            $this->db->join('usuarios','usuarios.id_usuario = campain.id_cliente');
+            $this->db->join('usuarios','usuarios.id_usuario = campain.id_community');
+            $this->db->join('clientes as c','c.id_usuario = campain.id_cliente');
             $this->db->where('id_estado_c',1);
             $this->db->order_by('id_camp','asc');
             $query = $this->db->get();
             return $query->result();
+            /*
+            SELECT usuarios.id_usuario, usuarios.nombre, campain.nombre_camp, clientes.nombre_cliente from campain 
+            JOIN usuarios on usuarios.id_usuario = campain.id_community 
+            JOIN clientes on clientes.id_usuario = campain.id_cliente 
+            WHERE usuarios.id_estado_us = 1 
+            -- $this->db->join('usuarios','usuarios.id_usuario = campain.id_community'); -- $this->db->join('clientes as c','c.rfc = usuarios.rfc');
+            */
         }
 
         public function get_inact_camp($datos){
             $this->db->select('*');
             $this->db->from('campain');
-            $this->db->join('usuarios','usuarios.id_usuario = campain.id_cliente');
+            $this->db->join('usuarios','usuarios.id_usuario = campain.id_community');
+            $this->db->join('clientes as c','c.id_usuario = campain.id_cliente');
             $this->db->where('id_estado_c',2);
             $this->db->order_by('id_camp','asc');
             $query = $this->db->get();
