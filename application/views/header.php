@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/estilos.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-grid.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">    
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico">
 </head>
 <body>

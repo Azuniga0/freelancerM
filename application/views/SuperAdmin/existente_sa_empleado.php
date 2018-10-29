@@ -18,8 +18,8 @@
                         </div> 
                     </div>
                     <div class="row">
-                        <?php /*echo $this->session->flashdata('success_msg');*/ ?>
-                        <?php /*echo $this->session->flashdata('error_msg');*/ ?>
+                        <?php echo $this->session->flashdata('success_msg'); ?>
+                        <?php echo $this->session->flashdata('error_msg'); ?>
                     </div>
                     <div class="row">   
                         <form class="col-md-12" method="post" action="add"  enctype="multipart/form-data" role="form">
@@ -230,4 +230,10 @@ document.addEventListener( "DOMContentLoaded", function() {
         document.getElementById("password").value = createRandomString( 6 );
         document.getElementById('guardar').style.display='block';
     }
+
+    function check_if_exists() {
+
+var username = $("#username").val();
+
+
  </script>   

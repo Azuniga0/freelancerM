@@ -53,3 +53,9 @@ body:before {
     background-size: cover;
   opacity: .3;
 }
+
+.imagen_receta{
+    width: 80px;
+    border-radius: 50%;
+    height: 80px;
+  }

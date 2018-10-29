@@ -1,6 +1,8 @@
 
-<?php
 
+<?php 
+    $fecha=date("Y/m/d") ;
+    //echo $fecha;action="nuevo_empleado" 
 ?>
 
 <section class="mt-30px mb-30px">
@@ -15,8 +17,12 @@
                             </div>
                         </div> 
                     </div>
+                    <div class="row">
+                        <?php /*echo $this->session->flashdata('success_msg');*/ ?>
+                        <?php /*echo $this->session->flashdata('error_msg');*/ ?>
+                    </div>
                     <div class="row">   
-                        <form class="col-md-12" method="post" action="nuevo_empleado">
+                        <form class="col-md-12" method="post" action="add"  enctype="multipart/form-data" role="form">
                             <div class="form-row" style="margin-top: 15px;">
                                 <label style="color:"><b>Datos personales:</b></label>
                                 <br><br>
@@ -121,7 +127,7 @@
                                 </div>
                                 <div class="input-group mb-3 col-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="imagen" disabled>
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" >
                                         <label class="custom-file-label" for="inputGroupFile01">Presiona aquí</label>
                                     </div>
                                 </div>
@@ -152,7 +158,7 @@
                                         //echo "<input type='text' class='form-control' id='password' placeholder='********************' aria-describedby='password_empleado' name='password'   disabled value=''>";
                                         
                                         ?>
-                                        <input type="text" class="form-control" id="password" placeholder="********************" aria-describedby="password_empleado" name="password"   readonly value="d5hkms" required>
+                                        <input type="text" class="form-control" id="password" placeholder="********************" aria-describedby="password_empleado" name="password"   readonly value="" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -164,7 +170,7 @@
                                         <?php
                                             $database=mysqli_connect("localhost", "root","","freelancer");
 
-                                            $query = "SELECT id_tipo_usuario, n_tipo_usuario FROM tipo_usuario where id_tipo_usuario !=5 ORDER BY id_tipo_usuario ASC";
+                                            $query = "SELECT id_tipo_usuario, n_tipo_usuario FROM tipo_usuario where id_tipo_usuario != 1 && id_tipo_usuario != 6 && id_tipo_usuario != 5 ORDER BY id_tipo_usuario ASC";
                                             $result = mysqli_query($database,$query) or die("no se encontraron datos");
                                             mysqli_set_charset($database,"utf8");
                                             ?>
@@ -189,11 +195,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--a class="btn-info btn" onclick="myFunction()">Generar contraseña</a-->
+                            <a class="btn-info btn" onclick="myFunction()">Generar contraseña</a>
                             <div class="form-row float-right ">                                
                                 <!--button type="submit" class="btn btn-danger " style="margin-top:15px;">Cancelar</button--> 
                                 <!--button type="submit" class="btn btn-primary " style="margin-top:15px;">Guardar</button-->  
-                                <input class="primary-btn btn" style=" margin-top: 15px;" type="submit" value="Guardar" name="register" >
+                                <input class="btn-primary btn" style=" margin-top: 15px; display: none;" type="submit" id="guardar" name="register" value="Guardar">
                             </div>
                         </form>
                     </div>
@@ -222,5 +228,6 @@ document.addEventListener( "DOMContentLoaded", function() {
 
     function myFunction() {
         document.getElementById("password").value = createRandomString( 6 );
+        document.getElementById('guardar').style.display='block';
     }
  </script>   
