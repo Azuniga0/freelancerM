@@ -1,60 +1,41 @@
+<?php 
+$db = mysqli_connect("localhost", "root","","marketing");
+$last_users= "SELECT * FROM usuarios WHERE creador = 1 AND rol = 1 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+if($result = mysqli_query($db,$last_users)){
+  $rowcount=mysqli_num_rows($result);
+  //printf("Result set has %d rows.\n",$rowcount);
+  // Free result set
+  mysqli_free_result($result);
+}
 
+$last_susers= "SELECT * FROM usuarios WHERE creador = 1 AND rol = 6 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+if($result2 = mysqli_query($db,$last_susers)){
+  $sucount=mysqli_num_rows($result2);
+  //printf("Result set has %d rows.\n",$rowcount);
+  // Free result set
+  mysqli_free_result($result2);
+}
+?>
   
       <!-- Counts Section -->
       <section class="dashboard-counts section-padding">
         <div class="container-fluid">
           <div class="row">
             <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
+            <div class="col-xl-4 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">New Clients</strong><span>Last 7 days</span>
-                  <div class="count-number">25</div>
+                <div class="name"><strong class="text-uppercase">Nuevos Administradores</strong><span>Últimos 30 días</span>
+                  <div class="count-number"><?php echo $rowcount; ?></div>
                 </div>
               </div>
             </div>
             <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
+            <div class="col-xl-4 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-padnote"></i></div>
-                <div class="name"><strong class="text-uppercase">Work Orders</strong><span>Last 5 days</span>
-                  <div class="count-number">400</div>
-                </div>
-              </div>
-            </div>
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-check"></i></div>
-                <div class="name"><strong class="text-uppercase">New Quotes</strong><span>Last 2 months</span>
-                  <div class="count-number">342</div>
-                </div>
-              </div>
-            </div>
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-bill"></i></div>
-                <div class="name"><strong class="text-uppercase">New Invoices</strong><span>Last 2 days</span>
-                  <div class="count-number">123</div>
-                </div>
-              </div>
-            </div>
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-list"></i></div>
-                <div class="name"><strong class="text-uppercase">Open Cases</strong><span>Last 3 months</span>
-                  <div class="count-number">92</div>
-                </div>
-              </div>
-            </div>
-            <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
-              <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-list-1"></i></div>
-                <div class="name"><strong class="text-uppercase">New Cases</strong><span>Last 7 days</span>
-                  <div class="count-number">70</div>
+                <div class="icon"><i class="icon-user"></i></div>
+                <div class="name"><strong class="text-uppercase">Nuevos Super Administradores</strong><span>Últimos 30 días</span>
+                  <div class="count-number"><?php echo $sucount; ?></div>
                 </div>
               </div>
             </div>
@@ -62,11 +43,11 @@
         </div>
       </section>
       <!-- Header Section-->
-      <section class="dashboard-header section-padding">
+      <!--section class="dashboard-header section-padding">
         <div class="container-fluid">
-          <div class="row d-flex align-items-md-stretch">
+          <div class="row d-flex align-items-md-stretch"-->
             <!-- To Do List-->
-            <div class="col-lg-3 col-md-6">
+            <!--div class="col-lg-3 col-md-6">
               <div class="card to-do">
                 <h2 class="display h4">To do List</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -105,9 +86,9 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div-->
             <!-- Pie Chart-->
-            <div class="col-lg-3 col-md-6">
+            <!--div class="col-lg-3 col-md-6">
               <div class="card project-progress">
                 <h2 class="display h4">Project Beta progress</h2>
                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -115,9 +96,9 @@
                   <canvas id="pieChart" width="300" height="300"> </canvas>
                 </div>
               </div>
-            </div>
+            </div-->
             <!-- Line Chart -->
-            <div class="col-lg-6 col-md-12 flex-lg-last flex-md-first align-self-baseline">
+            <!--div class="col-lg-6 col-md-12 flex-lg-last flex-md-first align-self-baseline">
               <div class="card sales-report">
                 <h2 class="display h4">Sales marketing report</h2>
                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet officiis</p>
@@ -128,4 +109,4 @@
             </div>
           </div>
         </div>
-      </section>
+      </section-->

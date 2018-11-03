@@ -13,7 +13,7 @@
                 <div class=" col-12">
                     <div class="row">
                         <div class="wrapper count-title d-flex text-center">
-                            <div class="name"><strong class="text-uppercase centrado">Nuevo administrador</strong><br><br>
+                            <div class="name"><strong class="text-uppercase centrado">Nuevo empleado</strong><br><br>
                             </div>
                         </div> 
                     </div>
@@ -28,47 +28,36 @@
                                 <br><br>
                             </div>
                             <div class="form-row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-8 mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="nombre_empleado">Nombre:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="nombre_empleado" required >
+                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="nombre" required >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="apaterno_empleado">A. Paterno:</span>
+                                            <span class="input-group-text" id="rfc_empleado">RFC:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="aparerno_empleado" placeholder="" aria-describedby="apaterno_empleado" name="apaterno_empleado" required >
+                                        <input type="text" class="form-control" id="rfc" placeholder="" aria-describedby="rfc_empleado" name="rfc" required >
                                         <div class="invalid-tooltip">
-                                            Por favor, inserte un apellido válido
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="amaterno_empleado">A. Materno:</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="amaterno_empleado" placeholder="" aria-describedby="rfc_empleado" name="amaterno_empleado" >
-                                        <div class="invalid-tooltip">
-                                            Por favor, inserte un apellido válido
+                                            Por favor, inserte un RFC válido
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-5">
+                                <div class="form-group col-6">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="direccion_empleado">Dirección:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="direccion" placeholder="" aria-describedby="direccion_empleado" name="direccion_empleado" required >
+                                        <input type="text" class="form-control" id="direccion" placeholder="" aria-describedby="direccion_empleado" name="direccion" required >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte una dirección válida
                                         </div>
@@ -77,31 +66,69 @@
                                 <div class="form-group col-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="estado_empleado">Correo:</span>
+                                            <span class="input-group-text" id="estado_empleado">Estado:</span>
                                         </div> 
-                                        <input type="text" class="form-control" id="correo_empleado" placeholder="" aria-describedby="correo_empleado" name="correo_empleado" required >
+                                        <?php
+                                            $database=mysqli_connect("localhost", "root","","freelancer");
+
+                                            $query = "SELECT id_estado_rep, nombre FROM estado_rep ORDER BY id_estado_rep ASC";
+                                            $result = mysqli_query($database,$query) or die("no se encontraron datos");
+                                            mysqli_set_charset($database,"utf8");
+                                            ?>
+
+                                            <select class="form-control" id="estado" aria-describedby="estado_empleado" name="estado_rep"  required>                                            
+                                                <?php 
+                                                    while ($row = mysqli_fetch_array($result))
+                                                    {
+                                                        echo "<option value='" . $row['id_estado_rep'] . "'>" . $row['nombre'] . "</option>";
+                                                    }
+                                                ?>        
+                                            </select>
+
                                         <div class="invalid-tooltip">
-                                            Por favor, inserte un correo válido
+                                            Por favor, seleccione un estado válido
                                         </div>
                                     </div>                                    
                                 </div>                                
-                                <div class="form-group col-3">
+                                <div class="form-group col-2">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="telefono_empleado">Teléfono:</span>
+                                            <span class="input-group-text" id="codigo_p">CP:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="cp" placeholder="" aria-describedby="telefono_empleado" name="telefono_empleado" required >
+                                        <input type="text" class="form-control" id="cp" placeholder="" aria-describedby="codigo_p" name="cp" required >
                                         <div class="invalid-tooltip">
-                                            Por favor, inserte un teléfono válido
+                                            Por favor, inserte un código postal válido
                                         </div>
                                     </div>
                                 </div>
                             </div>                            
                             <div class="form-row">
+                                <div class="form-group col-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="email_empleado">Correo:</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="correo" placeholder="" aria-describedby="email_empleado" name="correo" required >
+                                        <div class="invalid-tooltip">
+                                            Por favor, inserte un código postal válido
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="tel">Teléfono:</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="telefono" placeholder="" aria-describedby="tel" name="telefono" required >
+                                        <div class="invalid-tooltip">
+                                            Por favor, inserte un teléfono válido
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="input-group mb-3 col-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" >
-                                        <label class="custom-file-label" for="inputGroupFile01"></label>
+                                        <label class="custom-file-label" for="inputGroupFile01">Presiona aquí</label>
                                     </div>
                                 </div>
                             </div>        
@@ -143,7 +170,7 @@
                                         <?php
                                             $database=mysqli_connect("localhost", "root","","freelancer");
 
-                                            $query = "SELECT id_tipo_usuario, n_tipo_usuario FROM tipo_usuario where id_tipo_usuario = 1 || id_tipo_usuario = 6 ORDER BY id_tipo_usuario ASC";
+                                            $query = "SELECT id_tipo_usuario, n_tipo_usuario FROM tipo_usuario where id_tipo_usuario != 1 && id_tipo_usuario != 6 && id_tipo_usuario != 5 ORDER BY id_tipo_usuario ASC";
                                             $result = mysqli_query($database,$query) or die("no se encontraron datos");
                                             mysqli_set_charset($database,"utf8");
                                             ?>

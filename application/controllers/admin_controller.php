@@ -18,7 +18,7 @@
         }
         
         //Carga la vista que contiene la lista de empleados
-        public function empleados(){
+        public function empleados(){d
             $datos['data']=$this->admin_model->get_data("usuarios");
             $datos['data2']=$this->admin_model->get_data2("usuarios");
             $datos['data3']=$this->admin_model->get_data3("usuarios");
@@ -139,7 +139,7 @@
             }
             //Form for adding user data
             //$this->load->view('Admin/nuevo_empleado.php');
-            redirect('index.php/admin_controller/vista_nuevo_empleado', 'refresh');  
+            redirect('index.php/admin_controller/empleados', 'refresh');  
         }
 
         //Toma los datos del formulario de empresa y los envia al modelo para inserción
@@ -216,7 +216,7 @@
             //Form for adding user data
             //$this->load->view('Admin/nuevo_empleado.php');            
 
-            redirect('index.php/admin_controller/vista_nuevo_cliente', 'refresh');     
+            redirect('index.php/admin_controller/clientes', 'refresh');     
         }
 
         //Toma los datos del formulario de campaña y los envia al modelo para inserción
@@ -255,6 +255,14 @@
 
             $this->admin_model->nueva_camp($camp);
             redirect('index.php/admin_controller/camp', 'refresh');
+        }
+
+        public function detalle_empleado(){
+            $datos['data']=$this->admin_model->get_usuario("usuarios");
+            $this->load->view('General/header_on.php');
+            $this->load->view('Admin/navbar_admin.php');
+            $this->load->view('Admin/detalle_empleado.php',$datos);
+            $this->load->view('General/footer_on.php');
         }
 
         

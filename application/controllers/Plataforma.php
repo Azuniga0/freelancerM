@@ -27,7 +27,8 @@
                 $this->session->set_userdata('username',$data['username']);
                 $this->session->set_userdata('rol',$data['rol']); 
                 $this->session->set_userdata('n_tipo_usuario',$data['n_tipo_usuario']); 
-                $this->session->set_userdata('nombre',$data['nombre']); 
+                $this->session->set_userdata('nombre_empleado',$data['nombre_empleado']); 
+                $this->session->set_userdata('apaterno_empleado',$data['apaterno_empleado']); 
                 $this->session->set_userdata('id_estado_us',$data['id_estado_us']); 
 
                 if($data['id_estado_us']==1){
@@ -58,6 +59,7 @@
                         break;    
                         case '6':
                         //super admin
+                            
                             $this->load->view('General/header_on.php');
                             $this->load->view('SuperAdmin/navbar_sadmin.php');
                             $this->load->view('SuperAdmin/home_sadmin.php');

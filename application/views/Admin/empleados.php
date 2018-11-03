@@ -50,38 +50,62 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">Número empleado</th>
-                          <th scope="col">Imagen</th>
+                          <th scope="col"></th>
                           <th scope="col">Nombre</th>
                           <th scope="col">Rol</th>
                           <th scope="col">Correo electrónico</th>
                           <th scope="col">Fecha de alta</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php foreach ($data as $key => $value) { ?>
-                          <tr>  
-                            <td>
-                              <?php echo $value->id_usuario; ?>
-                            </td>
-                            <td>
-                              <?php 
-                              //echo $value->imagen; 
-                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen.'">';
-                              ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->n_tipo_usuario; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->correo; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->fecha_alta; ?>
-                            </td>
+                          <tr>
+                            <form action="detalle_empleado" method="post"> 
+                              <td>
+                                <?php 
+
+                                  $id=$value->id_usuario;
+                                  echo "<input type='hidden' name='id' value='$id' class='input' readonly>";
+                                  //echo $name;
+
+                                  $img=$value->imagen; 
+                                  echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen.'">';
+                                ?>
+                              </td>
+                              <td>
+                                <?php 
+                                  $name=$value->nombre;
+                                  echo "<input type='hidden' name='nombre' value='$name' class='input' readonly>";
+                                  echo $name;        
+                                ?>
+                              </td>
+                              <td>
+                                <?php 
+                                  $n_tipo=$value->n_tipo_usuario;
+                                  echo "<input type='hidden' name='n_tipo' value='$n_tipo' class='input' readonly>";
+                                  echo $n_tipo;
+                                 ?>
+                              </td>
+                              <td>
+                                <?php 
+                                  $correo=$value->correo;
+                                  echo "<input type='hidden' name='correo' value='$correo' class='input' readonly>";
+                                  echo $correo;
+                                ?>
+                              </td>
+                              <td>
+                                <?php 
+                                  $fecha=$value->fecha_alta;
+                                  echo "<input type='hidden' name='fecha' value='$fecha' class='input' readonly>";
+                                  echo $fecha;
+                                ?>
+                              </td>
+                              <td>
+                                <!--a href="<?php //echo base_url('index.php/admin_controller/detalle_cliente'); ?>" class="btn btn-info"> Detalles </a--> 
+                                <button class="btn btn-info" type="submit" name="detalle" >Ver más</button>
+                              </td>
+                            </form> 
                           </tr>
                         <?php } ?>                        
                       </tbody>
@@ -108,20 +132,17 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">Número empleado</th>
-                          <th scope="col">Imagen</th>
+                          <th scope="col"></th>
                           <th scope="col">Nombre</th>
                           <th scope="col">Rol</th>
                           <th scope="col">Correo electrónico</th>
                           <th scope="col">Fecha de alta</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php foreach ($data2 as $key => $value) { ?>
                           <tr>  
-                            <td>
-                              <?php echo $value->id_usuario; ?>
-                            </td>
                             <td>
                               <?php 
                               //echo $value->imagen; 
@@ -139,6 +160,9 @@
                             </td>
                             <td>
                               <?php echo $value->fecha_alta; ?>
+                            </td>
+                            <td>
+                              <a href="<?php echo base_url('index.php/admin_controller/detalle_cliente'); ?>" class="btn btn-info"> Detalles </a> 
                             </td>
                           </tr>
                         <?php } ?>                        
@@ -163,20 +187,17 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">Número empleado</th>
-                          <th scope="col">Imagen</th>
+                          <th scope="col"></th>
                           <th scope="col">Nombre</th>
                           <th scope="col">Rol</th>
                           <th scope="col">Correo electrónico</th>
                           <th scope="col">Fecha de alta</th>
+                          <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php foreach ($data3 as $key => $value) { ?>
                           <tr>  
-                            <td>
-                              <?php echo $value->id_usuario; ?>
-                            </td>
                             <td>
                               <?php 
                               //echo $value->imagen; 
@@ -194,6 +215,9 @@
                             </td>
                             <td>
                               <?php echo $value->fecha_alta; ?>
+                            </td>
+                            <td>
+                              <a href="<?php echo base_url('index.php/admin_controller/detalle_cliente'); ?>" class="btn btn-info"> Detalles </a> 
                             </td>
                           </tr>
                         <?php } ?>                        
