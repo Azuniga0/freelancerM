@@ -21,35 +21,6 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col"> Campaña</th>
-                          <th scope="col">Nombre de publicación</th>
-                          <th scope="col">tarea</th>
-                          <th scope="col">Fecha</th>
-                          <th scope="col">Ir a publicación</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">Poyoyon</th>
-                          <td>promoción del lunes</td>
-                          <td>imagen del especial del lunes</td>
-                          <td>10/12/2018</td>
-                          <td><a class="btn btn-primary" href="<?php echo base_url('index.php/GC_controller/publication');?>">Ir</a>
-                          </td>
-                        </tr>
-                        <tr>
-                        <th scope="row">super all man</th>
-                          <td>Oferta de fin de semana</td>
-                          <td>Distintas ofertas del fin de semana</td>
-                          <td>11/12/2018</td>
-                          <td><a class="btn btn-primary" href="<?php  echo base_url('index.php/GC_controller/publication') ?>">Ir</a></td>
-                        </tr>
-                      </tbody>
-                    </table> 
-
-                      <!-- <table class="table table-hover">
-                      <thead>
-                        <tr>
                           <th scope="col"> Titulo</th>
                           <th scope="col">tarea</th>
                           <th scope="col">Fecha</th>
@@ -57,16 +28,16 @@
                         </tr>
                       </thead>
                       <tbody>
-                      <? foreach ($data1 as $row) { ?>                          
+                      <?php foreach ($data1 as $row) { ?>                          
                         <tr>
                           <th scope="row"><?= $row->titulo ?></th>
-                          <td><? $row->contenido ?></td>
-                          <td><? $row->fecha_entrega ?></td>
-                          <td><a class="btn btn-primary" href="<?php echo base_url('index.php/Designer_controller/publication');?>">Ir</a></td>
+                          <td><?= $row->contenido ?></td>
+                          <td><?= $row->fecha_entrega ?></td>
+                          <td><a class="btn btn-primary" href="<?php echo base_url('index.php/GC_controller/publication/'.$row->id_publicaciones);?>">Ir</a></td>
                         </tr>
-                      <? } ?>                      
+                      <?php } ?>                      
                       </tbody>
-                    </table> -->
+                    </table> 
           </div>
         </div>
       </section>

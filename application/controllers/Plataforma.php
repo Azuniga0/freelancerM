@@ -6,6 +6,8 @@
             parent::__construct();
             $this->load->helper('url','form');
   	 		$this->load->model('plataforma_model');
+  	 		$this->load->model('GC_model');
+  	 		$this->load->model('Designer_model');
             $this->load->library('session');
         }
 
@@ -42,14 +44,16 @@
                             $this->load->view('CommunityManager/home_cm.php');                        
                         break;
                         case '3':
+                            $data['data1'] = $this->Designer_model->getPendientes($_SESSION['id_usuario']);
                             $this->load->view('General/header_on.php');
                             $this->load->view('designer/navbar_designer.php');
-                            $this->load->view('designer/slopes.php');
+                            $this->load->view('designer/slopes.php', $data);
                             $this->load->view('General/footer_on.php');
                         break;
                         case '4':
+                            $data['data1'] = $this->GC_model->getPendientes($_SESSION['id_usuario']);
                             $this->load->view('General/header_on.php');
-                            $this->load->view('GeneradorContenido/slopes.php');
+                            $this->load->view('GeneradorContenido/slopes.php', $data);
                             $this->load->view('GeneradorContenido/navbar_GC.php');
                             $this->load->view('General/footer_on.php');
                         break;
