@@ -1,4 +1,4 @@
-
+<?php// print_r($data); ?>
 
 <section class="dashboard-counts section-padding">
   <div class="container-fluid">
@@ -30,47 +30,63 @@
           <div class="row">
             <div class="col-lg-12 col-md-12">
               <!-- Recent Updates Widget          -->
+              
               <div id="new-updates" class="card updates recent-updated">
-                <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Activas</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
-                </div>
                 <div id="updates-box" role="tabpanel" class="collapse show">
                   <div class="" style="padding:15px">
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">Número campaña</th>
-                          <th scope="col">Imagen</th>
-                          <th scope="col">Nombre</th>
+                          <th scope="col"></th>
                           <th scope="col">Empresa</th>
-                          <th scope="col">Comunity Manager</th>
-                          <th scope="col">Fecha de alta</th>
+                          <th scope="col">Campaña</th>
+                          <th scope="col">Community M.</th>                          
+                          <th scope="col">Fecha de inicio</th>                          
+                          <th scope="col">Fecha de término</th>
+                          <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php foreach ($data as $key => $value) { ?>
                           <tr>  
-                            <td>
-                              <?php echo $value->id_usuario; ?>
-                            </td>
-                            <td>
-                              <?php 
-                              //echo $value->imagen; 
-                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen_camp.'">';
-                              ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre_camp; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre_cliente; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->fecha_creacion; ?>
-                            </td>
+                            <form action="editar_camp" method="post">
+                              <td>
+                                <?php
+                                  echo '<img class="imagen_receta recetas" src="../../img/perfiles/camp/'.$value->imagen_camp.'">';
+                                //echo $value->imagen;                                 
+                                $id= $value->id_camp;
+                                  echo "<input type='hidden' name='id_usuario' value='$id'>";
+                                ?>
+                              </td>
+                              <td>
+                                <?php echo $value->razon_social ?>
+                              </td>
+                              <td>
+                                <?php echo $value->nombre_camp ?>
+                              </td>
+                              <td>
+                                <?php echo $value->nombre_empleado.' '.$value->apaterno_empleado ?>
+                              </td>
+                              <td>
+                                <?php 
+                                  $fecha=$value->fecha_inicio; 
+                                  $myDateTime = DateTime::createFromFormat('Y-m-d', $fecha);
+                                  $formato_fecha = $myDateTime->format('d-m-Y');
+                                  echo $formato_fecha;
+                                ?>
+                              </td>
+                              <td>
+                                <?php 
+                                  $fecha=$value->fecha_termino; 
+                                  $myDateTime = DateTime::createFromFormat('Y-m-d', $fecha);
+                                  $formato_fecha = $myDateTime->format('d-m-Y');
+                                  echo $formato_fecha;
+                                ?>
+                              </td>
+                              <td>
+                                <!--button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button-->
+                              </td>
+                            </form>
                           </tr>
                         <?php } ?>                        
                       </tbody>
@@ -81,65 +97,5 @@
               <!-- Recent Updates Widget End-->
             </div>            
           </div>
-          <div class="row">
-            <div class="col-lg-12 col-md-6">
-              <!-- Daily Feed Widget-->
-              <div id="daily-feeds" class="card updates daily-feeds">
-                <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">Inactivas </a></h2>
-                  <div class="right-column">
-                    <div class="badge badge-primary"></div><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"><i class="fa fa-angle-down"></i></a>
-                  </div>
-                </div>
-                <div id="feeds-box" role="tabpanel" class="collapse ">
-                  <div class="feed-box">
-                  <div class="tablas" style="padding:15px">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th scope="col">Número campaña</th>
-                          <th scope="col">Imagen</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Empresa</th>
-                          <th scope="col">Comunity Manager</th>
-                          <th scope="col">Fecha de alta</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach ($data2 as $key => $value) { ?>
-                          <tr>  
-                            <td>
-                              <?php echo $value->id_usuario; ?>
-                            </td>
-                            <td>
-                              <?php 
-                              //echo $value->imagen; 
-                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen.'">';
-                              ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre_camp; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre_cliente; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->fecha_alta; ?>
-                            </td>
-                          </tr>
-                        <?php } ?>                        
-                      </tbody>
-                    </table>
-                  </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Daily Feed Widget End-->
-            </div>
-          </div>
         </div>
       </section>
-     

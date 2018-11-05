@@ -39,9 +39,9 @@ echo "The current server timezone is: " . $timezone;
                                         </div>
                                         <?php  
                                             $id=$value->id_empresa;  
-                                            $rol=$value->rol;  
-                                            echo "<input type='hidden' name='id_usuario' value='$id' required='required'  id='id_usuario' >";  
-                                            echo "<input type='hidden' name='tipo_usuario' value='$rol' required='required'  id='tipo_usuario' >";  
+                                            $id_usuario=$value->id_usuario;  
+                                            echo "<input type='hidden' name='id_empresa' value='$id' required='required'  id='id_usuario' >";  
+                                            echo "<input type='hidden' name='id_usuario' value='$id_usuario' required='required'  id='tipo_usuario' >";  
                                             
                                             $name=$value->razon_social;  
                                             echo "<input type='text' name='razon_social' value='$name' required='required' class='form-control' id='nombre' aria-describedby='nombre_empleado'>";    
@@ -169,7 +169,7 @@ echo "The current server timezone is: " . $timezone;
                                         </div>
                                         <?php 
                                             $amaterno=$value->amaterno_cliente;  
-                                            echo "<input type='text' name='amaterno_clinete' value='$amaterno' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='amaterno_cliente' value='$amaterno' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido

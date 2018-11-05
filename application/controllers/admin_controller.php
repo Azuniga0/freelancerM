@@ -38,8 +38,7 @@
         
         //carga la vista que contiene la lista de campañas
         public function camp(){
-            $datos['data']=$this->admin_model->get_act_camp("usuarios");
-            $datos['data2']=$this->admin_model->get_inact_camp("usuarios");
+            $datos['data']=$this->admin_model->lista_camp("usuarios");
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
             $this->load->view('Admin/camp.php',$datos);
@@ -257,14 +256,16 @@
                     'telefono_empresa'=>$this->input->post('telefono_contacto'), 
                     'imagen_empresa'=>$picture
                 );
-                $nueva_empresa = $this->admin_model->actualizar_empresa($empresa);
+                $id_empresa = $this->input->post('id_empresa');
+                $nueva_empresa = $this->admin_model->actualizar_empresa($id_empresa, $empresa);
 
                 $usuario=array( 
                     'username'=>$this->input->post('username'),
                     'password'=>sha1($this->input->post('password')),         
                     'pass_decrypt'=>$this->input->post('password')
                 );
-                $nuevo_usuario = $this->admin_model->actualizar_usuario($usuario);
+                $id_usuario= $this->input->post('id_usuario');
+                $nuevo_usuario = $this->admin_model->actualizar_user($id_usuario, $usuario);
                 
                 $cliente=array(
                     'nombre_cliente'=>$this->input->post('nombre_cliente'),
@@ -272,10 +273,9 @@
                     'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
                     'telefono_cliente'=>$this->input->post('telefono_cliente'),
                     'correo_cliente'=>$this->input->post('correo_cliente')
-                );
-                
-                //Pass user data to model
-                $nuevo_cliente = $this->admin_model->actualziar_cliente($cliente);
+                );                                
+                $nuevo_cliente = $this->admin_model->actualizar_cliente($id_usuario, $cliente);
+
             }
             //Form for adding user data
             //$this->load->view('Admin/nuevo_empleado.php');            
@@ -285,7 +285,7 @@
 
         //Toma los datos del formulario de campaña y los envia al modelo para inserción
         public function nueva_camp(){
-
+            $fecha=date("Y/m/d") ;
             if(!empty($_FILES['picture']['name'])){
                 $config['upload_path'] = 'img/perfiles/';
                 $config['allowed_types'] = '*';
@@ -307,14 +307,16 @@
 
             $id=$_SESSION['id_usuario'];
             $camp=array(
-            'id_cliente'=>$this->input->post('id_cliente'),
+            'id_empresa_camp'=>$this->input->post('id_cliente'),
             'id_community'=>$this->input->post('id_community'),
             'nombre_camp'=>$this->input->post('nombre'),   
-            'objetivo'=>$this->input->post('objetivo'),
-            'fecha_creacion'=>$this->input->post('fecha_creacion'),         
+            'objetivo_camp'=>$this->input->post('objetivo'),
+            'fecha_creacion_camp'=>($fecha),         
+            'fecha_inicio'=>$this->input->post('fecha_creacion'),         
             'fecha_termino'=>$this->input->post('fecha_termino'),
             'imagen_camp'=>($picture),
-            'id_estado_c'=>('1')
+            'id_estado_c'=>('1'),
+            'creador_camp'=>($id)
             );
 
             $this->admin_model->nueva_camp($camp);

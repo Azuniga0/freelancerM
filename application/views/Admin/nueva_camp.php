@@ -35,7 +35,7 @@
                                         <?php
                                             $database=mysqli_connect("localhost", "root","","freelancer");
 
-                                            $query = "SELECT * FROM usuarios WHERE rol = 2 and id_estado_us = 1 ORDER BY id_usuario ASC";
+                                            $query = "SELECT * FROM usuarios join empleados on empleados.id_usuario_empleado = usuarios.id_usuario WHERE rol = 2 and id_estado_us = 1 ORDER BY id_usuario ASC";
                                             $result = mysqli_query($database,$query) or die("no se encontraron datos");
                                             mysqli_set_charset($database,"utf8");
                                             ?>
@@ -43,7 +43,7 @@
                                             <select class="form-control" id="rol" aria-describedby="cm_id" name="id_community" required>                                            
                                                 <?php     
                                                     while ($row = mysqli_fetch_array($result)){
-                                                        echo "<option value='" . $row['id_usuario'] . "'>" . $row['nombre'] . "</option>";
+                                                        echo "<option value='" . $row['id_usuario'] . "'>" . $row['nombre_empleado'].' '.$row['apaterno_empleado'].' '.$row['amaterno_empleado']. "</option>";
                                                     }
                                                 ?>        
                                             </select>
@@ -61,7 +61,7 @@
                                         <?php
                                             $database=mysqli_connect("localhost", "root","","freelancer");
 
-                                            $query = "SELECT * FROM usuarios WHERE rol = 5  and id_estado_us = 1 ORDER BY id_usuario ASC";
+                                            $query = "SELECT * FROM empresas WHERE estado_empresa = 1 ORDER BY id_empresa ASC";
                                             $result = mysqli_query($database,$query) or die("no se encontraron datos");
                                             mysqli_set_charset($database,"utf8");
                                             ?>
@@ -69,7 +69,7 @@
                                             <select class="form-control" id="rol" aria-describedby="cm_id" name="id_cliente" required>                                            
                                                 <?php     
                                                     while ($row = mysqli_fetch_array($result)){
-                                                        echo "<option value='" . $row['id_usuario'] . "'>" . $row['nombre'] . "</option>";
+                                                        echo "<option value='" . $row['id_empresa'] . "'>" . $row['razon_social'] . "</option>";
                                                     }
                                                 ?>        
                                             </select>
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>                                
                             </div>
-                            <input class="primary-btn btn" style=" margin-top: 15px; float:right;" type="submit" value="Guardar" name="register" >
+                            <input class="btn-primary btn" style=" margin-top: 15px; float:right;" type="submit" value="Guardar" name="register" >
                         </form>
                     </div>
                 </div>   

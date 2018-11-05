@@ -44,7 +44,12 @@
 
         // funcion para nueva campaña
         public function nueva_camp($camp){
-            $this->db->insert('campain',$camp);
+             $insert = $this->db->insert('campain',$camp);
+             if($insert){
+                return $this->db->insert_id();
+            }else{
+                return false;    
+            }
         }
 
         // funcion para usuario activo
@@ -62,16 +67,16 @@
         }
 
         //funcion para campaña activa
-        /*public function get_act_camp($datos){
+        public function lista_camp($datos){
             $this->db->select('*');
             $this->db->from('campain');
             $this->db->join('usuarios','usuarios.id_usuario = campain.id_community');
-            $this->db->join('clientes as c','c.id_usuario = campain.id_cliente');
-            $this->db->where('id_estado_c',1);
-            $this->db->order_by('id_camp','asc');
+            $this->db->join('empresas','empresas.id_empresa = campain.id_empresa_camp');
+            $this->db->join('empleados','empleados.id_usuario_empleado = campain.id_community');
+            $this->db->order_by('fecha_creacion_camp','desc');
             $query = $this->db->get();
             return $query->result();
-        }*/
+        }
         
         public function empresas(){
             $admin = $_SESSION['id_usuario'];
@@ -126,6 +131,16 @@
         public function actualizar_emp($id, $emp){
             $this->db->where('id_usuario_empleado',$id);
             $this->db->update('empleados',$emp);
+        } 
+
+        public function actualizar_empresa($id, $emp){
+            $this->db->where('id_empresa',$id);
+            $this->db->update('empresas',$emp);
+        } 
+
+        public function actualizar_cliente($id, $emp){
+            $this->db->where('id_usuario_cliente',$id);
+            $this->db->update('clientes',$emp);
         } 
         
     }
