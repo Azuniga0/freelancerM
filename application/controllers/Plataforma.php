@@ -40,7 +40,10 @@
                             $this->load->view('General/footer_on.php');
                         break;
                         case '2':
-                            $this->load->view('CommunityManager/home_cm.php');                        
+                            $this->load->view('General/header_on.php');
+                            $this->load->view('CommunityManager/navbar_cm.php');
+                            $this->load->view('CommunityManager/home_cm.php');
+                            $this->load->view('General/footer_on.php');
                         break;
                         case '3':
                             $this->load->view('General/header_on.php');
