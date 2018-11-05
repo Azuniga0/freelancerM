@@ -1,0 +1,37 @@
+<?php
+    class GC_model extends CI_model{
+
+        public function getPendientes($id)
+        {
+            $this->db->select('*');
+            $this->db->from('tareas');
+            $this->db->where('id_usuario', $id);
+            $this->db->order_by('fecha_entrega','asc');
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        public function getpublicacion($id)
+        {
+            $this->db->select('*');
+            $this->db->from('publicaciones');
+            $this->db->where('id_publicaciones',$id);
+            $query = $this->db->get();
+            return $query->row();
+        }
+        
+        public function getcomentarios($id)
+        {
+            $this->db->select('*');
+            $this->db->from('comentarios');
+            $this->db->join('usuarios','usuarios.id_usuario = comentarios.id_usuario');
+            $this->db->where('id_publicacion',$id);
+            $this->db->order_by('fecha','asc');
+            $query = $this->db->get();
+            return $query->result();
+        }
+         public function comentar($comen){
+            $this->db->insert('comentarios',$comen);
+        }
+    }
+?>

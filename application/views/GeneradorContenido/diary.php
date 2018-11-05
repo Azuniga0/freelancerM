@@ -15,7 +15,7 @@
 <head>
 <meta charset='utf-8' />
     <script src='<?php echo base_url(); ?>assets/fullcalendar/lib/moment.min.js'></script>
-    <script src='<?php echo base_url(); ?>assets/fullcalendar/lib/jquery.min.js'></script>
+    <!-- <script src='<?php echo base_url(); ?>assets/fullcalendar/lib/jquery.min.js'></script> -->
     <script src='<?php echo base_url(); ?>assets/fullcalendar/fullcalendar.min.js'></script>
     <script src='<?php echo base_url(); ?>assets/fullcalendar/locale/es.js'></script>
     <link href='<?php echo base_url(); ?>assets/fullcalendar/fullcalendar.min.css' rel='stylesheet' />

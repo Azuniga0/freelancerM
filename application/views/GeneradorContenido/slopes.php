@@ -11,14 +11,14 @@
      
   </div>  
 </section>
-<div><? $rol ?></div>
+
 <!-- Empleados -->
       <section class="mt-30px mb-30px">
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12 col-md-12">
               <!-- Recent Updates Widget          -->
-              <table class="table table-hover">
+                    <table class="table table-hover">
                       <thead>
                         <tr>
                           <th scope="col"> Titulo</th>
@@ -33,11 +33,11 @@
                           <th scope="row"><?= $row->titulo ?></th>
                           <td><?= $row->contenido ?></td>
                           <td><?= $row->fecha_entrega ?></td>
-                          <td><a class="btn btn-primary" href="<?php echo base_url('index.php/Designer_controller/publication/'.$row->id_publicaciones);?>">Ir</a></td>
+                          <td><a class="btn btn-primary" href="<?php echo base_url('index.php/GC_controller/publication/'.$row->id_publicaciones);?>">Ir</a></td>
                         </tr>
                       <?php } ?>                      
                       </tbody>
-                    </table>  
+                    </table> 
           </div>
         </div>
       </section>
