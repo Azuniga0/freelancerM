@@ -157,78 +157,130 @@
         //Toma los datos del formulario de empresa y los envia al modelo para inserción
         public function nueva_empresa(){
             $id=$_SESSION['id_usuario'];
-
             $fecha=date("Y/m/d") ;
             if($this->input->post('register')){
             
-            //Check whether user upload picture
-            if(!empty($_FILES['picture']['name'])){
-                $config['upload_path'] = 'img/perfiles/';
-                $config['allowed_types'] = '*';
-                $config['file_name'] = $_FILES['picture']['name'];
-                
-                //Load upload library and initialize configuration
-                $this->load->library('upload',$config);
-                $this->upload->initialize($config);
-                
-                if($this->upload->do_upload('picture')){
-                    $uploadData = $this->upload->data();
-                    $picture = $uploadData['file_name'];
+                //Check whether user upload picture
+                if(!empty($_FILES['picture']['name'])){
+                    $config['upload_path'] = 'img/perfiles/empresas/';
+                    $config['allowed_types'] = '*';
+                    $config['file_name'] = $_FILES['picture']['name'];
+                    
+                    //Load upload library and initialize configuration
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    
+                    if($this->upload->do_upload('picture')){
+                        $uploadData = $this->upload->data();
+                        $picture = $uploadData['file_name'];
+                    }else{
+                        $picture = 'empresa.jpg';
+                    }
                 }else{
                     $picture = 'empresa.jpg';
                 }
-            }else{
-                $picture = 'empresa.jpg';
-            }
-            
-            $id=$_SESSION['id_usuario'];
-            $usuario=array(
-                'nombre'=>$this->input->post('nombre'),
-                'rfc'=>$this->input->post('rfc'),
-                'direccion'=>$this->input->post('direccion'),   
-                'username'=>$this->input->post('username'),
-                'password'=>sha1($this->input->post('password')),         
-                'rol'=>('5'),
-                'id_estado_us'=>('1'),
-                'estado_rep'=>$this->input->post('estado_rep'),       
-                'cp'=>$this->input->post('cp'),
-                'correo'=>$this->input->post('correo'),
-                'telefono'=>$this->input->post('telefono'),
-                'imagen'=>$picture,
-                'fecha_alta'=>($fecha),
-                'creador'=>($id),
-            );
-            $usuario_c=array(
-                'nombre_cliente'=>$this->input->post('nombre'),
-                'rfc'=>$this->input->post('rfc'),
-                'direccion'=>$this->input->post('direccion'),   
-                'username'=>$this->input->post('username'),
-                'password'=>sha1($this->input->post('password')),         
-                'rol'=>('5'),
-                'id_estado_us'=>('1'),
-                'estado_rep'=>$this->input->post('estado_rep'),       
-                'cp'=>$this->input->post('cp'),
-                'correo'=>$this->input->post('correo'),
-                'telefono'=>$this->input->post('telefono'),
-                'imagen'=>$picture,
-                'fecha_alta'=>($fecha),
-                'creador'=>($id),
-            );
-            
-            //Pass user data to model
-            $insertUserData = $this->admin_model->nueva_empresa($usuario,$usuario_c);
-            
-            //Storing insertion status message.
-            if($insertUserData){
-                $this->session->set_flashdata('success_msg', 'El usuario ha sido añadido con éxito');
-            }else{
-                $this->session->set_flashdata('error_msg', 'Ha ocurrido un error, intenta de nuevo');
-            }
+                
+                $id=$_SESSION['id_usuario'];
+                $empresa=array(
+                    'razon_social'=>$this->input->post('razon_social'),
+                    'contacto'=>$this->input->post('contacto'),
+                    'direccion_contacto'=>$this->input->post('direccion_contacto'),   
+                    'correo_contacto'=>$this->input->post('correo_contacto'),
+                    'telefono_empresa'=>$this->input->post('telefono_contacto'),         
+                    'estado_empresa'=>('1'),
+                    'administrador'=>($id),       
+                    'imagen_empresa'=>$picture,
+                    'fecha_alta'=>($fecha)
+                );
+                $nueva_empresa = $this->admin_model->nueva_empresa($empresa);
+
+                $usuario=array( 
+                    'username'=>$this->input->post('username'),
+                    'password'=>sha1($this->input->post('password')),         
+                    'pass_decrypt'=>$this->input->post('password'), 
+                    'rol'=>('5'),     
+                    'creador'=>($id),
+                    'fecha_creacion'=>($fecha),
+                    'id_estado_us'=>('1')
+                );
+                $nuevo_usuario = $this->admin_model->nuevo_usuario($usuario);
+                
+                $cliente=array(
+                    'nombre_cliente'=>$this->input->post('nombre_cliente'),
+                    'apaterno_cliente'=>$this->input->post('apaterno_cliente'),
+                    'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
+                    'telefono_cliente'=>$this->input->post('telefono_cliente'),
+                    'correo_cliente'=>$this->input->post('correo_cliente'),         
+                    'id_usuario_cliente'=>($nuevo_usuario),
+                    'id_empresa'=>($nueva_empresa)
+                );
+                
+                //Pass user data to model
+                $nuevo_cliente = $this->admin_model->nuevo_cliente($cliente);
             }
             //Form for adding user data
             //$this->load->view('Admin/nuevo_empleado.php');            
 
-            redirect('index.php/admin_controller/clientes', 'refresh');     
+            redirect('index.php/admin_controller/empresas', 'refresh');     
+        }
+
+        public function actualizar_empresa(){
+            $id=$_SESSION['id_usuario'];
+            if($this->input->post('register')){
+            
+                //Check whether user upload picture
+                if(!empty($_FILES['picture']['name'])){
+                    $config['upload_path'] = 'img/perfiles/empresas/';
+                    $config['allowed_types'] = '*';
+                    $config['file_name'] = $_FILES['picture']['name'];
+                    
+                    //Load upload library and initialize configuration
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    
+                    if($this->upload->do_upload('picture')){
+                        $uploadData = $this->upload->data();
+                        $picture = $uploadData['file_name'];
+                    }else{
+                        $picture = $this->input->post('imagen');
+                    }
+                }else{
+                    $picture = $this->input->post('imagen');
+                }
+                
+                $id=$_SESSION['id_usuario'];
+                $empresa=array(
+                    'razon_social'=>$this->input->post('razon_social'),
+                    'contacto'=>$this->input->post('contacto'),
+                    'direccion_contacto'=>$this->input->post('direccion_contacto'),   
+                    'correo_contacto'=>$this->input->post('correo_contacto'),
+                    'telefono_empresa'=>$this->input->post('telefono_contacto'), 
+                    'imagen_empresa'=>$picture
+                );
+                $nueva_empresa = $this->admin_model->actualizar_empresa($empresa);
+
+                $usuario=array( 
+                    'username'=>$this->input->post('username'),
+                    'password'=>sha1($this->input->post('password')),         
+                    'pass_decrypt'=>$this->input->post('password')
+                );
+                $nuevo_usuario = $this->admin_model->actualizar_usuario($usuario);
+                
+                $cliente=array(
+                    'nombre_cliente'=>$this->input->post('nombre_cliente'),
+                    'apaterno_cliente'=>$this->input->post('apaterno_cliente'),
+                    'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
+                    'telefono_cliente'=>$this->input->post('telefono_cliente'),
+                    'correo_cliente'=>$this->input->post('correo_cliente')
+                );
+                
+                //Pass user data to model
+                $nuevo_cliente = $this->admin_model->actualziar_cliente($cliente);
+            }
+            //Form for adding user data
+            //$this->load->view('Admin/nuevo_empleado.php');            
+
+            redirect('index.php/admin_controller/empresas', 'refresh');     
         }
 
         //Toma los datos del formulario de campaña y los envia al modelo para inserción
@@ -283,6 +335,15 @@
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
             $this->load->view('Admin/detalle_empleado.php',$buscar);
+            $this->load->view('General/footer_on.php');
+        }
+        
+        public function editar_empresa(){
+            $admin=$this->input->post('id_empresa');  
+            $buscar['data'] = $this->admin_model->busca_datos_empresa($admin);
+            $this->load->view('General/header_on.php');
+            $this->load->view('Admin/navbar_admin.php');
+            $this->load->view('Admin/detalle_empresa.php',$buscar);
             $this->load->view('General/footer_on.php');
         }
 

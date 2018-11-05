@@ -53,15 +53,13 @@
                       <tbody>
                         <?php foreach ($data as $key => $value) { ?>
                           <tr>  
-                            <form action="editar_empleado" method="post">
+                            <form action="editar_empresa" method="post">
                               <td>
                                 <?php
-                                
-                                
                                   echo '<img class="imagen_receta recetas" src="../../img/perfiles/empresas/'.$value->imagen_empresa.'">';
                                 //echo $value->imagen;                                 
                                   $id= $value->id_empresa;
-                                  echo "<input type='hidden' name='id_usuario' value='$id'>";
+                                  echo "<input type='hidden' name='id_empresa' value='$id'>";
                                 ?>
                               </td>
                               <td>

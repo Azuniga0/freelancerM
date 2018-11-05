@@ -12,6 +12,16 @@
             }
         }
 
+        public function nuevo_cliente($clientes){
+           $insert = $this->db->insert('clientes',$clientes);
+            //$this->db->insert('usuarios',$usuarios);
+            if($insert){
+                return $this->db->insert_id();
+            }else{
+                return false;    
+            } 
+        }
+
         public function nuevo_empleado($usuarios){
             $insert = $this->db->insert('empleados',$usuarios);
             //$this->db->insert('usuarios',$usuarios);
@@ -24,8 +34,7 @@
 
         // funcion para nueva empresa
         public function nueva_empresa($usuarios){
-            $insert = $this->db->insert('usuarios',$usuarios);
-            $this->db->insert('clientes',$usuario_c);
+            $insert = $this->db->insert('empresas',$usuarios);
             if($insert){
                 return $this->db->insert_id();
             }else{
@@ -53,7 +62,7 @@
         }
 
         //funcion para campaña activa
-        public function get_act_camp($datos){
+        /*public function get_act_camp($datos){
             $this->db->select('*');
             $this->db->from('campain');
             $this->db->join('usuarios','usuarios.id_usuario = campain.id_community');
@@ -62,13 +71,13 @@
             $this->db->order_by('id_camp','asc');
             $query = $this->db->get();
             return $query->result();
-        }
+        }*/
         
         public function empresas(){
             $admin = $_SESSION['id_usuario'];
             $this->db->select('*');
             $this->db->from('empresas');
-            $this->db->join('clientes','clientes.id_empresa = empresas.id_empresa');
+            $this->db->join('clientes','clientes.id_empresa_cliente = empresas.id_empresa');
             $this->db->join('usuarios','usuarios.id_usuario = empresas.administrador');
             $this->db->join('empleados','usuarios.id_usuario = empleados.id_usuario_empleado');
             $where = "administrador = $admin";
@@ -99,6 +108,16 @@
             return $query->result();
         }
 
+        public function busca_datos_empresa($emp){
+            $this->db->select('*');
+            $this->db->from('empresas');
+            $this->db->join('clientes','clientes.id_empresa_cliente = empresas.id_empresa');
+            $this->db->join('usuarios','usuarios.id_usuario = clientes.id_usuario_cliente');
+            $this->db->where('id_empresa',$emp);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
         public function actualizar_user($id, $user){
             $this->db->where('id_usuario',$id);
             $this->db->update('usuarios',$user);
@@ -107,7 +126,7 @@
         public function actualizar_emp($id, $emp){
             $this->db->where('id_usuario_empleado',$id);
             $this->db->update('empleados',$emp);
-        }        
+        } 
         
     }
 ?>

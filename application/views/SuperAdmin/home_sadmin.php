@@ -1,6 +1,7 @@
 <?php 
-$db = mysqli_connect("localhost", "root","","marketing");
-$last_users= "SELECT * FROM usuarios WHERE creador = 1 AND rol = 1 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+$id = $_SESSION['id_usuario'];
+$db = mysqli_connect("localhost", "root","","freelancer");
+$last_users= "SELECT * FROM usuarios WHERE creador = $id AND rol = 1 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
 if($result = mysqli_query($db,$last_users)){
   $rowcount=mysqli_num_rows($result);
   //printf("Result set has %d rows.\n",$rowcount);
@@ -8,7 +9,7 @@ if($result = mysqli_query($db,$last_users)){
   mysqli_free_result($result);
 }
 
-$last_susers= "SELECT * FROM usuarios WHERE creador = 1 AND rol = 6 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+$last_susers= "SELECT * FROM usuarios WHERE creador = $id AND rol = 6 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
 if($result2 = mysqli_query($db,$last_susers)){
   $sucount=mysqli_num_rows($result2);
   //printf("Result set has %d rows.\n",$rowcount);
@@ -17,28 +18,31 @@ if($result2 = mysqli_query($db,$last_susers)){
 }
 ?>
   
-      <!-- Counts Section -->
+      <!-- Counts Section -->      
       <section class="dashboard-counts section-padding">
+        <div class="">
+          <h1 style="margin: 25px;" class="display h1">Nuevos usuarios creados:</h1>
+        </div>
         <div class="container-fluid">
           <div class="row">
             <!-- Count item widget-->
             <div class="col-xl-4 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">Nuevos Administradores</strong><span>Últimos 30 días</span>
+                <div class="name"><strong class="text-uppercase">Administradores</strong><span>Últimos 30 días</span>
                   <div class="count-number"><?php echo $rowcount; ?></div>
                 </div>
               </div>
             </div>
             <!-- Count item widget-->
-            <!--div class="col-xl-4 col-md-4 col-6">
+            <div class="col-xl-4 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">Nuevos Super Administradores</strong><span>Últimos 30 días</span>
+                <div class="name"><strong class="text-uppercase">Super Administradores</strong><span>Últimos 30 días</span>
                   <div class="count-number"><?php echo $sucount; ?></div>
                 </div>
               </div>
-            </div-->
+            </div>
           </div>
         </div>
       </section>
