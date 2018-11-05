@@ -1,14 +1,5 @@
 <?php   
-  //print_r($empleado_activo);
-  /*print_r($empleado_inactivo);
-  print_r($empleado_despedido);*/
-  //$result = json_decode($empleado_activo, true);
-  $i=0;
-	/*while($row = mysqli_fetch_array( $empleado_activo, MYSQLI_FETCH_ASSOC)) {
-        $datos1[$i] = $row;
-        $i++;
-  } */
-  //$datos_empleado->empleado_activo();
+
 ?>
 
 <section class="dashboard-counts section-padding">
@@ -41,47 +32,76 @@
           <div class="row">
             <div class="col-lg-12 col-md-12">
               <!-- Recent Updates Widget          -->
+              
               <div id="new-updates" class="card updates recent-updated">
-                <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Activos</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
-                </div>
                 <div id="updates-box" role="tabpanel" class="collapse show">
                   <div class="" style="padding:15px">
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">Número empleado</th>
-                          <th scope="col">Imagen</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Rol</th>
+                          <th scope="col"></th>
+                          <th scope="col">Empleado</th>
                           <th scope="col">Correo electrónico</th>
+                          <th scope="col">Teléfono</th>                          
+                          <th scope="col">Rol</th>                          
                           <th scope="col">Fecha de alta</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php foreach ($data as $key => $value) { ?>
                           <tr>  
-                            <td>
-                              <?php echo $value->id_usuario; ?>
-                            </td>
-                            <td>
-                              <?php 
-                              //echo $value->imagen; 
-                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen.'">';
-                              ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->n_tipo_usuario; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->correo; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->fecha_alta; ?>
-                            </td>
+                            <form action="editar_empleado" method="post">
+                              <td>
+                                <?php
+                                
+                                switch ($value->rol) {
+                                  case '2':
+                                    echo '<img class="imagen_receta recetas" src="../../img/perfiles/cm/'.$value->imagen.'">';
+                                  break;
+                                  case '3':
+                                    echo '<img class="imagen_receta recetas" src="../../img/perfiles/designer/'.$value->imagen.'">';
+                                  break;
+                                  case '4':
+                                    echo '<img class="imagen_receta recetas" src="../../img/perfiles/gc/'.$value->imagen.'">';
+                                  break;                                  
+                                  default:
+                                    # code...
+                                    break;
+                                }
+                                //echo $value->imagen;                                 
+                                $id= $value->id_usuario;
+                                  echo "<input type='hidden' name='id_usuario' value='$id'>";
+                                ?>
+                              </td>
+                              <td>
+                                <?php echo $value->nombre_empleado.' '.$value->apaterno_empleado; ?>
+                              </td>
+                              <td>
+                                <?php echo $value->correo_empleado; ?>
+                              </td>
+                              <td>
+                                <?php echo $value->telefono_empleado ?>
+                              </td>
+                              <td>
+                                <?php echo $value->n_tipo_usuario ?>
+                              </td>
+                              <td>
+                                <?php 
+                                  $fecha=$value->fecha_creacion; 
+                                  $myDateTime = DateTime::createFromFormat('Y-m-d', $fecha);
+                                  $formato_fecha = $myDateTime->format('d-m-Y');
+                                  echo $formato_fecha;
+                                ?>
+                              </td>
+                              <td>
+                                <?php echo $value->estado; ?>
+                              </td> 
+                              <td>
+                                <button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                              </td>
+                            </form>
                           </tr>
                         <?php } ?>                        
                       </tbody>
@@ -92,118 +112,5 @@
               <!-- Recent Updates Widget End-->
             </div>            
           </div>
-          <div class="row">
-            <div class="col-lg-12 col-md-6">
-              <!-- Daily Feed Widget-->
-              <div id="daily-feeds" class="card updates daily-feeds">
-                <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">Inactivos </a></h2>
-                  <div class="right-column">
-                    <div class="badge badge-primary"></div><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"><i class="fa fa-angle-down"></i></a>
-                  </div>
-                </div>
-                <div id="feeds-box" role="tabpanel" class="collapse ">
-                  <div class="feed-box">
-                  <div class="tablas" style="padding:15px">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th scope="col">Número empleado</th>
-                          <th scope="col">Imagen</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Rol</th>
-                          <th scope="col">Correo electrónico</th>
-                          <th scope="col">Fecha de alta</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach ($data2 as $key => $value) { ?>
-                          <tr>  
-                            <td>
-                              <?php echo $value->id_usuario; ?>
-                            </td>
-                            <td>
-                              <?php 
-                              //echo $value->imagen; 
-                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen.'">';
-                              ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->n_tipo_usuario; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->correo; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->fecha_alta; ?>
-                            </td>
-                          </tr>
-                        <?php } ?>                        
-                      </tbody>
-                    </table>
-                  </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Daily Feed Widget End-->
-            </div>
-          </div>
-          <div class="row">            
-            <div class="col-lg-12 col-md-6">
-              <!-- Recent Activities Widget      -->
-              <div id="recent-activities-wrapper" class="card updates activities">
-                <div id="activites-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">No laborales</a></h2><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box"><i class="fa fa-angle-down"></i></a>
-                </div>
-                <div id="activities-box" role="tabpanel" class="collapse">
-                  <div class="tablas" style="padding:15px">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th scope="col">Número empleado</th>
-                          <th scope="col">Imagen</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Rol</th>
-                          <th scope="col">Correo electrónico</th>
-                          <th scope="col">Fecha de alta</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach ($data3 as $key => $value) { ?>
-                          <tr>  
-                            <td>
-                              <?php echo $value->id_usuario; ?>
-                            </td>
-                            <td>
-                              <?php 
-                              //echo $value->imagen; 
-                              echo '<img class="imagen_receta recetas" src="../../img/perfiles/'.$value->imagen.'">';
-                              ?>
-                            </td>
-                            <td>
-                              <?php echo $value->nombre; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->n_tipo_usuario; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->correo; ?>
-                            </td>
-                            <td>
-                              <?php echo $value->fecha_alta; ?>
-                            </td>
-                          </tr>
-                        <?php } ?>                        
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
-     

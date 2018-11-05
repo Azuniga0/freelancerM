@@ -55,7 +55,17 @@ body:before {
 }
 
 .imagen_receta{
-    width: 80px;
+    width: 60px;
     border-radius: 50%;
-    height: 80px;
+    height: 60px;
   }
+
+.imagen_edicion{
+    width: 90px;
+    border-radius: 50%;
+    height: 90px;
+  }
+
+  .custom-file-input ~ .custom-file-label::after {
+    content: "Imagen";
+}

@@ -31,6 +31,8 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+    <script-- src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script-->
   </head>
   <body>
   <div class="page">
@@ -39,8 +41,8 @@
         <nav class="navbar">
           <div class="container-fluid">
             <div class="navbar-holder d-flex align-items-center justify-content-between">
-              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
-                  <div class="brand-text d-none d-md-inline-block"><strong class="text-primary">Marketing Digital</strong></div></a></div>
+              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="#" class="navbar-brand">
+                  <div class="brand-text d-none d-md-inline-block"><span>Plataforma de </span><strong class="text-primary"> Marketing Digital</strong></div></a></div>
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dhropdown-->
                 <!--li class="nav-item dropdown"> <a-- id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span class="badge badge-warning">12</span></a-->
@@ -90,7 +92,7 @@
                   </ul>
                 </li>
                 <!-- Log out-->
-                <li class="nav-item"><a href="<?php echo base_url('index.php/plataforma/salir');?>" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                <li class="nav-item"><a href="<?php echo base_url('index.php/plataforma/salir');?>" class="nav-link logout"> <span class="d-none d-sm-inline-block">Salir</span><i class="fa fa-sign-out"></i></a></li>
               </ul>
             </div>
           </div>
