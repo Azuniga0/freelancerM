@@ -2,8 +2,19 @@
     class Admin_model extends CI_model{
 
         // funcion para nuevo empleado
-        public function nuevo_empleado($usuarios){
+        public function nuevo_usuario($usuarios){
             $insert = $this->db->insert('usuarios',$usuarios);
+            //$this->db->insert('usuarios',$usuarios);
+            if($insert){
+                return $this->db->insert_id();
+            }else{
+                return false;    
+            }
+        }
+
+        public function nuevo_empleado($usuarios){
+            $insert = $this->db->insert('empleados',$usuarios);
+            //$this->db->insert('usuarios',$usuarios);
             if($insert){
                 return $this->db->insert_id();
             }else{
@@ -31,37 +42,12 @@
         public function get_data($datos){
             $this->db->select('*');
             $this->db->from('usuarios');
+            $this->db->join('empleados','usuarios.id_usuario = empleados.id_usuario_empleado');
             $this->db->join('tipo_usuario','usuarios.rol = tipo_usuario.id_tipo_usuario');
-            $this->db->where('id_estado_us',1);
-            $where = "rol != 1 AND rol != 6 AND rol !=5 AND id_estado_us = 1";
+            $this->db->join('estado_usuario','usuarios.id_estado_us = estado_usuario.id_estado');
+            $where = "rol != 1 AND rol !=6";
             $this->db->where($where);
-            $this->db->order_by('fecha_alta','desc');
-            $query = $this->db->get();
-            return $query->result();
-        }
-
-        // funcion para usuario inactivo
-         public function get_data2($datos2){
-            $this->db->select('*');
-            $this->db->from('usuarios');
-            $this->db->join('tipo_usuario','usuarios.rol = tipo_usuario.id_tipo_usuario');
-            $this->db->where('id_estado_us',2);
-            $where = "rol != 1 AND rol != 6 AND rol !=5 AND id_estado_us = 2";
-            $this->db->where($where);
-            $this->db->order_by('fecha_alta','desc');
-            $query = $this->db->get();
-            return $query->result();
-        }
-
-        // funcion para usuario despedido
-         public function get_data3($datos3){
-            $this->db->select('*');
-            $this->db->from('usuarios');
-            $this->db->join('tipo_usuario','usuarios.rol = tipo_usuario.id_tipo_usuario');
-            $this->db->where('id_estado_us',3);
-            $where = "rol != 1 AND rol != 6 AND rol !=5 AND id_estado_us = 3";
-            $this->db->where($where);
-            $this->db->order_by('fecha_alta','desc');
+            $this->db->order_by('usuarios.fecha_creacion','desc');
             $query = $this->db->get();
             return $query->result();
         }
@@ -77,41 +63,17 @@
             $query = $this->db->get();
             return $query->result();
         }
-
-        // funcion para campaña inactiva
-        public function get_inact_camp($datos){
-            $this->db->select('*');
-            $this->db->from('campain');
-            $this->db->join('usuarios','usuarios.id_usuario = campain.id_community');
-            $this->db->join('clientes as c','c.id_usuario = campain.id_cliente');
-            $this->db->where('id_estado_c',2);
-            $this->db->order_by('id_camp','asc');
-            $query = $this->db->get();
-            return $query->result();
-        }
         
-        // funcion para traer cliente activa
-         public function c_act($datos){
+        public function empresas(){
+            $admin = $_SESSION['id_usuario'];
             $this->db->select('*');
-            $this->db->from('usuarios');
-            $this->db->join('tipo_usuario','usuarios.rol = tipo_usuario.id_tipo_usuario');
-            $this->db->where('id_estado_us',1);
-            $where = "rol = 5 AND id_estado_us = 1";
+            $this->db->from('empresas');
+            $this->db->join('clientes','clientes.id_empresa = empresas.id_empresa');
+            $this->db->join('usuarios','usuarios.id_usuario = empresas.administrador');
+            $this->db->join('empleados','usuarios.id_usuario = empleados.id_usuario_empleado');
+            $where = "administrador = $admin";
             $this->db->where($where);
-            $this->db->order_by('id_usuario','asc');
-            $query = $this->db->get();
-            return $query->result();
-        }
-
-        // funcion para traer cliente inactiva
-         public function c_inac($datos){
-            $this->db->select('*');
-            $this->db->from('usuarios');
-            $this->db->join('tipo_usuario','usuarios.rol = tipo_usuario.id_tipo_usuario');
-            $this->db->where('id_estado_us',2);
-            $where = "rol = 5 AND id_estado_us = 2";
-            $this->db->where($where);
-            $this->db->order_by('id_usuario','asc');
+            $this->db->order_by('empresas.fecha_alta','desc');
             $query = $this->db->get();
             return $query->result();
         }
@@ -126,6 +88,26 @@
             $query = $this->db->get();
             return $query->result();
         }
+
+        public function busca_datos_empleado($emp){
+            $this->db->select('*');
+            $this->db->from('usuarios');
+            $this->db->join('empleados','usuarios.id_usuario = empleados.id_usuario_empleado');
+            $this->db->join('estado_usuario','usuarios.id_estado_us = estado_usuario.id_estado');
+            $this->db->where('id_usuario',$emp);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        public function actualizar_user($id, $user){
+            $this->db->where('id_usuario',$id);
+            $this->db->update('usuarios',$user);
+        }
+
+        public function actualizar_emp($id, $emp){
+            $this->db->where('id_usuario_empleado',$id);
+            $this->db->update('empleados',$emp);
+        }        
         
     }
 ?>

@@ -31,14 +31,14 @@ if($result2 = mysqli_query($db,$last_susers)){
               </div>
             </div>
             <!-- Count item widget-->
-            <div class="col-xl-4 col-md-4 col-6">
+            <!--div class="col-xl-4 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
                 <div class="name"><strong class="text-uppercase">Nuevos Super Administradores</strong><span>Últimos 30 días</span>
                   <div class="count-number"><?php echo $sucount; ?></div>
                 </div>
               </div>
-            </div>
+            </div-->
           </div>
         </div>
       </section>

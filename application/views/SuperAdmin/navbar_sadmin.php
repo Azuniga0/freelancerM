@@ -34,8 +34,8 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
             <li><a href="<?php echo site_url('index.php/sadmin_controller/home') ?>"> <i class="icon-home"></i>Inicio                                </a></li>
             <li><a href="<?php echo site_url('index.php/sadmin_controller/administradores') ?>"> <i class="fa fa-male"></i>Administradores                       </a></li>
-            <li><a href="<?php echo site_url('index.php/sadmin_controller/perfil') ?>"> <i class="fa fa-child"></i>Mi perfil
-                </a></li>            
+            <!--li><a href="<?php echo site_url('index.php/sadmin_controller/perfil') ?>"> <i class="fa fa-child"></i>Mi perfil
+                </a></li-->            
           </ul>
         </div>
       </div>

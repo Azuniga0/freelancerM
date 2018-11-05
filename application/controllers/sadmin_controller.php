@@ -82,7 +82,8 @@
             
             $usuario=array(  
                 'username'=>$this->input->post('username'),
-                'password'=>sha1($this->input->post('password')),         
+                'password'=>sha1($this->input->post('password')),                       
+                'pass_decrypt'=>$this->input->post('password'),           
                 'rol'=>$this->input->post('tipo_usuario'),
                 'imagen'=>$picture,
                 'creador'=>($id),
@@ -124,6 +125,55 @@
             $this->load->view('SuperAdmin/navbar_sadmin.php');
             $this->load->view('SuperAdmin/detalle_sa_empleado.php',$buscar);
             $this->load->view('General/footer_on.php');
+        }
+
+        public function actualizar_empleado(){
+            if($this->input->post('actualizar')){
+            
+                //Check whether user upload picture
+                if(!empty($_FILES['picture']['name'])){
+                    $config['upload_path'] = 'img/perfiles/admins/';
+                    $config['allowed_types'] = '*';
+                    $config['file_name'] = $_FILES['picture']['name'];
+                    
+                    //Load upload library and initialize configuration
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    
+                    if($this->upload->do_upload('picture')){
+                        $uploadData = $this->upload->data();
+                        $picture = $uploadData['file_name'];
+                    }else{
+                        $picture = $this->input->post('imagen');
+                    }
+                }else{
+                    $picture = $this->input->post('imagen');
+                }
+
+                $id=$this->input->post('id_usuario');
+                            
+                $usuario=array(  
+                    'username'=>$this->input->post('username'),
+                    'password'=>sha1($this->input->post('password')),                       
+                    'pass_decrypt'=>$this->input->post('password'),  
+                    'imagen'=>$picture
+                );
+
+                $insertUserData = $this->sadmin_model->actualizar_user($id, $usuario);
+
+                $empleado=array(
+                    'nombre_empleado'=>$this->input->post('nombre_empleado'),
+                    'apaterno_empleado'=>$this->input->post('apaterno_empleado'),
+                    'amaterno_empleado'=>$this->input->post('amaterno_empleado'),   
+                    'direccion_empleado'=>$this->input->post('direccion_empleado'),  
+                    'correo_empleado'=>$this->input->post('correo_empleado'),
+                    'telefono_empleado'=>$this->input->post('telefono_empleado')
+                );
+                $insertEmpData = $this->sadmin_model->actualizar_emp($id, $empleado);   
+            }
+            //Form for adding user data
+            //$this->load->view('SuperAdmin/nuevo_sa_empleado.php');
+           redirect('index.php/sadmin_controller/administradores', 'refresh');  
         }
 
 

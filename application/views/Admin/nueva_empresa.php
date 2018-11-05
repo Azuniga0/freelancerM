@@ -1,10 +1,4 @@
 
-
-<?php 
-    $fecha=date("Y/m/d") ;
-    //echo $fecha;action="nuevo_empleado" 
-?>
-
 <section class="mt-30px mb-30px">
     <div class="container-fluid">
         <div class="row">            
@@ -13,7 +7,7 @@
                 <div class=" col-12">
                     <div class="row">
                         <div class="wrapper count-title d-flex text-center">
-                            <div class="name"><strong class="text-uppercase centrado">Nuevo administrador</strong><br><br>
+                            <div class="name"><strong class="text-uppercase centrado">Nueva empresa</strong><br><br>
                             </div>
                         </div> 
                     </div>
@@ -143,7 +137,7 @@
                                         <?php
                                             $database=mysqli_connect("localhost", "root","","freelancer");
 
-                                            $query = "SELECT id_tipo_usuario, n_tipo_usuario FROM tipo_usuario where id_tipo_usuario = 1 || id_tipo_usuario = 6 ORDER BY id_tipo_usuario ASC";
+                                            $query = "SELECT id_tipo_usuario, n_tipo_usuario FROM tipo_usuario where id_tipo_usuario != 1 && id_tipo_usuario != 6 && id_tipo_usuario != 5 ORDER BY id_tipo_usuario ASC";
                                             $result = mysqli_query($database,$query) or die("no se encontraron datos");
                                             mysqli_set_charset($database,"utf8");
                                         ?>

@@ -33,7 +33,7 @@
             return $query->result();
         }*/
 
-         public function get_data($datos){
+        public function get_data($datos){
             $this->db->select('*');
             $this->db->from('usuarios');
             $this->db->join('empleados','usuarios.id_usuario = empleados.id_usuario_empleado');
@@ -54,7 +54,17 @@
             $this->db->where('id_usuario',$admin);
             $query = $this->db->get();
             return $query->result();
-        }           
+        } 
+        
+        public function actualizar_user($id, $user){
+            $this->db->where('id_usuario',$id);
+            $this->db->update('usuarios',$user);
+        }
+
+        public function actualizar_emp($id, $emp){
+            $this->db->where('id_usuario_empleado',$id);
+            $this->db->update('empleados',$emp);
+        }          
        
     }
 ?>

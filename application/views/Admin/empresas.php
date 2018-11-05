@@ -1,5 +1,5 @@
 <?php   
-
+ //print_r ($data);
 ?>
 
 <section class="dashboard-counts section-padding">
@@ -8,14 +8,14 @@
       <!-- Count item widget-->
       <div class=" col-md-9 col-8">
         <div class="wrapper count-title d-flex text-center">
-          <div class="name"><strong class="text-uppercase">Empleados</strong>
+          <div class="name"><strong class="text-uppercase">Empresas</strong>
           </div>
         </div>
       </div>
       <div class=" col-md-3 col-4">
     <div class="wrapper count-title d-flex text-center">
       <div class="name">
-        <a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/admin_controller/vista_nuevo_empleado');?>">Nuevo empleado</a>
+        <a class="btn btn-primary" href="<?php echo base_url('index.php/admin_controller/vista_nueva_empresa');?>">Nueva empresa</a>
       </div>
       <div class="name">
         <!--a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/sadmin_controller/vista_existente_sa_empleado');?>">Empleado existente</a-->
@@ -40,12 +40,13 @@
                       <thead>
                         <tr>
                           <th scope="col"></th>
-                          <th scope="col">Empleado</th>
-                          <th scope="col">Correo electrónico</th>
-                          <th scope="col">Teléfono</th>                          
-                          <th scope="col">Rol</th>                          
+                          <th scope="col">Razón social</th>
+                          <th scope="col">Cliente</th>
+                          <th scope="col">Correo del cliente</th>                          
+                          <th scope="col">Responsable</th>                          
+                          <th scope="col">Correo del responsable</th>
+                          <!--th scope="col">Administrador</th-->
                           <th scope="col">Fecha de alta</th>
-                          <th scope="col">Estado</th>
                           <th scope="col"></th>
                         </tr>
                       </thead>
@@ -56,48 +57,39 @@
                               <td>
                                 <?php
                                 
-                                switch ($value->rol) {
-                                  case '2':
-                                    echo '<img class="imagen_receta recetas" src="../../img/perfiles/cm/'.$value->imagen.'">';
-                                  break;
-                                  case '3':
-                                    echo '<img class="imagen_receta recetas" src="../../img/perfiles/designer/'.$value->imagen.'">';
-                                  break;
-                                  case '4':
-                                    echo '<img class="imagen_receta recetas" src="../../img/perfiles/gc/'.$value->imagen.'">';
-                                  break;                                  
-                                  default:
-                                    # code...
-                                    break;
-                                }
+                                
+                                  echo '<img class="imagen_receta recetas" src="../../img/perfiles/empresas/'.$value->imagen_empresa.'">';
                                 //echo $value->imagen;                                 
-                                $id= $value->id_usuario;
+                                  $id= $value->id_empresa;
                                   echo "<input type='hidden' name='id_usuario' value='$id'>";
                                 ?>
                               </td>
                               <td>
-                                <?php echo $value->nombre_empleado.' '.$value->apaterno_empleado; ?>
+                                <?php echo $value->razon_social ?>
                               </td>
                               <td>
-                                <?php echo $value->correo_empleado; ?>
+                                <?php echo $value->nombre_cliente.' '.$value->apaterno_cliente ?>
                               </td>
                               <td>
-                                <?php echo $value->telefono_empleado ?>
+                                <?php echo $value->correo_cliente ?>
                               </td>
                               <td>
-                                <?php echo $value->n_tipo_usuario ?>
+                                <?php echo $value->contacto ?>
                               </td>
+                              <td>
+                                <?php echo $value->correo_contacto ?>
+                              </td>
+                              <!--td>
+                                <?php //echo $value->nombre_empleado.' '.$value->apaterno_empleado ?>
+                              </td-->
                               <td>
                                 <?php 
-                                  $fecha=$value->fecha_creacion; 
+                                  $fecha=$value->fecha_alta; 
                                   $myDateTime = DateTime::createFromFormat('Y-m-d', $fecha);
                                   $formato_fecha = $myDateTime->format('d-m-Y');
                                   echo $formato_fecha;
                                 ?>
                               </td>
-                              <td>
-                                <?php echo $value->estado; ?>
-                              </td> 
                               <td>
                                 <button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                               </td>
