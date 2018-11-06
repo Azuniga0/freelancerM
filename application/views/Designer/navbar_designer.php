@@ -19,14 +19,14 @@
             <?php 
 
               while ($row = $result->fetch_assoc()) {
-                echo '<img class="img-fluid rounded-circle" src="http://localhost/freelancer/img/perfiles/'.$row['imagen'].'">';
+                echo '<img class="img-fluid rounded-circle" src="../../img/perfiles/designer/'.$row['imagen'].'">';
               }
 
-            ?>  
-            <h2 class="h5" style="margin-top:15px;"><?php echo $_SESSION['nombre']; ?></h2><span><?php echo $_SESSION['n_tipo_usuario']; ?></span>
+            ?> 
+            <h2 class="h5" style="margin-top:15px;"><?php echo $_SESSION['nombre_empleado'].' '.$_SESSION['apaterno_empleado']; ?></h2><span><?php echo $_SESSION['n_tipo_usuario']; ?></span>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->
-          <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+          <div class="sidenav-header-logo"><a href="#" class="brand-small text-center"> <strong>M</strong><strong class="text-primary">D</strong></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">

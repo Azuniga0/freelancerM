@@ -15,10 +15,7 @@
       <div class=" col-md-3 col-4">
     <div class="wrapper count-title d-flex text-center">
       <div class="name">
-        <a class="btn btn-primary" href="<?php echo base_url('index.php/admin_controller/vista_nueva_empresa');?>">Nueva empresa</a>
-      </div>
-      <div class="name">
-        <!--a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/sadmin_controller/vista_existente_sa_empleado');?>">Empleado existente</a-->
+        <a class="btn btn-primary" href="<?php echo base_url('index.php/sadmin_controller/vista_nueva_empresa');?>">Nueva empresa</a>
       </div>
     </div>
   </div>

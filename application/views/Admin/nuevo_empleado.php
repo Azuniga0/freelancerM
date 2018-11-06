@@ -16,7 +16,7 @@
                         <?php /*echo $this->session->flashdata('error_msg');*/ ?>
                     </div>
                     <div class="row">   
-                        <form class="col-md-12" method="post" action="add"  enctype="multipart/form-data" role="form">
+                        <form class="col-md-12" method="post" action="add"  enctype="multipart/form-data" role="form" accept-charset="UTF-8">
                             <div class="form-row" style="margin-top: 15px;">
                                 <label style="color:"><b>Datos personales:</b></label>
                                 <br><br>

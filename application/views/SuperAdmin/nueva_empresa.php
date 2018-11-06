@@ -16,7 +16,7 @@
                         <?php /*echo $this->session->flashdata('error_msg');*/ ?>
                     </div>
                     <div class="row">   
-                        <form class="col-md-12" method="post" action="nueva_empresa"  enctype="multipart/form-data" role="form">                            
+                        <form class="col-md-12" method="post" action="nueva_empresa"  enctype="multipart/form-data" role="form" accept-charset="UTF-8">                            
                             <div class="form-row">
                                 <div class="col-md-9 mb-3">
                                     <div class="input-group">
@@ -33,6 +33,30 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" >
                                         <label class="custom-file-label" for="inputGroupFile01"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="rol_empleado">Administrador:</span>
+                                        </div> 
+                                        <?php
+                                            $database=mysqli_connect("localhost", "root","","freelancer");
+
+                                            $query = "SELECT * FROM usuarios join empleados on empleados.id_usuario_empleado = usuarios.id_usuario where rol = 1 and ocupado=0 ORDER BY id_usuario ASC";
+                                            $result = mysqli_query($database,$query) or die("no se encontraron datos");
+                                            mysqli_set_charset($database,"utf8");
+                                        ?>
+
+                                            <select class="form-control" id="rol" aria-describedby="rol_empleado" name="admin" required>                                            
+                                                <?php     
+                                                    while ($row = mysqli_fetch_array($result)){
+                                                        echo "<option value='" . $row['id_usuario'] . "'>" . $row['nombre_empleado'].' ' . $row['apaterno_empleado']."</option>";
+                                                    }
+                                                ?>        
+                                            </select>
                                     </div>
                                 </div>
                             </div>
