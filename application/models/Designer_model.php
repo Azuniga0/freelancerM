@@ -21,6 +21,20 @@
             return $query->row();
         }
 
+        public function getcomentarios($id)
+        {
+            $this->db->select('*');
+            $this->db->from('comentarios');
+            $this->db->join('usuarios','usuarios.id_usuario = comentarios.id_usuario');
+            $this->db->where('id_publicacion',$id);
+            $this->db->order_by('fecha','desc');
+            $query = $this->db->get();
+            return $query->result();
+        }
+         public function comentar($comen){
+            $this->db->insert('comentarios',$comen);
+        }
+
         public function subirimgen($img, $id)
         {
             $this->db->where('id_publicaciones',$id);

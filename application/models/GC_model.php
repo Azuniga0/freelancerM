@@ -20,13 +20,29 @@
             return $query->row();
         }
         
+        public function subircontenido($con, $id)
+        {
+            $this->db->where('id_publicaciones',$id);
+            $this->db->set('contenido', $con);
+            $this->db->set('id_estado', 2);
+            $this->db->update('publicaciones');
+        }
+
+        public function subirimg($img, $id)
+        {
+            $this->db->where('id_publicaciones',$id);
+            $this->db->set('imagen', $img);
+            $this->db->set('id_estado', 2);
+            $this->db->update('publicaciones');
+        }
+
         public function getcomentarios($id)
         {
             $this->db->select('*');
             $this->db->from('comentarios');
             $this->db->join('usuarios','usuarios.id_usuario = comentarios.id_usuario');
             $this->db->where('id_publicacion',$id);
-            $this->db->order_by('fecha','asc');
+            $this->db->order_by('fecha','desc');
             $query = $this->db->get();
             return $query->result();
         }

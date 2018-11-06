@@ -16,24 +16,35 @@
     <div class="row">
       <div class="col-lg-12 col-md-12">
       <?php if(isset($error)): ?>
-	      <p class="alert alert-danger"><?= $error ?></p>
+	      <p class="alert alert-danger"><?= $error1 ?></p>
 	    <?php endif; ?>
     <!-- apartado para subir imagene -->
         <center>
-          <form action="<?php  echo base_url('index.php/GC_controller/subircontenido/'.$publi->id_publicaciones) ?>" method="POST" enctype="multipart/from-data">
+        <form action="<?php  echo base_url('index.php/GC_controller/subircontenido/'.$publi->id_publicaciones) ?>" method="post">
             <table class="table">
               <tr>
                 <td>Contenido</td>
                 <td>
                   <textarea name="contenido"  cols="140" rows="10"><?=$publi->contenido ?></textarea>
                 </td>
+              </tr> 
+              <tr>
+                <td></td>
+                <td><input class="primary-btn btn" style=" margin-top: 15px; float:right;" type="submit" value="Guardar" ></td>
               </tr>
+              </table>
+          </form>
+                <?php if(isset($error2)): ?>
+	                <p class="alert alert-danger"><?= $error2 ?></p>
+	              <?php endif; ?>
+              <?php echo form_open_multipart(base_url("index.php/GC_controller/subirimg/$publi->id_publicaciones")); ?>
+              <table class="table"> 
               <tr>
                 <td>Subir imagen</td>
                 <td>
                   <input type="file" name="archivo" >
                 </td>
-              </tr>              
+              </tr>            
               <tr>
                 <td>Imagen previa</td>
                 <td><?= $publi->imagen != "" ? '<img src="'.base_url('assets/img/img_des/').$publi->imagen.'" height="200px">' : "[No hay imagen]" ?></td>
@@ -64,7 +75,7 @@
                       <tbody>
                       <?php foreach ($come as $row) { ?>                          
                         <tr>
-                          <th scope="row"><?= $row->nombre ?></th>
+                          <th scope="row"><?= $row->username ?></th>
                           <td><?= $row->contenido ?></td>
                           <td><?= $row->fecha ?></td>
                           </tr>

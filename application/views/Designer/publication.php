@@ -20,8 +20,8 @@
 	    <?php endif; ?>
     <!-- apartado para subir imagene -->
         <center>
-          <form action="<?php  echo base_url('index.php/Designer_controller/subirimgen/'.$publi->id_publicaciones) ?>" method="POST" enctype="multipart/from-data">
-            <table class="table">
+        <?php echo form_open_multipart(base_url("index.php/Designer_controller/subirimgen/$publi->id_publicaciones")); ?>
+          <table class="table">
               <tr>
                 <td>Subir imagen</td>
                 <td>
@@ -41,10 +41,32 @@
 
           <form action="" method="post"></form>
             <!-- Area de comentarios-->
+            <form action="<?php  echo base_url('index.php/Designer_controller/comentar/'.$publi->id_publicaciones) ?>" method="post">
+            <?php if(isset($error1)): ?>
+	            <p class="alert alert-danger col-8"><?= $error1 ?></p>
+	          <?php endif; ?>
             <h3>Comentarios</h3>
                   <textarea name="comentario" cols="100" rows="2"></textarea><br>
-                  <a class="btn btn-primary" href="<?php  echo base_url('index.php/Designer_controller/') ?>">Comentar</a>
-          
+                  <input class="primary-btn btn" style=" margin-top: 15px; float:right;" type="submit" value="Comentar" >
+          </form>
+          <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col"> Usuario</th>
+                          <th scope="col">Mensaje</th>
+                          <th scope="col">Fecha</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php foreach ($come as $row) { ?>                          
+                        <tr>
+                          <th scope="row"><?= $row->username ?></th>
+                          <td><?= $row->contenido ?></td>
+                          <td><?= $row->fecha ?></td>
+                          </tr>
+                      <?php } ?>                      
+                      </tbody>
+                    </table> 
         </center>
       </div>  
     </div>

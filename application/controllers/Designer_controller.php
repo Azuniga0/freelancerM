@@ -29,27 +29,50 @@
         }
         public function publication($id){
             $data ['publi'] = $this->Designer_model->getpublicacion($id);
+            $data ['come'] = $this->Designer_model->getcomentarios($id);
             //  echo json_encode($data);
             $this->load->view('General/header_on.php');
             $this->load->view('Designer/publication.php', $data);
             $this->load->view('Designer/navbar_designer.php');
             $this->load->view('General/footer_on.php');
         }
+
+        public function comentar($id){
+            $data ['publi'] = $this->Designer_model->getpublicacion($id);
+            $data ['come'] = $this->Designer_model->getcomentarios($id);
+            if($this->input->post('comentario')){
+            $comen = array(
+                'id_usuario' => $_SESSION['id_usuario'],
+                'id_publicacion' => $id,
+                'contenido'=>$this->input->post('comentario'),
+                'fecha' => date("Y/m/d"),
+            );
+            $this->Designer_model->comentar($comen);
+                redirect('index.php/Designer_controller/publication/'.$id);
+            }else{
+                $data ['error1'] = "no hay comentario";
+                $this->load->view('General/header_on.php');
+                $this->load->view('Designer/publication.php', $data);
+                $this->load->view('Designer/navbar_GC.php');
+                $this->load->view('General/footer_on.php');
+            }
+        }
         
         public function subirimgen($id){
             $data ['publi'] = $this->Designer_model->getpublicacion($id);
-            
+            $data ['come'] = $this->Designer_model->getcomentarios($id);
             
                 $config['upload_path'] = 'assets/img/img_des';
                 $config['allowed_types'] = '*';
-
+                
                 
                 //Load upload library and initialize configuration
                 $this->load->library('upload',$config);
                 $this->upload->initialize($config);
-                
+
                 if(! $this->upload->do_upload('archivo')){
-                    $data ['error'] = "Error al subir la imagen";
+                    $data ['error'] = "Error al subir la imagen: ".$this->upload->error_msg[0];
+                    // echo json_encode($this->upload);
                     $this->load->view('General/header_on.php');
                     $this->load->view('Designer/publication.php', $data);
                     $this->load->view('Designer/navbar_designer.php');
