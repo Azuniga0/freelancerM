@@ -211,7 +211,7 @@
                     'telefono_cliente'=>$this->input->post('telefono_cliente'),
                     'correo_cliente'=>$this->input->post('correo_cliente'),         
                     'id_usuario_cliente'=>($nuevo_usuario),
-                    'id_empresa'=>($nueva_empresa)
+                    'id_empresa_cliente'=>($nueva_empresa)
                 );
                 
                 //Pass user data to model
@@ -272,7 +272,9 @@
                     'apaterno_cliente'=>$this->input->post('apaterno_cliente'),
                     'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
                     'telefono_cliente'=>$this->input->post('telefono_cliente'),
-                    'correo_cliente'=>$this->input->post('correo_cliente')
+                    'correo_cliente'=>$this->input->post('correo_cliente'),
+                    'id_usuario_cliente' => ($nuevo_usuario),
+                    'id_empresa_cliente' => ($nueva_empresa)
                 );                                
                 $nuevo_cliente = $this->admin_model->actualizar_cliente($id_usuario, $cliente);
 

@@ -21,10 +21,10 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col"> Titulo</th>
-                          <th scope="col">tarea</th>
+                          <th scope="col">Tarea</th>
+                          <th scope="col">Descripción</th>
                           <th scope="col">Fecha</th>
-                          <th scope="col">Ir a publicación</th>
+                          <th scope="col">Ir a la publicación</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -32,7 +32,7 @@
                         <tr>
                           <th scope="row"><?= $row->titulo ?></th>
                           <td><?= $row->contenido ?></td>
-                          <td><?= $row->fecha_entrega ?></td>
+                          <td><?= date('d/m/Y H:i:s', strtotime($row->fecha_entrega)); ?></td>
                           <td><a class="btn btn-primary" href="<?php echo base_url('index.php/GC_controller/publication/'.$row->id_publicaciones);?>">Ir</a></td>
                         </tr>
                       <?php } ?>                      

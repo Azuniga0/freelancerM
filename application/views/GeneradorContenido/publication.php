@@ -30,7 +30,7 @@
               </tr> 
               <tr>
                 <td></td>
-                <td><input class="primary-btn btn" style=" margin-top: 15px; float:right;" type="submit" value="Guardar" ></td>
+                <td><input class="btn btn-success" style=" margin-top: 15px; float:right;" type="submit" value="Guardar" ></td>
               </tr>
               </table>
           </form>
@@ -40,18 +40,18 @@
               <?php echo form_open_multipart(base_url("index.php/GC_controller/subirimg/$publi->id_publicaciones")); ?>
               <table class="table"> 
               <tr>
+                <td>Imagen Actual</td>
+                <td><?= $publi->imagen != "" ? '<img src="'.base_url('assets/img/img_des/').$publi->imagen.'" height="200px">' : "[No hay imagen]" ?></td>
+              </tr>
+              <tr>
                 <td>Subir imagen</td>
                 <td>
                   <input type="file" name="archivo" >
                 </td>
-              </tr>            
-              <tr>
-                <td>Imagen previa</td>
-                <td><?= $publi->imagen != "" ? '<img src="'.base_url('assets/img/img_des/').$publi->imagen.'" height="200px">' : "[No hay imagen]" ?></td>
-              </tr>
+              </tr>                
               <tr>
                 <td></td>
-                <td><input class="primary-btn btn" style=" margin-top: 15px; float:right;" type="submit" value="Guardar" ></td>
+                <td><input class="btn btn-success" style=" margin-top: 15px; float:right;" type="submit" value="Guardar" ></td>
               </tr>
             </table>
           </form>
@@ -61,14 +61,15 @@
 	            <p class="alert alert-danger col-8"><?= $error1 ?></p>
 	          <?php endif; ?>
             <h3>Comentarios</h3>
-                  <textarea name="comentario" cols="100" rows="2"></textarea><br>
-                  <input class="primary-btn btn" style=" margin-top: 15px; float:right;" type="submit" value="Comentar" >
+                  <textarea name="comentario" cols="100" rows="2"></textarea>
+                  <input class="btn btn-info " style=" margin-top: 15px; float:right;" type="submit" value="Comentar" >
           </form>
+          <br>
           <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col"> Nombre</th>
-                          <th scope="col">Mensaje</th>
+                          <th scope="col">Usuario</th>
+                          <th scope="col">Comentario</th>
                           <th scope="col">Fecha</th>
                         </tr>
                       </thead>
@@ -77,7 +78,7 @@
                         <tr>
                           <th scope="row"><?= $row->username ?></th>
                           <td><?= $row->contenido ?></td>
-                          <td><?= $row->fecha ?></td>
+                          <td><?= date('d/m/Y', strtotime($row->fecha)); ?></td>
                           </tr>
                       <?php } ?>                      
                       </tbody>
