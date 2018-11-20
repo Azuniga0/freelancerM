@@ -13,6 +13,7 @@
         
         public function Slopes(){
             $data['data1'] = $this->GC_model->getPendientes($_SESSION['id_usuario']);
+            $data['data2'] = $this->GC_model->getPendientes2($_SESSION['id_usuario']);
             // echo json_encode($data);
             $this->load->view('General/header_on.php');
             $this->load->view('GeneradorContenido/slopes.php', $data);
@@ -38,6 +39,17 @@
             //  echo json_encode($data);
             $this->load->view('General/header_on.php');
             $this->load->view('GeneradorContenido/publication.php', $data);
+            $this->load->view('GeneradorContenido/navbar_GC.php');
+            $this->load->view('General/footer_on.php');
+        }
+
+        public function tareaRealizada($id)
+        {
+            $this->GC_model->TR($id);
+            $data['data1'] = $this->GC_model->getPendientes($_SESSION['id_usuario']);
+            $data['data2'] = $this->GC_model->getPendientes2($_SESSION['id_usuario']);            
+            $this->load->view('General/header_on.php');
+            $this->load->view('GeneradorContenido/slopes.php', $data);
             $this->load->view('GeneradorContenido/navbar_GC.php');
             $this->load->view('General/footer_on.php');
         }

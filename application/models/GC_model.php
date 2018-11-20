@@ -6,9 +6,28 @@
             $this->db->select('*');
             $this->db->from('tareas');
             $this->db->where('id_usuario', $id);
-            $this->db->order_by('fecha_entrega','asc');
+            $this->db->where('id_estado', 1);
+            $this->db->order_by('fecha_entrega','desc');
             $query = $this->db->get();
             return $query->result();
+        }
+
+        public function getPendientes2($id)
+        {
+            $this->db->select('*');
+            $this->db->from('tareas');
+            $this->db->where('id_usuario', $id);
+            $this->db->where('id_estado', 2);
+            $this->db->order_by('fecha_entrega','desc');
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        public function TR($id)
+        {
+            $this->db->where('id_tarea',$id);
+            $this->db->set('id_estado', 2);
+            $this->db->update('tareas');
         }
 
         public function getpublicacion($id)

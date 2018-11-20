@@ -176,6 +176,164 @@
            redirect('index.php/sadmin_controller/administradores', 'refresh');  
         }
 
+        public function editar_empresa(){
+            $admin=$this->input->post('id_empresa');  
+            $buscar['data'] = $this->sadmin_model->busca_datos_empresa($admin);
+            $this->load->view('General/header_on.php');
+            $this->load->view('SuperAdmin/navbar_sadmin.php');
+            $this->load->view('SuperAdmin/detalle_empresa.php',$buscar);
+            $this->load->view('General/footer_on.php');
+        }
+
+        //Carga la vista que contiene la lista de empresas
+        public function empresas(){
+            $datos['data']=$this->sadmin_model->empresas("usuarios");
+            $this->load->view('General/header_on.php');
+            $this->load->view('SuperAdmin/navbar_sadmin.php');
+            $this->load->view('SuperAdmin/empresas.php',$datos);
+            $this->load->view('General/footer_on.php');
+        }
+
+        
+        //Carga el formulario para una nueva empresa
+        public function vista_nueva_empresa(){
+            $this->load->view('General/header_on.php');
+            $this->load->view('SuperAdmin/navbar_sadmin.php');
+            $this->load->view('SuperAdmin/nueva_empresa.php');
+            $this->load->view('General/footer_on.php');
+        }
+
+        //Toma los datos del formulario de empresa y los envia al modelo para inserción
+        public function nueva_empresa(){
+            $id=$_SESSION['id_usuario'];
+            $fecha=date("Y/m/d") ;
+            if($this->input->post('register')){
+            
+                //Check whether user upload picture
+                if(!empty($_FILES['picture']['name'])){
+                    $config['upload_path'] = 'img/perfiles/empresas/';
+                    $config['allowed_types'] = '*';
+                    $config['file_name'] = $_FILES['picture']['name'];
+                    
+                    //Load upload library and initialize configuration
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    
+                    if($this->upload->do_upload('picture')){
+                        $uploadData = $this->upload->data();
+                        $picture = $uploadData['file_name'];
+                    }else{
+                        $picture = 'empresa.jpg';
+                    }
+                }else{
+                    $picture = 'empresa.jpg';
+                }
+                
+                $id=$_SESSION['id_usuario'];
+                $empresa=array(
+                    'razon_social'=>$this->input->post('razon_social'),
+                    'contacto'=>$this->input->post('contacto'),
+                    'direccion_contacto'=>$this->input->post('direccion_contacto'),   
+                    'correo_contacto'=>$this->input->post('correo_contacto'),
+                    'telefono_empresa'=>$this->input->post('telefono_contacto'),         
+                    'estado_empresa'=>('1'),
+                    'administrador'=>$this->input->post('admin'),       
+                    'imagen_empresa'=>$picture,
+                    'fecha_alta'=>($fecha)
+                );
+                $nueva_empresa = $this->sadmin_model->nueva_empresa($empresa);
+
+                $usuario=array( 
+                    'username'=>$this->input->post('username'),
+                    'password'=>sha1($this->input->post('password')),         
+                    'pass_decrypt'=>$this->input->post('password'), 
+                    'rol'=>('5'),     
+                    'creador'=>($id),
+                    'fecha_creacion'=>($fecha),
+                    'id_estado_us'=>('1')
+                );
+                $nuevo_usuario = $this->sadmin_model->nuevo_usuario($usuario);
+                
+                $cliente=array(
+                    'nombre_cliente'=>$this->input->post('nombre_cliente'),
+                    'apaterno_cliente'=>$this->input->post('apaterno_cliente'),
+                    'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
+                    'telefono_cliente'=>$this->input->post('telefono_cliente'),
+                    'correo_cliente'=>$this->input->post('correo_cliente'),         
+                    'id_usuario_cliente'=>($nuevo_usuario),
+                    'id_empresa_cliente'=>($nueva_empresa)
+                );
+                
+                //Pass user data to model
+                $nuevo_cliente = $this->sadmin_model->nuevo_cliente($cliente);
+            }
+            //Form for adding user data
+            //$this->load->view('Admin/nuevo_empleado.php');            
+
+            redirect('index.php/sadmin_controller/empresas', 'refresh');     
+        }
+
+        
+        public function actualizar_empresa(){
+            $id=$_SESSION['id_usuario'];
+            if($this->input->post('register')){
+            
+                //Check whether user upload picture
+                if(!empty($_FILES['picture']['name'])){
+                    $config['upload_path'] = 'img/perfiles/empresas/';
+                    $config['allowed_types'] = '*';
+                    $config['file_name'] = $_FILES['picture']['name'];
+                    
+                    //Load upload library and initialize configuration
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    
+                    if($this->upload->do_upload('picture')){
+                        $uploadData = $this->upload->data();
+                        $picture = $uploadData['file_name'];
+                    }else{
+                        $picture = $this->input->post('imagen');
+                    }
+                }else{
+                    $picture = $this->input->post('imagen');
+                }
+                
+                $id=$_SESSION['id_usuario'];
+                $empresa=array(
+                    'razon_social'=>$this->input->post('razon_social'),
+                    'contacto'=>$this->input->post('contacto'),
+                    'direccion_contacto'=>$this->input->post('direccion_contacto'),   
+                    'correo_contacto'=>$this->input->post('correo_contacto'),
+                    'telefono_empresa'=>$this->input->post('telefono_contacto'), 
+                    'imagen_empresa'=>$picture
+                );
+                $id_empresa = $this->input->post('id_empresa');
+                $nueva_empresa = $this->sadmin_model->actualizar_empresa($id_empresa, $empresa);
+
+                $usuario=array( 
+                    'username'=>$this->input->post('username'),
+                    'password'=>sha1($this->input->post('password')),         
+                    'pass_decrypt'=>$this->input->post('password')
+                );
+                $id_usuario= $this->input->post('id_usuario');
+                $nuevo_usuario = $this->sadmin_model->actualizar_user($id_usuario, $usuario);
+                
+                $cliente=array(
+                    'nombre_cliente'=>$this->input->post('nombre_cliente'),
+                    'apaterno_cliente'=>$this->input->post('apaterno_cliente'),
+                    'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
+                    'telefono_cliente'=>$this->input->post('telefono_cliente'),
+                    'correo_cliente'=>$this->input->post('correo_cliente')
+                );                                
+                $nuevo_cliente = $this->sadmin_model->actualizar_cliente($id_usuario, $cliente);
+
+            }
+            //Form for adding user data
+            //$this->load->view('Admin/nuevo_empleado.php');            
+
+            redirect('index.php/sadmin_controller/empresas', 'refresh');     
+        }
+
 
 }
      
