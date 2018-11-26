@@ -43,6 +43,8 @@
                           <th scope="col">Administrador</th>
                           <th scope="col">Correo electrónico</th>
                           <th scope="col">Teléfono</th>                          
+                          <th scope="col">Tipo de usuario</th>                          
+                          <th scope="col">Creador</th>                          
                           <th scope="col">Fecha de alta</th>
                           <th scope="col">Estado</th>
                           <th scope="col"></th>
@@ -68,6 +70,12 @@
                               </td>
                               <td>
                                 <?php echo $value->telefono_empleado ?>
+                              </td>
+                              <td>
+                                <?php echo $value->n_tipo_usuario ?>
+                              </td>
+                              <td>
+                                <?php echo $value->creador ?>
                               </td>
                               <td>
                                 <?php 

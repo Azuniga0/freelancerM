@@ -13,13 +13,13 @@
                 <div class=" col-12">
                     <div class="row">
                         <div class="wrapper count-title d-flex text-center">
-                            <div class="name"><strong class="text-uppercase centrado">Nuevo administrador</strong><br><br>
+                            <div class="name"><strong class="text-uppercase centrado">Nuevo usuario</strong><br><br>
                             </div>
                         </div> 
                     </div>
                     <div class="row">
-                        <?php /*echo $this->session->flashdata('success_msg');*/ ?>
-                        <?php /*echo $this->session->flashdata('error_msg');*/ ?>
+                        <?php echo $this->session->flashdata('success_msg'); ?>
+                        <?php echo $this->session->flashdata('error_msg'); ?>
                     </div>
                     <div class="row">   
                         <form class="col-md-12" method="post" action="add"  enctype="multipart/form-data" role="form">
@@ -33,7 +33,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="nombre_empleado">Nombre:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="nombre_empleado" required >
+                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="nombre_empleado" required  >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
                                         </div>
@@ -44,7 +44,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="apaterno_empleado">A. Paterno:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="aparerno_empleado" placeholder="" aria-describedby="apaterno_empleado" name="apaterno_empleado" required >
+                                        <input type="text" class="form-control" id="aparerno_empleado" placeholder="" aria-describedby="apaterno_empleado" name="apaterno_empleado"   required>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un apellido válido
                                         </div>
@@ -68,7 +68,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="direccion_empleado">Dirección:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="direccion" placeholder="" aria-describedby="direccion_empleado" name="direccion_empleado" required >
+                                        <input type="text" class="form-control" id="direccion" placeholder="" aria-describedby="direccion_empleado" name="direccion_empleado" required  >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte una dirección válida
                                         </div>
@@ -79,7 +79,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="estado_empleado">Correo:</span>
                                         </div> 
-                                        <input type="text" class="form-control" id="correo_empleado" placeholder="" aria-describedby="correo_empleado" name="correo_empleado" required >
+                                        <input type="text" class="form-control" id="correo_empleado" placeholder="" aria-describedby="correo_empleado" name="correo_empleado"  required >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un correo válido
                                         </div>
@@ -90,7 +90,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="telefono_empleado">Teléfono:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="cp" placeholder="" aria-describedby="telefono_empleado" name="telefono_empleado" required >
+                                        <input type="text" class="form-control" id="cp" placeholder="" aria-describedby="telefono_empleado" name="telefono_empleado" required  >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un teléfono válido
                                         </div>
@@ -115,7 +115,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="usuario_empleado">Usuario:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="usuario" placeholder="" aria-describedby="usuario_empleado" name="username" required >
+                                        <input type="text" class="form-control" id="usuario" placeholder="" aria-describedby="usuario_empleado" name="username" required  >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
@@ -131,7 +131,7 @@
                                         //echo "<input type='text' class='form-control' id='password' placeholder='********************' aria-describedby='password_empleado' name='password'   disabled value=''>";
                                         
                                         ?>
-                                        <input type="text" class="form-control" id="password" placeholder="********************" aria-describedby="password_empleado" name="password"   readonly value="" required>
+                                        <input type="text" class="form-control" id="password" placeholder aria-describedby="password_empleado" name="password" value="" required >
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -143,12 +143,12 @@
                                         <?php
                                             $database=mysqli_connect("localhost", "root","","freelancer");
 
-                                            $query = "SELECT id_tipo_usuario, n_tipo_usuario FROM tipo_usuario where id_tipo_usuario = 1 || id_tipo_usuario = 6 ORDER BY id_tipo_usuario ASC";
+                                            $query = "SELECT id_tipo_usuario, n_tipo_usuario FROM tipo_usuario where id_tipo_usuario = 1 || id_tipo_usuario = 6 || id_tipo_usuario = 7 ORDER BY id_tipo_usuario ASC";
                                             $result = mysqli_query($database,$query) or die("no se encontraron datos");
                                             mysqli_set_charset($database,"utf8");
                                         ?>
 
-                                            <select class="form-control" id="rol" aria-describedby="rol_empleado" name="tipo_usuario" required>                                            
+                                            <select class="form-control" id="rol" aria-describedby="rol_empleado" name="tipo_usuario"  >                                            
                                                 <?php     
                                                     while ($row = mysqli_fetch_array($result)){
                                                         echo "<option value='" . $row['id_tipo_usuario'] . "'>" . $row['n_tipo_usuario'] . "</option>";
@@ -168,11 +168,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn-info btn" onclick="myFunction()">Generar contraseña</a>
+                            <!--a class="btn-info btn" onclick="myFunction()">Generar contraseña</a-->
                             <div class="form-row float-right ">                                
                                 <!--button type="submit" class="btn btn-danger " style="margin-top:15px;">Cancelar</button--> 
                                 <!--button type="submit" class="btn btn-primary " style="margin-top:15px;">Guardar</button-->  
-                                <input class="btn-primary btn" style=" margin-top: 15px; display: none;" type="submit" id="guardar" name="register" value="Guardar">
+                                <input class="btn-primary btn" style=" margin-top: 15px;" type="submit" id="guardar" name="register" value="Guardar">
                             </div>
                         </form>
                     </div>
@@ -199,8 +199,8 @@ document.addEventListener( "DOMContentLoaded", function() {
     }, false)  
 });
 
-    function myFunction() {
+    /*function myFunction() {
         document.getElementById("password").value = createRandomString( 6 );
         document.getElementById('guardar').style.display='block';
-    }
+    }*/
  </script>   

@@ -12,6 +12,16 @@
             }
         }
 
+        function is_email_available($email){  
+            $this->db->where('correo', $email);  
+            $query = $this->db->get("empleados");  
+            if($query->num_rows() > 0){  
+                    return true;  
+            }else{  
+                    return false;  
+            }  
+        }  
+
         public function nuevo_cliente($clientes){
            $insert = $this->db->insert('clientes',$clientes);
             //$this->db->insert('usuarios',$usuarios);
@@ -44,12 +54,13 @@
 
         // funcion para usuario activo
         public function get_data($datos){
+            $id=$_SESSION['id_usuario'];
             $this->db->select('*');
             $this->db->from('usuarios');
             $this->db->join('empleados','usuarios.id_usuario = empleados.id_usuario_empleado');
             $this->db->join('tipo_usuario','usuarios.rol = tipo_usuario.id_tipo_usuario');
             $this->db->join('estado_usuario','usuarios.id_estado_us = estado_usuario.id_estado');
-            $where = "rol != 1 AND rol !=6";
+            $where = "rol != 1 AND rol !=6 and creador = $id";
             $this->db->where($where);
             $this->db->order_by('usuarios.fecha_creacion','desc');
             $query = $this->db->get();
@@ -79,11 +90,13 @@
             return $query->result();
         }
 
-        public function busca_datos_empleado($emp){
+        public function busca_datos_empleado($emp){ 
+                     
             $this->db->select('*');
             $this->db->from('usuarios');
             $this->db->join('empleados','usuarios.id_usuario = empleados.id_usuario_empleado');
             $this->db->join('estado_usuario','usuarios.id_estado_us = estado_usuario.id_estado');
+            
             $this->db->where('id_usuario',$emp);
             $query = $this->db->get();
             return $query->result();

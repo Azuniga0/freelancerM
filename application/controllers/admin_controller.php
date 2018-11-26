@@ -46,6 +46,11 @@
 
         //Carga el formulario para un nuevo empleado
         public function vista_nuevo_empleado(){
+            //$this->load->library('form_validation');
+            /*$this->form_validation->set_rules('nombre_empleado','Nombre del empleado','required');
+            $this->form_validation->set_rules('telefono_empleado','Teléfono del empleado','required|numeric|exact_length[10]');
+            $this->form_validation->set_rules('correo','Correo electrónico','required|is_unique[usuarios.username]');*/
+
             $this->load->view('General/header_on.php');
             $this->load->view('Admin/navbar_admin.php');
             $this->load->view('Admin/nuevo_empleado.php');
@@ -59,9 +64,64 @@
             $this->load->view('Admin/nueva_camp.php');
             $this->load->view('General/footer_on.php');
         } 
-        
+
+                
         //Toma los datos del formulario de empleado y los envia al modelo para la inserción
         function add(){
+
+            /*$validator = array('success' => false, 'messages' => array());
+
+            $validate_data = array(
+                array(
+                    'field' => 'username',
+                    'label' => 'Usuario',
+                    'rules' => 'required|is_unique[usuarios.username]'
+                ),
+                array(
+                    'field' => 'password',
+                    'label' => 'Contraseña',
+                    'rules' => 'required|matches[passwordAgain]'
+                ),
+                array(
+                    'field' => 'passwordAgain',
+                    'label' => 'Confirmar contraseña',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'nombre_empleado',
+                    'label' => 'Nombre',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'telefono_empleado',
+                    'label' => 'Teléfono del empleado',
+                    'rules' => 'required|integer|exact_length[10]'
+                )
+            );
+
+            $this->form_validation->set_rules($validate_data);
+            $this->form_validation->set_message('is_unique', 'The {field} already exists');
+            $this->form_validation->set_message('integer', 'The {field} must be number');		
+            $this->form_validation->set_message('exact_length', 'The {field} must be lenght 10');		
+            $this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
+
+            if($this->form_validation->run() === true) {
+
+                $this->model_users->register();
+
+                $validator['success'] = true;
+                $validator['messages'] = 'Successfully Registered';
+            }
+            else {
+                $validator['success'] = false;
+                foreach ($_POST as $key => $value) {
+                    $validator['messages'][$key] = form_error($key);
+                }
+            }
+
+            echo json_encode($validator);*/
+
+
             $id=$_SESSION['id_usuario'];
 
             $fecha=date("Y/m/d") ;

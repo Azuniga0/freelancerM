@@ -24,5 +24,6 @@
     <script src="<?php echo base_url(); ?>assets/js/charts-home.js"></script>
     <!-- Main File-->
     <script src="<?php echo base_url(); ?>assets/js/front.js"></script>
+    <script src="<?php echo base_url(); ?>js/main.js"></script>
   </body>
 </html>

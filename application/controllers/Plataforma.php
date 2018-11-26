@@ -8,10 +8,10 @@
   	 		$this->load->model('plataforma_model');
   	 		$this->load->model('GC_model');
   	 		$this->load->model('Designer_model');
-            $this->load->library('session');
+            $this->load->library('session','form_validation');
         }
 
-        public function index(){
+        public function index(){                
             $this->load->view("header.php");
             $this->load->view("login.php");
         }
