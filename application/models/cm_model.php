@@ -57,8 +57,13 @@
             $query = $this->db->get();
             return $query->result();
         }
-         public function comentar($comen){
+        
+        public function comentar($comen){
             $this->db->insert('comentarios',$comen);
+        }
+
+        public function asignarTarea($tarea){
+            $this->db->insert('tareas',$tarea);
         }
 
         public function aprobar($id)
@@ -70,7 +75,7 @@
 
         public function getAT($id)
         {
-            $this->db->select('*, publicaciones.imagen as imagenp');
+            $this->db->select('*, publicaciones.imagen as imagenp, usuarios_nodo.id_usuario as usua');
             $this->db->from('publicaciones');
             $this->db->join('nodos','publicaciones.id_nodo = nodos.id_nodo');
             $this->db->join('usuarios_nodo','usuarios_nodo.id_nodo = nodos.id_nodo');
