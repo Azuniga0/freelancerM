@@ -8,29 +8,7 @@
 }
 </style>
 <?php
-// obtiene el numero de campaña que se esta consultando
-//$id_campana = $_GET['id_c']; 
-/*$results1 = mysqli_query($db, "SELECT * FROM red_semantica where id_campana = $id_campana");
-$results2 = mysqli_query($db, "SELECT nombre FROM tbl_campana where id_campaña = $id_campana");
-$rows2 = mysqli_fetch_array($results2);
 
-$result1 =  mysqli_query($db, "SELECT id, label FROM red_semantica where id_campana = $id_campana");
-$nd1 = array();
-   while($row1 = mysqli_fetch_assoc($result1))
-    {
-        $nd1[] = $row1;
-    }
-
-    //print_r($nd1);
-
-$result2 =  mysqli_query($db, "SELECT `from`, id as `to` FROM red_semantica where id_campana = $id_campana");
-$nd2 = array();
-while($row2 = mysqli_fetch_assoc($result2))
-{
-    $nd2[] = $row2;
-}
-$nodo= mysqli_query($db, "SELECT * FROM  red_semantica  where f_empresa = $id_campana and estatus=0");
-*/
 $db = mysqli_connect("localhost", "root","","freelancer");
 
 foreach ($data_camp as $key => $value) {
@@ -39,7 +17,7 @@ foreach ($data_camp as $key => $value) {
 $nd1 = array();
 $nd2 = array();
 
-$nodos =  mysqli_query($db, "SELECT id_nodo as `id` , nombre as `label` FROM nodos where id_red = $camp");
+$nodos =  mysqli_query($db, "SELECT id_nodo as `id` , nombre as `label`, color FROM nodos where id_red = $camp");
 
 while($row = mysqli_fetch_assoc($nodos)){
     $nd1[] = $row;
@@ -55,7 +33,7 @@ while($row2 = mysqli_fetch_assoc($aristas)){
 //echo "<br><br>";
 //print_r($data_camp);
 //print_r($nd2);
-$padre_n = $nodo_padre->id_nodo;
+//print_r($nodos_red);
 ?>
 
 <section class="mt-30px mb-30px">
@@ -118,12 +96,12 @@ $padre_n = $nodo_padre->id_nodo;
                     <div class="col">
                         <div class="collapse multi-collapse" id="multiCollapseExample1">
                         <div class="card card-body">
-                            <form action="eliminar_nodo" method="post">                               
+                            <form id="form-edit" method="post">                               
                                 <div class="form-group col">
                                     <label  class=" form-control-label">Nodo:</label>
-                                    <select id="" name="" class="form-control cc-name valid">
+                                    <select id="editar_nodo" name="editar_nodo" class="form-control cc-name valid">
                                         <?php 
-                                            foreach ($nodos_red as $key => $value) {           
+                                            foreach ($rsemantica as $key => $value) {           
                                         ?>
                                         <option value = "<?php echo($value->id_nodo)?>" >
                                             <?php echo($value->nombre) ?>
@@ -135,12 +113,12 @@ $padre_n = $nodo_padre->id_nodo;
                                 </div>
                                 <div class="form-group col">   
                                     <label >Nuevo nombre:</label>
-                                    <input type="text" class="form-control"  required>
+                                    <input type="text" class="form-control" id="nuevo_nombre" name ="nuevo_nombre" required>
                                 </div>  
                                 <div class="form-group col">     
                                     <br>                                  
                                     <!--input  class="btn btn-primary "  name="guardar"  type="submit" value="Guardar" id="guardar"/-->
-                                    <button class="btn-warning btn" style=" margin-top: 15px;" type="submit" id="guardar" name="register" value="">Actualizar</button>
+                                    <button class="btn-warning btn" style=" margin-top: 15px;" type="submit" id="actualizar" name="actualizar" value="">Actualizar</button>
                                 </div> 
                                 <hr>
                             </form>
@@ -206,7 +184,7 @@ $padre_n = $nodo_padre->id_nodo;
                 //alert ($('form').serialize());
             $.ajax({
                 type: 'post',
-                url: '<?php echo base_url(); ?>/i-red.php',
+                url: '<?php echo base_url(); ?>/red/i-red.php',
                 data: $('form').serialize(),
                 success: function (data) {
                     //somedata = data;
@@ -225,7 +203,7 @@ $padre_n = $nodo_padre->id_nodo;
         });
 
         //eliminar nodo
-        $(function () {
+        /*$(function () {
 
             $('form').on('submit', function (e) {
 
@@ -233,13 +211,13 @@ $padre_n = $nodo_padre->id_nodo;
                 //alert ($('form').serialize());
             $.ajax({
                 type: 'post',
-                url: '<?php echo base_url(); ?>/i-red.php',
+                url: '<?php echo base_url(); ?>/red/i-red.php',
                 data: $('form').serialize(),
                 success: function (data) {
                     //somedata = data;
                     //alert("Guardado" );
-                   $('#form-red')[0].reset();  
-                    $("#padre").html(data);
+                   $('#form-del')[0].reset();  
+                    $("#borrar").html(data);
                     location.reload();
                 }, error: function(xhr, status, error) {
                     alert("Error los datos no fueron guardados"); 
@@ -252,21 +230,25 @@ $padre_n = $nodo_padre->id_nodo;
         });
 
         //actualizar nodo
+
+        
+
+        
         $(function () {
 
-            $('form').on('submit', function (e) {
+            $('edit').on('submit', function (e) {
 
             e.preventDefault();
                 //alert ($('form').serialize());
             $.ajax({
                 type: 'post',
-                url: '<?php echo base_url(); ?>/i-red.php',
-                data: $('form').serialize(),
+                url: '<?php echo base_url(); ?>/red/edit.php',
+                data: $('edit').serialize(),
                 success: function (data) {
                     //somedata = data;
                     //alert("Guardado" );
-                   $('#form-red')[0].reset();  
-                    $("#padre").html(data);
+                   $('#form-edit')[0].reset();  
+                    $("#editar_nodo").html(data);
                     location.reload();
                 }, error: function(xhr, status, error) {
                     alert("Error los datos no fueron guardados"); 
@@ -276,7 +258,8 @@ $padre_n = $nodo_padre->id_nodo;
 
             });
 
-        });
+        });*/
+
      
         var container = document.getElementById('mynetwork');
                 

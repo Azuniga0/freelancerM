@@ -65,7 +65,7 @@
             $id_campana = $_GET['id_camp'];
             $datos_red ['rsemantica'] = $this->cm_model->red_semantica($id_campana); 
             $datos_red ['data_camp'] = $this->cm_model->datos_campana($id_campana); 
-            $datos_red ['nodo_padre'] = $this->cm_model->nodo_padre($id_campana); 
+            $datos_red ['nodos_red'] = $this->cm_model->nodos_red($id_campana); 
             $this->load->view('General/header_on.php');
             $this->load->view('CommunityManager/navbar_cm.php');
             $this->load->view('CommunityManager/red.php',$datos_red);            

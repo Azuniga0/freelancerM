@@ -80,6 +80,7 @@
             return $query->row();
         }
 
+        // todos los nodos
         public function red_semantica($id_camp){
             $this->db->select('*');
             $this->db->from('nodos');
@@ -88,11 +89,11 @@
             return $query->result();
         }
 
-        // trae todos los nodos menos el padre
+        // trae todas las hojas de la red
         public function nodos_red($id_camp){
             $this->db->select('*');
             $this->db->from('nodos');
-            $where=("id_red = $id_camp AND nodo_padre !=0");
+            $where=("id_red = $id_camp AND hoja = 1");
             $this->db->where($where);
             $query = $this->db->get();
             return $query->result();
