@@ -13,6 +13,7 @@
         
         public function Slopes(){
             $data['data1'] = $this->GC_model->getPendientes($_SESSION['id_usuario']);
+            $data['data2'] = $this->GC_model->getPendientes2($_SESSION['id_usuario']);
             // echo json_encode($data);
             $this->load->view('General/header_on.php');
             $this->load->view('GeneradorContenido/slopes.php', $data);
@@ -41,9 +42,21 @@
             $this->load->view('GeneradorContenido/navbar_GC.php');
             $this->load->view('General/footer_on.php');
         }
+
+        public function tareaRealizada($id)
+        {
+            $this->GC_model->TR($id);
+            $data['data1'] = $this->GC_model->getPendientes($_SESSION['id_usuario']);
+            $data['data2'] = $this->GC_model->getPendientes2($_SESSION['id_usuario']);            
+            $this->load->view('General/header_on.php');
+            $this->load->view('GeneradorContenido/slopes.php', $data);
+            $this->load->view('GeneradorContenido/navbar_GC.php');
+            $this->load->view('General/footer_on.php');
+        }
         
         public function comentar($id){
             $data ['publi'] = $this->GC_model->getpublicacion($id);
+            $data ['come'] = $this->GC_model->getcomentarios($id);
             if($this->input->post('comentario')){
             $comen = array(
                 'id_usuario' => $_SESSION['id_usuario'],
@@ -64,32 +77,36 @@
 
         public function subircontenido($id){
             $data ['publi'] = $this->GC_model->getpublicacion($id);            
-                $con=$this->input->post('contenido');
-            
+            $data ['come'] = $this->GC_model->getcomentarios($id);  
+            $con=$this->input->post('contenido');
             $this->GC_model->subircontenido($con, $id);
             redirect('index.php/GC_controller/publication/'.$id);
+        }
+        public function subirimg($id){
+            $data ['publi'] = $this->GC_model->getpublicacion($id);            
+            $data ['come'] = $this->GC_model->getcomentarios($id);         
             
-                // $config['upload_path'] = 'assets/img/img_des';
-                // $config['allowed_types'] = '*';
-
-                
-                // //Load upload library and initialize configuration
-                // $this->load->library('upload',$config);
-                // $this->upload->initialize($config);
-                
-                // if(! $this->upload->do_upload('archivo')){
-                //     $data ['error'] = "Error al subir la imagen";
-                //     $this->load->view('General/header_on.php');
-                //     $this->load->view('Designer/publication.php', $data);
-                //     $this->load->view('Designer/navbar_designer.php');
-                //     $this->load->view('General/footer_on.php');
-                // }else{
-                //     $uploadData = $this->upload->data();
-                //     $picture = $uploadData['file_name'];
-                //     //echo json_encode($uploadData['file_name']) ;
-                //     $this->GC_model->subirimgen($picture, $id);
-                //     redirect('index.php/GC_controller/publication/'.$id);
-                //}            
+            $config['upload_path'] = 'assets/img/img_des';
+            $config['allowed_types'] = '*';
+            
+            
+            //Load upload library and initialize configuration
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config);
+            if(! $this->upload->do_upload('archivo')){
+                $data ['error2'] = "Error al subir la imagen";
+                // echo json_encode($this->upload);
+                $this->load->view('General/header_on.php');
+                $this->load->view('GeneradorContenido/publication.php', $data);
+                $this->load->view('GeneradorContenido/navbar_GC.php');
+                $this->load->view('General/footer_on.php');
+            }else{
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                //echo json_encode($uploadData['file_name']) ;
+                $this->GC_model->subirimg($picture, $id);
+                redirect('index.php/GC_controller/publication/'.$id);
+            }               
         }
 
     }    

@@ -19,10 +19,10 @@
             <?php 
 
               while ($row = $result->fetch_assoc()) {
-                echo '<img class="img-fluid rounded-circle" src="../../img/perfiles/designer/'.$row['imagen'].'">';
+                echo '<img class="img-fluid rounded-circle" src="http://localhost/freelancer/img/perfiles/designer/'.$row['imagen'].'">';
               }
 
-            ?> 
+            ?>  
             <h2 class="h5" style="margin-top:15px;"><?php echo $_SESSION['nombre_empleado'].' '.$_SESSION['apaterno_empleado']; ?></h2><span><?php echo $_SESSION['n_tipo_usuario']; ?></span>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->

@@ -391,6 +391,16 @@
             redirect('index.php/sadmin_controller/empresas', 'refresh');     
         }
 
+        public function eliminar_empleado (){
+            $id = $this->uri->segment(3);
+            $estado = array('id_estado_us' => '4');
+            //$delete = $this->sadmin_model->eliminar_empleado($id,$estado);
+            $this->sadmin_model->eliminar_empleado($id, $estado);
+            $this->administradores();
+            //redirect(base_url().'sadmin_controller/administradores');
+            //redirect('index.php/sadmin_controller/administradores', 'refresh');  
+        }
+
 
 }
      

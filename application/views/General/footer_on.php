@@ -25,5 +25,7 @@
     <!-- Main File-->
     <script src="<?php echo base_url(); ?>assets/js/front.js"></script>
     <script src="<?php echo base_url(); ?>js/main.js"></script>
+    <!-- Librería para dibujar la red semántica -->
+    <script src="<?php echo base_url(); ?>js/vis.min.js"></script>
   </body>
 </html>

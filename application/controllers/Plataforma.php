@@ -49,6 +49,7 @@
                         break;
                         case '3':
                             $data['data1'] = $this->Designer_model->getPendientes($_SESSION['id_usuario']);
+                            $data['data2'] = $this->Designer_model->getPendientes2($_SESSION['id_usuario']);
                             $this->load->view('General/header_on.php');
                             $this->load->view('designer/navbar_designer.php');
                             $this->load->view('designer/slopes.php', $data);
@@ -56,6 +57,7 @@
                         break;
                         case '4':
                             $data['data1'] = $this->GC_model->getPendientes($_SESSION['id_usuario']);
+                            $data['data2'] = $this->GC_model->getPendientes2($_SESSION['id_usuario']);
                             $this->load->view('General/header_on.php');
                             $this->load->view('GeneradorContenido/slopes.php', $data);
                             $this->load->view('GeneradorContenido/navbar_GC.php');

@@ -1,6 +1,12 @@
-<?php   
-
-?>
+<script type="text/javascript">
+function confirma(){
+  if (confirm("¿Realmente desea eliminarlo?")){ 
+    alert("El usuario ha sido eliminado.") 
+  }else { 
+    return false
+  }
+}
+</script>
 
 <section class="dashboard-counts section-padding">
   <div class="container-fluid">
@@ -48,6 +54,7 @@
                           <th scope="col">Fecha de alta</th>
                           <th scope="col">Estado</th>
                           <th scope="col"></th>
+                          <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -90,6 +97,13 @@
                               </td> 
                               <td>
                                 <button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                              </td>
+                              <td>
+                              <a onclick="if(confirma() == false) return false" href="<?php echo site_url('sadmin_controller/eliminar_empleado/'.$id); ?>">Eliminar</a>
+                              <!--a class="btn btn-danger" href="<?php echo base_url() . "index.php/sadmin_controller/eliminar_empleado/" . $value->id_usuario; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a-->
+                                    
+
+                                <!--a href="<?php echo base_url();?>index.php/sadmin_controller/" class="btn-danger btn"><i class="fa fa-trash-o" aria-hidden="true"></i></a-->
                               </td>
                             </form>
                           </tr>

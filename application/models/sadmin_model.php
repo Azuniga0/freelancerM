@@ -40,7 +40,6 @@
                 return false;    
             } 
         }
-
         
         //obtiene los datos de los administradores
         public function get_data($datos){
@@ -112,9 +111,6 @@
             $this->db->update('clientes',$emp);
         } 
 
-
-
-    
         public function email_check_empleados($email){
             $this->db->select('*');
             $this->db->from('empleados');
@@ -128,7 +124,6 @@
             }
         }
 
-
         public function username_check_empleados($username){
             $this->db->select('*');
             $this->db->from('usuarios');
@@ -140,6 +135,13 @@
             }else{
                 return true;
             }
+        }
+
+        //function para eliminar el comentario
+        function eliminar_empleado($id,$edo){
+            $this->db->where('id_usuario',$id);
+            //return $this->db->delete('usuarios');
+            $this->db->update('usuarios',$edo);
         }
         
     }
