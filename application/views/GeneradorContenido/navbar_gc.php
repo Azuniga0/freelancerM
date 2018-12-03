@@ -34,7 +34,7 @@
           <h5 class="sidenav-heading">Menú</h5>
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
             <li><a href="<?php echo site_url('index.php/GC_controller/Slopes') ?>"> <i class="fa fa-check-square-o"></i>Pendientes</a></li>
-            <li><a href="<?php echo site_url('index.php/GC_controller/diary') ?>"> <i class="fa fa-calendar"></i>Calendario</a></li>
+            <!-- <li><a href="<?php echo site_url('index.php/GC_controller/diary') ?>"> <i class="fa fa-calendar"></i>Calendario</a></li> -->
             <!-- <li><a href="<?php echo site_url('index.php/GC_controller/perfil') ?>"> <i class="fa fa-child"></i>Mi perfil</a></li>             -->
           </ul>
         </div>
