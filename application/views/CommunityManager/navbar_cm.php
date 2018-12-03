@@ -34,7 +34,7 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
             <li><a href="<?php echo site_url('index.php/cm_controller/home') ?>"> <i class="icon-home"></i>Inicio                                </a></li>
             <li><a href="<?php echo site_url('index.php/cm_controller/pendientes') ?>"> <i class="fa fa-check-square-o" aria-hidden="true"></i>Pendientes                            </a></li>
-            <li><a href="#"> <i class="fa fa-tasks" aria-hidden="true"></i>Crear Publicación                       </a></li>
+            <li><a href="<?php echo site_url('index.php/cm_controller/crearPublicacion') ?>"> <i class="fa fa-tasks" aria-hidden="true"></i>Crear Publicación</a></li>
             <li><a href="#"> <i class="fa fa-area-chart" aria-hidden="true"></i> Dashboard                          </a></li>
             <li><a href="<?php echo site_url('index.php/cm_controller/camp') ?>"> <i class="fa fa-archive" aria-hidden="true"></i> Campañas
                 </a></li>            

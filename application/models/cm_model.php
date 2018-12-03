@@ -14,6 +14,17 @@
             return $query->result();
         }
 
+        public function lista_nodos($id){
+            $this->db->select('*');
+            $this->db->from('campain');
+            $this->db->join('red_semantica','red_semantica.id_camp = campain.id_camp');
+            $this->db->join('nodos','nodos.id_red = red_semantica.id_red');
+            $this->db->where('id_community',$id);
+            $this->db->where('hoja', 1);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
         public function pedientes($id){
             $this->db->select('*');
             $this->db->from('campain');
@@ -60,6 +71,10 @@
         
         public function comentar($comen){
             $this->db->insert('comentarios',$comen);
+        }
+
+        public function crearPubli($publi){
+            $this->db->insert('publicaciones',$publi);
         }
 
         public function asignarTarea($tarea){

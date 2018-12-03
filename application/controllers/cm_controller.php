@@ -25,6 +25,34 @@
             $this->load->view('General/footer_on.php');
         }
 
+        public function crearPublicacion(){
+            $data['camp']=$this->cm_model->lista_camp("usuarios");
+            $data['nodos']=$this->cm_model->lista_nodos($_SESSION['id_usuario']);
+            $this->load->view('General/header_on.php');
+            $this->load->view('CommunityManager/navbar_cm.php');
+            $this->load->view('CommunityManager/crearPublicacion.php', $data);
+            $this->load->view('General/footer_on.php');
+        }
+
+        public function crearPubli(){
+            $publi = array(
+                'id_estado' => 2,
+                'id_nodo' => $this->input->post('id_nodo'),
+                'nombre'=>$this->input->post('titulo'),
+                'contenido' => null,
+                'imagen' => null,
+                'fecha_inicio' => $this->input->post('datein'),
+                'fecha_final' => $this->input->post('datefin'),
+            );
+            $this->cm_model->crearPubli($publi);
+            $data['camp']=$this->cm_model->lista_camp("usuarios");
+            $data['nodos']=$this->cm_model->lista_nodos($_SESSION['id_usuario']);
+            $this->load->view('General/header_on.php');
+            $this->load->view('CommunityManager/navbar_cm.php');
+            $this->load->view('CommunityManager/crearPublicacion.php', $data);
+            $this->load->view('General/footer_on.php');
+        }
+
         public function camp(){
             $datos['data']=$this->cm_model->lista_camp("usuarios");
             $this->load->view('General/header_on.php');
