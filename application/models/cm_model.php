@@ -28,8 +28,9 @@
         public function pedientes($id){
             $this->db->select('*');
             $this->db->from('campain');
-            $this->db->join('detalle_cp','campain.id_camp = detalle_cp.id_camp');
-            $this->db->join('publicaciones','detalle_cp.id_publicaciones = publicaciones.id_publicaciones');
+            $this->db->join('red_semantica','red_semantica.id_camp = campain.id_camp');
+            $this->db->join('nodos','nodos.id_red = red_semantica.id_red');
+            $this->db->join('publicaciones','nodos.id_nodo = publicaciones.id_nodo');
             $this->db->where('id_community',$id);
             $this->db->where('id_estado', 2);
             $this->db->order_by('fecha_final','desc');
@@ -40,8 +41,9 @@
         public function pedientes2($id){
             $this->db->select('*');
             $this->db->from('campain');
-            $this->db->join('detalle_cp','detalle_cp.id_camp = campain.id_camp');
-            $this->db->join('publicaciones','detalle_cp.id_publicaciones = publicaciones.id_publicaciones');
+            $this->db->join('red_semantica','red_semantica.id_camp = campain.id_camp');
+            $this->db->join('nodos','nodos.id_red = red_semantica.id_red');
+            $this->db->join('publicaciones','nodos.id_nodo = publicaciones.id_nodo');
             $this->db->where('id_community',$id);
             $this->db->where('id_estado', 3);
             $this->db->order_by('fecha_final','desc');

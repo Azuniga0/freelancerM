@@ -94,8 +94,8 @@
 
         public function aprobar($id){
             $this->cm_model->aprobar($id);
-            $data ['publi'] = $this->cm_model->getpublicacion($id);
-            $data ['come'] = $this->cm_model->getcomentarios($id);
+            $data['pendientes'] = $this->cm_model->pedientes($_SESSION['id_usuario']);
+            $data['pendientes2'] = $this->cm_model->pedientes2($_SESSION['id_usuario']);
             $this->load->view('General/header_on.php');
             $this->load->view('CommunityManager/navbar_cm.php');
             $this->load->view('CommunityManager/pedientes.php', $data);
