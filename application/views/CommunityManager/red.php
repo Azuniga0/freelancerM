@@ -183,6 +183,7 @@ while($row2 = mysqli_fetch_assoc($aristas)){
                 success: function (data) {
                     //somedata = data;
                     //alert("Guardado" );
+                   
                    $('#form-red')[0].reset();  
                     $("#padre").html(data);
                     location.reload();
@@ -267,13 +268,6 @@ while($row2 = mysqli_fetch_assoc($aristas)){
             dataManipulation: true,
             interaction: {
                 hover: true
-            },
-            nodes: {
-                color: {
-                border: 'black',
-                background: '#81F7F3'
-            },
-                borderWidth: 2                
             }
         };
         var network = new vis.Network(container, data, options);        
