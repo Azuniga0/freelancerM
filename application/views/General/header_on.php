@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-<meta charset="UTF-8">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +15,8 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/fontastic.css">
     <!-- Estilos locales-->
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/estilos.css">
+    <!-- Estilos para la red semántica-->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/vis.min.css">
     <!-- Google fonts - Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <!-- jQuery Circle-->
@@ -31,8 +32,9 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
-    <script-- src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script-->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script-->  
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
   </head>
   <body>
   <div class="page">
@@ -45,7 +47,7 @@
                   <div class="brand-text d-none d-md-inline-block"><span>Plataforma de </span><strong class="text-primary"> Marketing Digital</strong></div></a></div>
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dhropdown-->
-                <!--li class="nav-item dropdown"> <a-- id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span class="badge badge-warning">12</span></a-->
+                <!--li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span class="badge badge-warning">12</span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
                     <li><a rel="nofollow" href="#" class="dropdown-item"> 
                         <div class="notification d-flex justify-content-between">
@@ -69,9 +71,9 @@
                         </div></a></li>
                     <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-bell"></i>view all notifications                                            </strong></a></li>
                   </ul>
-                </li>
+                </li-->
                 <!-- Messages dropdown-->
-                <!--li class="nav-item dropdown"> <a-- id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope"></i><span class="badge badge-info">10</span></a-->
+                <!--li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope"></i><span class="badge badge-info">10</span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
                         <div class="msg-profile"> <img src="<?php echo base_url(); ?>assets/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
@@ -90,7 +92,7 @@
                         </div></a></li>
                     <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
                   </ul>
-                </li>
+                </li-->
                 <!-- Log out-->
                 <li class="nav-item"><a href="<?php echo base_url('index.php/plataforma/salir');?>" class="nav-link logout"> <span class="d-none d-sm-inline-block">Salir</span><i class="fa fa-sign-out"></i></a></li>
               </ul>

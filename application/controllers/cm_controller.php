@@ -128,5 +128,47 @@
             $this->load->view('CommunityManager/navbar_cm.php');
             $this->load->view('General/footer_on.php');
         }
+
+        public function vista_red(){
+            $id_campana = $_GET['id_camp'];
+            $datos_red ['rsemantica'] = $this->cm_model->red_semantica($id_campana); 
+            $datos_red ['data_camp'] = $this->cm_model->datos_campana($id_campana); 
+            $datos_red ['nodos_red'] = $this->cm_model->nodos_red($id_campana); 
+            $this->load->view('General/header_on.php');
+            $this->load->view('CommunityManager/navbar_cm.php');
+            $this->load->view('CommunityManager/red.php',$datos_red);            
+            $this->load->view('General/footer_on.php');
+        }
+
+        public function guardar_nodo(){
+            echo "llego a la funcion";
+
+            if(isset($_POST['padre'])){
+                $nodos = array(
+                    'id_red'=>$this->input->post('campana'),
+                    'nombre'=>$this->input->post('hijo'),
+                    'nodo_padre'=>$this->input->post('padre')
+                ); 
+                $insertNodos = $this->cm_model->insert_nodos($nodos);
+            }else{
+                $nodos = array(
+                    'id_red'=>$this->input->post('campana'),
+                    'nombre'=>$this->input->post('hijo'),
+                    'nodo_padre'=>('0')
+                );
+                $insertNodos = $this->cm_model->insert_nodos($nodos);
+            }
+            if($insertNodos){
+                echo "se inserto";
+            }else{
+                echo "no se inserto";
+            }
+            //$insertNodos = $this->cm_model->insert_nodos($nodos);    
+            //redirect('index.php/cm_controller/vista_red', 'refresh'); 
+        }
+
+        public function nodos(){
+            echo "mensaje";
+        }
     }
 ?>

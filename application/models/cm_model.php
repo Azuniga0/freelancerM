@@ -102,5 +102,51 @@
             return $query->row();
         }
 
+        // todos los nodos
+        public function red_semantica($id_camp){
+            $this->db->select('*');
+            $this->db->from('nodos');
+            $this->db->where('id_red',$id_camp);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        // trae todas las hojas de la red
+        public function nodos_red($id_camp){
+            $this->db->select('*');
+            $this->db->from('nodos');
+            $where=("id_red = $id_camp AND hoja = 1");
+            $this->db->where($where);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        // trae id del nodo padre
+        public function nodo_padre($id_camp){
+            $this->db->select('id_nodo');
+            $this->db->from('nodos');
+            $where=("id_red = $id_camp AND nodo_padre = 0");
+            $this->db->where($where);
+            $query = $this->db->get();
+            return $query->row();
+        }
+
+        public function datos_campana($id_camp){
+            $this->db->select('*');
+            $this->db->from('campain');
+            $this->db->where('id_camp', $id_camp);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        public function insert_nodos($datos){
+            $insert = $this->db->insert('nodos',$datos);
+            if($insert){
+                return $this->db->insert_id();
+            }else{
+                return false;    
+            }
+        }
+
     }
 ?>

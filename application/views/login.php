@@ -17,7 +17,7 @@
                   </div-->                  
                   <div class="form-label-group">
                     <label>Usuario</label>
-                    <input type="text" name="username" class="form-control" placeholder="Usuario" required autofocus>  
+                    <input type="text" name="username" class="form-control" placeholder="Usuario"  autofocus>  
                     <br>              
                   </div>
 
@@ -27,7 +27,7 @@
 
                   <div class="form-label-group">
                     <label>Contraseña</label>
-                    <input type="password" name="password" class="form-control" placeholder="********" required>        
+                    <input type="password" name="password" class="form-control" placeholder="********" >        
                   </div>
                   
                   <!--input class="primary-btn d-inline-flex align-items-center" style="color:white;" type="submit" value="Entrar" name="login" -->

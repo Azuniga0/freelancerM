@@ -33,6 +33,7 @@
                           <th scope="col">Fecha de inicio</th>                          
                           <th scope="col">Fecha de término</th>
                           <th scope="col"></th>
+                          <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -44,7 +45,7 @@
                                   echo '<img class="imagen_receta recetas" src="../../img/perfiles/camp/'.$value->imagen_camp.'">';
                                 //echo $value->imagen;                                 
                                 $id= $value->id_camp;
-                                  echo "<input type='hidden' name='id_usuario' value='$id'>";
+                                  echo "<input type='hidden' name='id_camp' value='$id'>";
                                 ?>
                               </td>
                               <td>
@@ -70,6 +71,13 @@
                                 ?>
                               </td>
                               <td>
+                                <!--button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button-->
+                              </td>
+
+                              <td>
+                                <a  href="<?php echo base_url(); ?>index.php/cm_controller/vista_red/?id_camp=<?php echo $id; ?>" id="c-guardar"  class="btn btn-md" style="background-color:#272c33; color:white;   font-size: 15px;" >
+                                                   Red semántica
+                                </a>
                                 <!--button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button-->
                               </td>
                             </form>

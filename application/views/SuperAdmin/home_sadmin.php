@@ -1,20 +1,43 @@
 <?php 
 $id = $_SESSION['id_usuario'];
 $db = mysqli_connect("localhost", "root","","freelancer");
-$last_users= "SELECT * FROM usuarios WHERE creador = $id AND rol = 1 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+
+//Consulta para obtener ultimos administradores añadidos en los 30 dias recientes
+$last_users= "SELECT * FROM usuarios WHERE creador = $id AND rol = 1 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW());";
 if($result = mysqli_query($db,$last_users)){
   $rowcount=mysqli_num_rows($result);
   //printf("Result set has %d rows.\n",$rowcount);
+  //echo $id;
   // Free result set
   mysqli_free_result($result);
 }
 
-$last_susers= "SELECT * FROM usuarios WHERE creador = $id AND rol = 6 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+//Consulta para saber los ultimos superadministradores añadidos en los 30 dias recientes
+$last_susers= "SELECT * FROM usuarios WHERE creador = $id AND rol = 6 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW());";
 if($result2 = mysqli_query($db,$last_susers)){
   $sucount=mysqli_num_rows($result2);
   //printf("Result set has %d rows.\n",$rowcount);
+  //echo $id;
   // Free result set
   mysqli_free_result($result2);
+}
+
+//Consulta para saber los ultimos administradores empresariales en los 30 dias recientes
+$last_susers= "SELECT * FROM usuarios WHERE creador = $id AND rol = 7 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+if($result3 = mysqli_query($db,$last_susers)){
+  $account=mysqli_num_rows($result3);
+  //printf("Result set has %d rows.\n",$rowcount);
+  // Free result set
+  mysqli_free_result($result3);
+}
+
+//Consulta para saber las últimas empresas en los 30 dias recientes
+$last_emp= "SELECT * FROM empresas WHERE creador_empresa = $id AND (fecha_alta BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+if($result4 = mysqli_query($db,$last_emp)){
+  $empcount=mysqli_num_rows($result4);
+  //printf("Result set has %d rows.\n",$rowcount);
+  // Free result set
+  mysqli_free_result($result4);
 }
 ?>
   
@@ -26,20 +49,38 @@ if($result2 = mysqli_query($db,$last_susers)){
         <div class="container-fluid">
           <div class="row">
             <!-- Count item widget-->
-            <div class="col-xl-4 col-md-4 col-6">
+            <div class="col-xl-3 col-md-3 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">Administradores</strong><span>Últimos 30 días</span>
+                <div class="name"><strong class="text-uppercase">S. Administrador</strong><span>Últimos 30 días</span>
+                  <div class="count-number"><?php echo $sucount; ?></div>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-3 col-md-3 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-user"></i></div>
+                <div class="name"><strong class="text-uppercase">Administrador</strong><span>Últimos 30 días</span>
                   <div class="count-number"><?php echo $rowcount; ?></div>
                 </div>
               </div>
             </div>
             <!-- Count item widget-->
-            <div class="col-xl-4 col-md-4 col-6">
+            <div class="col-xl-3 col-md-3 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">Super Administradores</strong><span>Últimos 30 días</span>
-                  <div class="count-number"><?php echo $sucount; ?></div>
+                <div class="name"><strong class="text-uppercase">A. empresarial</strong><span>Últimos 30 días</span>
+                  <div class="count-number"><?php echo $account; ?></div>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-3 col-md-3 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></div>
+                <div class="name"><strong class="text-uppercase">Empresas</strong><span>Últimos 30 días</span>
+                  <div class="count-number"><?php echo $empcount; ?></div>
                 </div>
               </div>
             </div>
