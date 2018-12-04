@@ -14,11 +14,23 @@
             return $query->result();
         }
 
+        public function lista_nodos($id){
+            $this->db->select('*');
+            $this->db->from('campain');
+            $this->db->join('red_semantica','red_semantica.id_camp = campain.id_camp');
+            $this->db->join('nodos','nodos.id_red = red_semantica.id_red');
+            $this->db->where('id_community',$id);
+            $this->db->where('hoja', 1);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
         public function pedientes($id){
             $this->db->select('*');
             $this->db->from('campain');
-            $this->db->join('detalle_cp','campain.id_camp = detalle_cp.id_camp');
-            $this->db->join('publicaciones','detalle_cp.id_publicaciones = publicaciones.id_publicaciones');
+            $this->db->join('red_semantica','red_semantica.id_camp = campain.id_camp');
+            $this->db->join('nodos','nodos.id_red = red_semantica.id_red');
+            $this->db->join('publicaciones','nodos.id_nodo = publicaciones.id_nodo');
             $this->db->where('id_community',$id);
             $this->db->where('id_estado', 2);
             $this->db->order_by('fecha_final','desc');
@@ -29,8 +41,9 @@
         public function pedientes2($id){
             $this->db->select('*');
             $this->db->from('campain');
-            $this->db->join('detalle_cp','detalle_cp.id_camp = campain.id_camp');
-            $this->db->join('publicaciones','detalle_cp.id_publicaciones = publicaciones.id_publicaciones');
+            $this->db->join('red_semantica','red_semantica.id_camp = campain.id_camp');
+            $this->db->join('nodos','nodos.id_red = red_semantica.id_red');
+            $this->db->join('publicaciones','nodos.id_nodo = publicaciones.id_nodo');
             $this->db->where('id_community',$id);
             $this->db->where('id_estado', 3);
             $this->db->order_by('fecha_final','desc');
@@ -57,8 +70,17 @@
             $query = $this->db->get();
             return $query->result();
         }
-         public function comentar($comen){
+        
+        public function comentar($comen){
             $this->db->insert('comentarios',$comen);
+        }
+
+        public function crearPubli($publi){
+            $this->db->insert('publicaciones',$publi);
+        }
+
+        public function asignarTarea($tarea){
+            $this->db->insert('tareas',$tarea);
         }
 
         public function aprobar($id)
@@ -70,7 +92,7 @@
 
         public function getAT($id)
         {
-            $this->db->select('*, publicaciones.imagen as imagenp');
+            $this->db->select('*, publicaciones.imagen as imagenp, usuarios_nodo.id_usuario as usua');
             $this->db->from('publicaciones');
             $this->db->join('nodos','publicaciones.id_nodo = nodos.id_nodo');
             $this->db->join('usuarios_nodo','usuarios_nodo.id_nodo = nodos.id_nodo');

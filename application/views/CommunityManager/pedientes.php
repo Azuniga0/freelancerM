@@ -34,7 +34,8 @@
                           <th scope="row"><?= $row->nombre_camp ?></th>
                           <td><?= $row->nombre ?></td>
                           <td><?= date('d/m/Y H:i:s', strtotime($row->fecha_final)); ?></td>
-                          <td><a class="btn btn-info " margin-right="100 px";  href="<?php echo base_url('index.php/cm_controller/publication/'.$row->id_publicaciones);?>">Ir a la publicación</a></td>
+                          <td><a class="btn btn-info " margin-right="100 px";  href="<?php echo base_url('index.php/cm_controller/publication/'.$row->id_publicaciones);?>">Ir a la publicación</a>
+                          <a class="btn btn-info"  margin-right="100 px"; href="<?php echo base_url('index.php/cm_controller/tarea/'.$row->id_publicaciones);?>">Asignar tarea</a></td>
                         </tr>
                       <?php } ?>                      
                       </tbody>

@@ -35,8 +35,8 @@
 	            <p class="alert alert-danger col-8"><?= $error1 ?></p>
 	          <?php endif; ?>
             <h3>Comentarios</h3>
-                  <textarea name="comentario" cols="100" rows="2"></textarea>
                   <?php if($publi->id_estado != 3): ?>
+                    <textarea name="comentario" cols="100" rows="2"></textarea>                  
                     <input class="btn btn-info " style=" margin-top: 15px; float:right;" type="submit" value="Comentar" >
                   <?php endif; ?>
           </form>
