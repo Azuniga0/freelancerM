@@ -19,7 +19,7 @@
             <?php 
 
               while ($row = $result->fetch_assoc()) {
-                echo '<img class="img-fluid rounded-circle" src="../../img/perfiles/admins/'.$row['imagen'].'">';
+                echo '<img class="img-fluid rounded-circle" src="'. base_url(). '/img/perfiles/admins/'.$row['imagen'].'">';
               }
 
             ?> 

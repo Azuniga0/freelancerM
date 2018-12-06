@@ -1,11 +1,17 @@
 <script type="text/javascript">
 function confirma(){
   if (confirm("¿Realmente desea eliminarlo?")){ 
-    alert("El usuario ha sido eliminado.") 
+    //alert("El usuario ha sido eliminado.") 
   }else { 
     return false
   }
 }
+
+// remueve los parametros enviados a través de la URL y deja solo la especificada
+if(typeof window.history.pushState == 'function') {
+        window.history.pushState({}, "Hide", "<?php echo base_url(); ?>/index.php/sadmin_controller/administradores");
+    }
+
 </script>
 
 <section class="dashboard-counts section-padding">
@@ -64,7 +70,7 @@ function confirma(){
                               <td>
                                 <?php 
                                 //echo $value->imagen; 
-                                echo '<img class="imagen_receta recetas" src="../../img/perfiles/admins/'.$value->imagen.'">';
+                                echo '<img class="imagen_receta recetas" src="'. base_url(). '/img/perfiles/admins/'.$value->imagen.'">';
                                 $id= $value->id_usuario;
                                   echo "<input type='hidden' name='id_usuario' value='$id'>";
                                 ?>
@@ -96,11 +102,13 @@ function confirma(){
                                 <?php echo $value->estado; ?>
                               </td> 
                               <td>
-                                <button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <button type="submit" name="ver"  id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                               </td>
                               <td>
-                              <a onclick="if(confirma() == false) return false" href="<?php echo site_url('sadmin_controller/eliminar_empleado/'.$id); ?>">Eliminar</a>
-                              <!--a class="btn btn-danger" href="<?php echo base_url() . "index.php/sadmin_controller/eliminar_empleado/" . $value->id_usuario; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a-->
+                              <a onclick="if(confirma() == false) return false" href="<?php echo site_url('index.php/sadmin_controller/eliminar_empleado/'.$id."/".$value->rol); ?>" >Eliminar</a>
+                              <!--a class="btn btn-danger" href="<?php echo base_url(). "index.php/sadmin_controller/eliminar_empleado/" . $value->id_usuario."/".$value->rol ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a-->
+                              
+
                                     
 
                                 <!--a href="<?php echo base_url();?>index.php/sadmin_controller/" class="btn-danger btn"><i class="fa fa-trash-o" aria-hidden="true"></i></a-->
