@@ -1,16 +1,16 @@
 <script type="text/javascript">
-function confirma(){
-  if (confirm("¿Realmente desea eliminarlo?")){ 
-    //alert("El usuario ha sido eliminado.") 
-  }else { 
-    return false
-  }
-}
-
-// remueve los parametros enviados a través de la URL y deja solo la especificada
-if(typeof window.history.pushState == 'function') {
-        window.history.pushState({}, "Hide", "<?php echo base_url(); ?>/index.php/sadmin_controller/administradores");
+  function confirma(){
+    if (confirm("¿Realmente desea eliminarlo?")){ 
+      //alert("El usuario ha sido eliminado.") 
+    }else { 
+        return false
     }
+  }
+
+  // remueve los parametros enviados a través de la URL y deja solo la especificada
+  if(typeof window.history.pushState == 'function') {
+    window.history.pushState({}, "Hide", "<?php echo base_url(); ?>/index.php/sadmin_controller/administradores");
+  }
 
 </script>
 
@@ -43,8 +43,7 @@ if(typeof window.history.pushState == 'function') {
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12 col-md-12">
-              <!-- Recent Updates Widget          -->
-              
+              <!-- Recent Updates Widget          -->              
               <div id="new-updates" class="card updates recent-updated">
                 <div id="updates-box" role="tabpanel" class="collapse show">
                   <div class="" style="padding:15px">
@@ -55,8 +54,7 @@ if(typeof window.history.pushState == 'function') {
                           <th scope="col">Administrador</th>
                           <th scope="col">Correo electrónico</th>
                           <th scope="col">Teléfono</th>                          
-                          <th scope="col">Tipo de usuario</th>                          
-                          <th scope="col">Creador</th>                          
+                          <th scope="col">Tipo de usuario</th>                   
                           <th scope="col">Fecha de alta</th>
                           <th scope="col">Estado</th>
                           <th scope="col"></th>
@@ -69,7 +67,6 @@ if(typeof window.history.pushState == 'function') {
                             <form action="editar_administrador" method="post">
                               <td>
                                 <?php 
-                                //echo $value->imagen; 
                                 echo '<img class="imagen_receta recetas" src="'. base_url(). '/img/perfiles/admins/'.$value->imagen.'">';
                                 $id= $value->id_usuario;
                                   echo "<input type='hidden' name='id_usuario' value='$id'>";
@@ -88,9 +85,6 @@ if(typeof window.history.pushState == 'function') {
                                 <?php echo $value->n_tipo_usuario ?>
                               </td>
                               <td>
-                                <?php echo $value->creador ?>
-                              </td>
-                              <td>
                                 <?php 
                                   $fecha=$value->fecha_creacion; 
                                   $myDateTime = DateTime::createFromFormat('Y-m-d', $fecha);
@@ -105,13 +99,7 @@ if(typeof window.history.pushState == 'function') {
                                 <button type="submit" name="ver"  id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                               </td>
                               <td>
-                              <a onclick="if(confirma() == false) return false" href="<?php echo site_url('index.php/sadmin_controller/eliminar_empleado/'.$id."/".$value->rol); ?>" >Eliminar</a>
-                              <!--a class="btn btn-danger" href="<?php echo base_url(). "index.php/sadmin_controller/eliminar_empleado/" . $value->id_usuario."/".$value->rol ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a-->
-                              
-
-                                    
-
-                                <!--a href="<?php echo base_url();?>index.php/sadmin_controller/" class="btn-danger btn"><i class="fa fa-trash-o" aria-hidden="true"></i></a-->
+                              <a style="color:#fff;" class="btn-danger btn" onclick="if(confirma() == false) return false" href="<?php echo site_url('index.php/sadmin_controller/eliminar_empleado/'.$id."/".$value->rol); ?>" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                               </td>
                             </form>
                           </tr>

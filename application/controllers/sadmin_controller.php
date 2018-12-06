@@ -52,7 +52,7 @@
 
         // funcion que evalua que sean solo letras con o sin acentos
         public function regex_check($str){
-            if (preg_match("[A-Za-z0-9áéíóú\s]", $str)){
+            if (preg_match("[A-Za-zÁÉÍÓUáéíóúÜü\s]", $str)){
                 $this->form_validation->set_message('regex_check', 'El campo %s no tiene un formato válido');
                 return FALSE;
             }else{
@@ -73,27 +73,23 @@
                 // validaciones del formulario
                 $this->form_validation->set_rules('nombre_empleado', 'Nombre', 'required|callback_regex_check');
                 $this->form_validation->set_rules('apaterno_empleado', 'Apellido paterno', 'required|callback_regex_check');
-                $this->form_validation->set_rules('amaterno_empleado', 'Apellido materno', 'required|callback_regex_check');
+                $this->form_validation->set_rules('amaterno_empleado', 'Apellido materno', 'callback_regex_check');
                 $this->form_validation->set_rules('direccion_empleado', 'Dirección', 'required');
                 $this->form_validation->set_rules('correo_empleado', 'Correo electrónico', 'required|valid_email|is_unique[empleados.correo_empleado]');
                 $this->form_validation->set_rules('telefono_empleado', 'Número telefónico', 'required|exact_length[10]|numeric');
                 $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|is_unique[usuarios.username]');
-                $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[6]|alpha_numeric');
+                $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[6]|max_length[24]|alpha_numeric');
                 // errores en las validaciones
                 $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-                if ($this->form_validation->run() === FALSE){
-                    
+                if ($this->form_validation->run() === FALSE){                    
                     // array con los errores
                     $data["data"] = array();
-
                     $this->load->view('General/header_on.php');
                     $this->load->view('SuperAdmin/navbar_sadmin.php');
                     $this->load->view('SuperAdmin/nuevo_sa_empleado.php', $data);
-                    $this->load->view('General/footer_on.php');
-        
+                    $this->load->view('General/footer_on.php');       
                 }else{
-
                     // Revisa el archivo que se va a subir
                     if(!empty($_FILES['picture']['name'])){
                         $config['upload_path'] = 'img/perfiles/admins/';
@@ -366,23 +362,35 @@
             $id = $this->uri->segment(3);
             $rol = $this->uri->segment(4);
 
-            /*echo $id;
-            echo $rol;*/
-            
-            // consulta el tipo de usuario del que se quiere eliminar
-            /*$info['data']=$this->sadmin_model->tipo_usuario($id);
-            $tipo = $data->rol;*/
-
             switch ($rol) {
                 case '1':
-                    $estado = array('id_estado_us' => '4');
+                    $checa_admin_u = $this->sadmin_model->activos_admin_u($id);
+                    $checa_sadmin_c = $this->sadmin_model->activos_admin_c($id);
+
+                    print_r($checa_admin_u);
+                    if($checa_admin_u){
+                        $error ++;
+                    }
+                    if($checa_sadmin_c){
+                        $error ++;
+                    }
+
+                    if ($error != 0) {
+                        $message = "No se puede eliminar, tiene usuarios y/o campañas activas.\\nIntente de nuevo.";
+                        echo "<script type='text/javascript'>alert('$message');</script>";                     //$this->administradores();
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');  
+                    }else{
+                        $estado = array('id_estado_us' => '4');
                         $this->sadmin_model->eliminar_empleado($id, $estado);
-                        $this->administradores();
+                        //$this->administradores();
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');
+                    }
                 break;
                 case '6':
                     $checa_sadmin_e = $this->sadmin_model->activos_sadmin_e($id);
                     $checa_sadmin_u = $this->sadmin_model->activos_sadmin_u($id);
-                    $min_sadmin = $this->sadmin_model->get_min_sadmin();
+                    //$min_sadmin = $this->sadmin_model->get_min_sadmin();
+
                     if($checa_sadmin_e){
                         $error ++;
                     }
@@ -398,15 +406,34 @@
                     }else{
                         $estado = array('id_estado_us' => '4');
                         $this->sadmin_model->eliminar_empleado($id, $estado);
-                        //$this->administradores();
                         redirect('index.php/sadmin_controller/administradores', 'refresh');
                     }
                 break;
                 case '7':
-                    # code...
+                    $checa_sadmin_e = $this->sadmin_model->activos_sadmin_e($id);
+                    $checa_sadmin_u = $this->sadmin_model->activos_sadmin_u($id);
+                    //$min_sadmin = $this->sadmin_model->get_min_sadmin();
+
+                    if($checa_sadmin_e){
+                        $error ++;
+                    }
+                    if($checa_sadmin_u){
+                        $error ++;
+                    }
+
+                    if ($error != 0) {
+                        $message = "No se puede eliminar, tiene usuarios y/o empresas activas.\\nIntente de nuevo.";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        //$this->administradores();
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');  
+                    }else{
+                        $estado = array('id_estado_us' => '4');
+                        $this->sadmin_model->eliminar_empleado($id, $estado);
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');
+                    }
                 break;
                 default:
-                    # code...
+                    $this->administradores();
                 break;
             }
             

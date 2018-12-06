@@ -172,25 +172,37 @@
             $where="estado_empresa = 1 and creador_empresa = $check";
             $this->db->where($where);
             $query=$this->db->get();
-            if($query->num_rows()>0){
-                return false;
-            }else{
-                return true;
-            }
+            return $query->result();
         }
 
-        //obtiene true si el sadmin tiene usuarios activos
+        //obtiene true si el sadmin/admin tiene usuarios activos
         function activos_sadmin_u ($check){
             $this->db->select('*');
             $this->db->from('usuarios');
             $where="id_estado_us = 1 and creador = $check";
             $this->db->where($where);
             $query=$this->db->get();
-            if($query->num_rows()>0){
-                return false;
-            }else{
-                return true;
-            }
+            return $query->result();
+        }
+
+        //obtiene true si el admin tiene usuarios activos
+        function activos_admin_u ($check){
+            $this->db->select('*');
+            $this->db->from('usuarios');
+            $where="id_estado_us = 1 and creador = $check";
+            $this->db->where($where);
+            $query=$this->db->get();
+            return $query->result();
+        }
+
+        //obtiene true si el admin tiene campañas activos
+        function activos_admin_c ($check){
+            $this->db->select('*');
+            $this->db->from('campain');
+            $where="id_estado_c = 1 and creador_camp = $check";
+            $this->db->where($where);
+            $query=$this->db->get();
+            return $query->result();
         }
 
         // obtiene todos los sadmin que esten activos
@@ -211,7 +223,7 @@
             $where="id_usuario = (select min(id_usuario) from usuarios where rol = 6)";
             $this->db->where($where);
             $query = $this->db->get();
-            return $query->result();
+            return $query->row();
         }
         
     }

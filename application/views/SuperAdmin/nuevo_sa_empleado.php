@@ -28,17 +28,6 @@
                                 <br><br>
                             </div>
                             <div class="form-row">
-                                <div class="col-md-6">
-                                    <?php echo form_error('nombre_empleado'); ?>
-                                </div>
-                                <div class="col">
-                                    <?php echo form_error('apaterno_empleado'); ?>
-                                </div>
-                                <div class="col">
-                                    <?php echo form_error('amaterno_empleado'); ?>
-                                </div>
-                            </div>
-                            <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -74,14 +63,14 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="col-5">
-                                    <?php echo form_error('direccion_empleado'); ?>
+                                <div class="col-md-6">
+                                    <?php echo form_error('nombre_empleado'); ?>
                                 </div>
-                                <div class="col-4">
-                                    <?php echo form_error('correo_empleado'); ?>
+                                <div class="col">
+                                    <?php echo form_error('apaterno_empleado'); ?>
                                 </div>
-                                <div class="col-3">
-                                    <?php echo form_error('telefono_empleado'); ?>
+                                <div class="col">
+                                    <?php echo form_error('amaterno_empleado'); ?>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -118,6 +107,17 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-5">
+                                    <?php echo form_error('direccion_empleado'); ?>
+                                </div>
+                                <div class="col-4">
+                                    <?php echo form_error('correo_empleado'); ?>
+                                </div>
+                                <div class="col-3">
+                                    <?php echo form_error('telefono_empleado'); ?>
+                                </div>
                             </div>                 
                             <div class="form-row">
                                 <div class="input-group mb-3 col-3">
@@ -136,14 +136,6 @@
                             <div class="form-row" style="margin-top: 15px;">
                                 <label style="color:"><b>Datos de acceso:</b></label>
                                 <br><br>
-                            </div>   
-                            <div class="form-row">
-                                <div class="col-4">
-                                    <?php echo form_error('username'); ?>
-                                </div>
-                                <div class="col-4">
-                                    <?php echo form_error('password'); ?>
-                                </div>
                             </div>                 
                             <div class="form-row">                            
                                 <div class="form-group col-md-4">
@@ -202,6 +194,14 @@
                                         <!--p><a class="btn btn-primary" id="create">Create random string</a></p>
                                     <div class="form-control" id="output" readonly-->
                                     </div>
+                                </div>
+                            </div>   
+                            <div class="form-row">
+                                <div class="col-4">
+                                    <?php echo form_error('username'); ?>
+                                </div>
+                                <div class="col-4">
+                                    <?php echo form_error('password'); ?>
                                 </div>
                             </div>
                             <!--a class="btn-info btn" onclick="myFunction()">Generar contraseña</a-->
