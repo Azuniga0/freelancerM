@@ -177,7 +177,6 @@
         public function editar_administrador(){
             $admin=$this->input->post('id_usuario');  
             $buscar['data'] = $this->sadmin_model->busca_datos_admin($admin);
-            //print_r($buscar);
             $this->load->view('General/header_on.php');
             $this->load->view('SuperAdmin/navbar_sadmin.php');
             $this->load->view('SuperAdmin/detalle_sa_empleado.php',$buscar);
@@ -392,11 +391,61 @@
         }
 
         public function eliminar_empleado (){
+            $error = 0;
+            // obtiene el id del empleado seleccionado para eliminar y el rol que juega
             $id = $this->uri->segment(3);
-            $estado = array('id_estado_us' => '4');
-            //$delete = $this->sadmin_model->eliminar_empleado($id,$estado);
+            $rol = $this->uri->segment(4);
+
+            /*echo $id;
+            echo $rol;*/
+            
+            // consulta el tipo de usuario del que se quiere eliminar
+            /*$info['data']=$this->sadmin_model->tipo_usuario($id);
+            $tipo = $data->rol;*/
+
+            switch ($rol) {
+                case '1':
+                    $estado = array('id_estado_us' => '4');
+                        $this->sadmin_model->eliminar_empleado($id, $estado);
+                        $this->administradores();
+                break;
+                case '6':
+                    $checa_sadmin_e = $this->sadmin_model->activos_sadmin_e($id);
+                    $checa_sadmin_u = $this->sadmin_model->activos_sadmin_u($id);
+                    $min_sadmin = $this->sadmin_model->get_min_sadmin();
+                    if($checa_sadmin_e){
+                        $error ++;
+                    }
+                    if($checa_sadmin_u){
+                        $error ++;
+                    }
+
+                    if ($error != 0) {
+                        $message = "No se puede eliminar, tiene usuarios y/o empresas activas.\\nIntente de nuevo.";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        //$this->administradores();
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');  
+                    }else{
+                        $estado = array('id_estado_us' => '4');
+                        $this->sadmin_model->eliminar_empleado($id, $estado);
+                        //$this->administradores();
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');
+                    }
+                break;
+                case '7':
+                    # code...
+                break;
+                default:
+                    # code...
+                break;
+            }
+            
+
+
+            /*$estado = array('id_estado_us' => '4');
             $this->sadmin_model->eliminar_empleado($id, $estado);
-            $this->administradores();
+            $this->administradores();*/
+
             //redirect(base_url().'sadmin_controller/administradores');
             //redirect('index.php/sadmin_controller/administradores', 'refresh');  
         }
