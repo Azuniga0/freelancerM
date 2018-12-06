@@ -54,7 +54,7 @@
                 $data ['error1'] = "no hay comentario";
                 $this->load->view('General/header_on.php');
                 $this->load->view('Designer/publication.php', $data);
-                $this->load->view('Designer/navbar_GC.php');
+                $this->load->view('Designer/navbar_designer.php');
                 $this->load->view('General/footer_on.php');
             }
         }
@@ -85,6 +85,17 @@
                     $this->Designer_model->subirimgen($picture, $id);
                     redirect('index.php/Designer_controller/publication/'.$id);
                 }            
+        }
+
+        public function tareaRealizada($id)
+        {
+            $this->Designer_model->TR($id);
+            $data['data1'] = $this->Designer_model->getPendientes($_SESSION['id_usuario']);
+            $data['data2'] = $this->Designer_model->getPendientes2($_SESSION['id_usuario']);            
+            $this->load->view('General/header_on.php');
+            $this->load->view('Designer/slopes.php', $data);
+            $this->load->view('Designer/navbar_Designer.php');
+            $this->load->view('General/footer_on.php');
         }
 
     }    

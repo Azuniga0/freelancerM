@@ -17,8 +17,7 @@
         public function lista_nodos($id){
             $this->db->select('*');
             $this->db->from('campain');
-            $this->db->join('red_semantica','red_semantica.id_camp = campain.id_camp');
-            $this->db->join('nodos','nodos.id_red = red_semantica.id_red');
+            $this->db->join('nodos','nodos.id_red = campain.id_camp');
             $this->db->where('id_community',$id);
             $this->db->where('hoja', 1);
             $query = $this->db->get();
@@ -28,8 +27,7 @@
         public function pedientes($id){
             $this->db->select('*');
             $this->db->from('campain');
-            $this->db->join('red_semantica','red_semantica.id_camp = campain.id_camp');
-            $this->db->join('nodos','nodos.id_red = red_semantica.id_red');
+            $this->db->join('nodos','nodos.id_red = campain.id_camp');
             $this->db->join('publicaciones','nodos.id_nodo = publicaciones.id_nodo');
             $this->db->where('id_community',$id);
             $this->db->where('id_estado', 2);
@@ -41,8 +39,7 @@
         public function pedientes2($id){
             $this->db->select('*');
             $this->db->from('campain');
-            $this->db->join('red_semantica','red_semantica.id_camp = campain.id_camp');
-            $this->db->join('nodos','nodos.id_red = red_semantica.id_red');
+            $this->db->join('nodos','nodos.id_red = campain.id_camp');
             $this->db->join('publicaciones','nodos.id_nodo = publicaciones.id_nodo');
             $this->db->where('id_community',$id);
             $this->db->where('id_estado', 3);
@@ -90,9 +87,10 @@
             $this->db->update('publicaciones');
         }
 
+
         public function getAT($id)
         {
-            $this->db->select('*, publicaciones.imagen as imagenp, usuarios_nodo.id_usuario as usua');
+            $this->db->select('*, publicaciones.imagen as imagenp, publicaciones.nombre as nombrep, usuarios_nodo.id_usuario as usua');
             $this->db->from('publicaciones');
             $this->db->join('nodos','publicaciones.id_nodo = nodos.id_nodo');
             $this->db->join('usuarios_nodo','usuarios_nodo.id_nodo = nodos.id_nodo');
@@ -100,6 +98,21 @@
             $this->db->where('id_publicaciones',$id);
             $query = $this->db->get();
             return $query->row();
+        }
+
+        // usuarios con su rol
+        public function getUR($id)
+        {
+            $this->db->select('usuarios_nodo.id_usuario, empleados.nombre_empleado, empleados.apaterno_empleado, empleados.amaterno_empleado, tipo_usuario.n_tipo_usuario');
+            $this->db->from('publicaciones');
+            $this->db->join('nodos','publicaciones.id_nodo = nodos.id_nodo');
+            $this->db->join('usuarios_nodo','usuarios_nodo.id_nodo = nodos.id_nodo');
+            $this->db->join('usuarios','usuarios_nodo.id_usuario = usuarios.id_usuario');
+            $this->db->join('empleados','empleados.id_usuario_empleado = usuarios.id_usuario');
+            $this->db->join('tipo_usuario','tipo_usuario.id_tipo_usuario = usuarios.rol');
+            $this->db->where('id_publicaciones',$id);
+            $query = $this->db->get();
+            return $query->result();
         }
 
         // todos los nodos

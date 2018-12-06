@@ -34,8 +34,8 @@
                           <th scope="row"><?= $row->titulo ?></th>
                           <td><?= $row->contenido ?></td>
                           <td><?= date('d/m/Y H:i:s', strtotime($row->fecha_entrega)); ?></td>
-                          <td><a class="btn btn-info " margin-right="100 px";  href="<?php echo base_url('index.php/GC_controller/publication/'.$row->id_publicaciones);?>">Ir a la publicación</a>
-                          <a class="btn btn-primary" href="<?php echo base_url('index.php/GC_controller/tareaRealizada/'.$row->id_tarea);?>">Tarea terminada</a></td>
+                          <td><a class="btn btn-info " margin-right="100 px";  href="<?php echo base_url('index.php/Designer_controller/publication/'.$row->id_publicaciones);?>">Ir a la publicación</a>
+                          <a class="btn btn-primary" href="<?php echo base_url('index.php/Designer_controller/tareaRealizada/'.$row->id_tarea);?>">Tarea terminada</a></td>
                         </tr>
                       <?php } ?>                      
                       </tbody>
@@ -70,7 +70,7 @@
                           <th scope="row"><?= $row->titulo ?></th>
                           <td><?= $row->contenido ?></td>
                           <td><?= date('d/m/Y H:i:s', strtotime($row->fecha_entrega)); ?></td>
-                          <td><a class="btn btn-primary" href="<?php echo base_url('index.php/GC_controller/publication/'.$row->id_publicaciones);?>">Ir</a></td>
+                          <td><a class="btn btn-primary" href="<?php echo base_url('index.php/Designer_controller/publication/'.$row->id_publicaciones);?>">Ir</a></td>
                         </tr>
                       <?php } ?>                      
                       </tbody>

@@ -20,12 +20,14 @@
 	    <?php endif; ?>
     <!-- apartado para subir imagene -->
         <center>
+        <p class="font-weight-bold cmptitulo">Contenido Actual</p>
+        <p class="font-weight-normal cmptxt"><?=$publi->contenido ?></p>
         <form action="<?php  echo base_url('index.php/GC_controller/subircontenido/'.$publi->id_publicaciones) ?>" method="post">
             <table class="table">
               <tr>
                 <td>Contenido</td>
                 <td>
-                  <textarea name="contenido"  cols="140" rows="10"><?=$publi->contenido ?></textarea>
+                  <textarea name="contenido"  cols="140" rows="10"></textarea>
                 </td>
               </tr> 
               <tr>

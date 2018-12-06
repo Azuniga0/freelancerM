@@ -123,6 +123,8 @@
 
         public function tarea($id){
             $data ['at'] = $this->cm_model->getAT($id);
+            $data ['ur'] = $this->cm_model->getUR($id);
+            // echo json_encode($data);
             $this->load->view('General/header_on.php');
             $this->load->view('CommunityManager/tarea.php', $data);
             $this->load->view('CommunityManager/navbar_cm.php');
