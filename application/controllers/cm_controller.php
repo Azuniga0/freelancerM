@@ -7,6 +7,7 @@
             $this->load->helper('url','form');
   	 		$this->load->model('cm_model');
             $this->load->library('session');
+            $this->load->library('facebook');
         }
 
         public function home(){
@@ -93,6 +94,11 @@
         }
 
         public function aprobar($id){
+
+            $ruta        = base_url() . "Disenos/" . $imagen;
+            $arr         = array('message' => $contenido, 'source' => $this->facebook->object()->fileToUpload($ruta));
+            $userProfile = $this->facebook->request('post', 'ID' . '/photos/', $arr, 'Token');
+
             $this->cm_model->aprobar($id);
             $data['pendientes'] = $this->cm_model->pedientes($_SESSION['id_usuario']);
             $data['pendientes2'] = $this->cm_model->pedientes2($_SESSION['id_usuario']);
