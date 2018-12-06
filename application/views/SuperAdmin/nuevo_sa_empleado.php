@@ -34,7 +34,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="nombre_empleado">Nombre:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="nombre_empleado"    >
+                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="nombre_empleado"  value="<?=set_value('nombre_empleado')?>" >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
                                         </div>
@@ -45,7 +45,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="apaterno_empleado">A. Paterno:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="aparerno_empleado" placeholder="" aria-describedby="apaterno_empleado" name="apaterno_empleado"    >
+                                        <input type="text" class="form-control" id="aparerno_empleado" placeholder="" aria-describedby="apaterno_empleado" name="apaterno_empleado" value="<?=set_value('apaterno_empleado')?>">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un apellido válido
                                         </div>
@@ -56,7 +56,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="amaterno_empleado">A. Materno:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="amaterno_empleado" placeholder="" aria-describedby="rfc_empleado" name="amaterno_empleado" >
+                                        <input type="text" class="form-control" id="amaterno_empleado" placeholder="" aria-describedby="rfc_empleado" name="amaterno_empleado" value="<?=set_value('amaterno_empleado')?>">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un apellido válido
                                         </div>
@@ -69,7 +69,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="direccion_empleado">Dirección:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="direccion" placeholder="" aria-describedby="direccion_empleado" name="direccion_empleado"    >
+                                        <input type="text" class="form-control" id="direccion" placeholder="" aria-describedby="direccion_empleado" name="direccion_empleado" value="<?=set_value('direccion_empleado')?>">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte una dirección válida
                                         </div>
@@ -80,7 +80,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="estado_empleado">Correo:</span>
                                         </div> 
-                                        <input type="text" class="form-control" id="correo_empleado" placeholder="" aria-describedby="correo_empleado" name="correo_empleado"    >
+                                        <input type="text" class="form-control" id="correo_empleado" placeholder="" aria-describedby="correo_empleado" name="correo_empleado"  value="<?=set_value('correo_empleado')?>">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un correo válido
                                         </div>
@@ -91,7 +91,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="telefono_empleado">Teléfono:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="cp" placeholder="" aria-describedby="telefono_empleado" name="telefono_empleado"    >
+                                        <input type="text" class="form-control" id="cp" placeholder="" aria-describedby="telefono_empleado" name="telefono_empleado" value="<?=set_value('telefono_empleado')?>">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un teléfono válido
                                         </div>
@@ -121,7 +121,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="usuario_empleado">Usuario:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="usuario" placeholder="" aria-describedby="usuario_empleado" name="username"    >
+                                        <input type="text" class="form-control" id="usuario" placeholder="" aria-describedby="usuario_empleado" name="username" value="<?=set_value('username')?>">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
@@ -137,7 +137,7 @@
                                         //echo "<input type='text' class='form-control' id='password' placeholder='********************' aria-describedby='password_empleado' name='password'   disabled value=''>";
                                         
                                         ?>
-                                        <input type="text" class="form-control" id="password" placeholder aria-describedby="password_empleado" name="password" value=""   >
+                                        <input type="text" class="form-control" id="password" placeholder aria-describedby="password_empleado" name="password" value="<?=set_value('password')?>" >
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
