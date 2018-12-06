@@ -50,8 +50,9 @@
             $this->load->view('General/footer_on.php');
         }
 
+        // funcion que evalua que sean solo letras con o sin acentos
         public function regex_check($str){
-            if (preg_match("/^[a-zA-Z]/", $str)){
+            if (preg_match("[A-Za-z0-9áéíóú\s]", $str)){
                 $this->form_validation->set_message('regex_check', 'El campo %s no tiene un formato válido');
                 return FALSE;
             }else{
@@ -75,8 +76,8 @@
             if($this->input->post('register')){
 
                 $this->form_validation->set_rules('nombre_empleado', 'Nombre', 'required|callback_regex_check');
-                $this->form_validation->set_rules('apaterno_empleado', 'Apellido paterno', 'required|alpha');
-                $this->form_validation->set_rules('amaterno_empleado', 'Apellido materno', 'required|alpha');
+                $this->form_validation->set_rules('apaterno_empleado', 'Apellido paterno', 'required|callback_regex_check');
+                $this->form_validation->set_rules('amaterno_empleado', 'Apellido materno', 'required|callback_regex_check');
                 $this->form_validation->set_rules('direccion_empleado', 'Dirección', 'required');
                 $this->form_validation->set_rules('correo_empleado', 'Correo electrónico', 'required|valid_email');
                 $this->form_validation->set_rules('telefono_empleado', 'Número telefónico', 'required|exact_length[10]|numeric');
