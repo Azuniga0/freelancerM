@@ -6,7 +6,7 @@
             parent::__construct();
             $this->load->helper('url','form');
   	 		$this->load->model('sadmin_model');
-            $this->load->library('session');
+            $this->load->library('session','form_validation');
         }
         
         //Carga la vista home del admin
@@ -65,6 +65,29 @@
 
             if($this->input->post('register')){
 
+                $this->form_validation->set_rules('nombre_empleado', 'Nombre', 'required');
+                $this->form_validation->set_rules('apaterno_empleado', 'Apellido paterno', 'required');
+                $this->form_validation->set_rules('direccion_empleado', 'Dirección', 'required');
+                $this->form_validation->set_rules('correo_empleado', 'Correo electrónico', 'required|valid_email');
+                $this->form_validation->set_rules('telefono_empleado', 'Número telefónico', 'required|exact_length[10]|numeric');
+                $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|is_unique[usuarios.username]');
+                $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[6]|alpha_numeric');
+                $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+                if ($this->form_validation->run() === FALSE){
+                    
+                    $data["data"] = array();
+
+                    $this->load->view('General/header_on.php');
+                    $this->load->view('SuperAdmin/navbar_sadmin.php');
+                    $this->load->view('SuperAdmin/nuevo_sa_empleado.php', $data);
+                    $this->load->view('General/footer_on.php');
+
+        
+                }else{
+                    alert("disque guarda");
+                    //redirect(base_url());
+                }
                 
                 //$dataform = $this->input->post();
 
@@ -77,10 +100,10 @@
                 $this->form_validation->set_rules('password', 'password', 'required|min_length[6]|numeric');*/
                 //$this->form_validation->set_rules('conf_password', 'confirm password', 'required|matches[password]');
                             
-            //Check whether user upload picture
-                if(!empty($_FILES['picture']['name'])){
+                // Revisa el archivo que se va a subir
+                /*if(!empty($_FILES['picture']['name'])){
                     $config['upload_path'] = 'img/perfiles/admins/';
-                    $config['allowed_types'] = '*';
+                    $config['allowed_types'] = 'jpeg|jpg|png';
                     $config['file_name'] = $_FILES['picture']['name'];
                     
                     //Load upload library and initialize configuration
@@ -96,7 +119,8 @@
                 }else{
                     $picture = 'user.jpg';
                 }
-                            
+                  
+                // crea el array para llenar la tabla de usuarios en la db
                 $usuario=array(  
                     'username'=>$this->input->post('username'),
                     'password'=>sha1($this->input->post('password')),                       
@@ -108,8 +132,10 @@
                     'id_estado_us'=>('1')                
                 );
                 
+                // revisa si el usuario y correo son únicos
                 $username_check=$this->sadmin_model->username_check_empleados($usuario['username']);
                 $email_check=$this->sadmin_model->email_check_empleados($this->input->post('correo_empleado'));
+
 
                 if($username_check){
                     
@@ -120,7 +146,7 @@
                     $this->load->view('SuperAdmin/navbar_sadmin.php');
                     $this->load->view('SuperAdmin/nuevo_sa_empleado.php',$data);
                     $this->load->view('General/footer_on.php');*/
-                    $error ++; 
+                    /*$error ++; 
                     $errores_array['usuario_info']=" El usuario ".$usuario['username']." ya existe";
                 }
                 if($email_check){
@@ -161,7 +187,7 @@
                         echo $value;
                     }
                     //redirect('index.php/sadmin_controller/vista_nuevo_sa_empleado', 'refresh');  
-                }
+                }*/
 
                 
             }

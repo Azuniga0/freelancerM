@@ -20,6 +20,7 @@
                     <div class="row">
                         <?php echo $this->session->flashdata('success_msg'); ?>
                         <?php echo $this->session->flashdata('error_msg'); ?>
+                        <?php echo validation_errors(); ?>
                     </div>
                     <div class="row">   
                         <form class="col-md-12" method="post" action="add"  enctype="multipart/form-data" role="form">
@@ -33,7 +34,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="nombre_empleado">Nombre:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="nombre_empleado" required  >
+                                        <input type="text" class="form-control" id="nombre" placeholder="" aria-describedby="nombre_empleado" name="nombre_empleado"    >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
                                         </div>
@@ -44,7 +45,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="apaterno_empleado">A. Paterno:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="aparerno_empleado" placeholder="" aria-describedby="apaterno_empleado" name="apaterno_empleado"   required>
+                                        <input type="text" class="form-control" id="aparerno_empleado" placeholder="" aria-describedby="apaterno_empleado" name="apaterno_empleado"    >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un apellido válido
                                         </div>
@@ -68,7 +69,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="direccion_empleado">Dirección:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="direccion" placeholder="" aria-describedby="direccion_empleado" name="direccion_empleado" required  >
+                                        <input type="text" class="form-control" id="direccion" placeholder="" aria-describedby="direccion_empleado" name="direccion_empleado"    >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte una dirección válida
                                         </div>
@@ -79,7 +80,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="estado_empleado">Correo:</span>
                                         </div> 
-                                        <input type="text" class="form-control" id="correo_empleado" placeholder="" aria-describedby="correo_empleado" name="correo_empleado"  required >
+                                        <input type="text" class="form-control" id="correo_empleado" placeholder="" aria-describedby="correo_empleado" name="correo_empleado"    >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un correo válido
                                         </div>
@@ -90,7 +91,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="telefono_empleado">Teléfono:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="cp" placeholder="" aria-describedby="telefono_empleado" name="telefono_empleado" required  >
+                                        <input type="text" class="form-control" id="cp" placeholder="" aria-describedby="telefono_empleado" name="telefono_empleado"    >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un teléfono válido
                                         </div>
@@ -101,7 +102,12 @@
                                 <div class="input-group mb-3 col-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" >
-                                        <label class="custom-file-label" for="inputGroupFile01"></label>
+                                        <label class="custom-file-label" for="inputGroupFile01"></label>        
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3 col-3">
+                                    <div class="input-group">
+                                        <!--label for="" id="namepicture" class="form-control"></label-->
                                     </div>
                                 </div>
                             </div>        
@@ -115,7 +121,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="usuario_empleado">Usuario:</span>
                                         </div>
-                                        <input type="text" class="form-control" id="usuario" placeholder="" aria-describedby="usuario_empleado" name="username" required  >
+                                        <input type="text" class="form-control" id="usuario" placeholder="" aria-describedby="usuario_empleado" name="username"    >
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
@@ -131,7 +137,7 @@
                                         //echo "<input type='text' class='form-control' id='password' placeholder='********************' aria-describedby='password_empleado' name='password'   disabled value=''>";
                                         
                                         ?>
-                                        <input type="text" class="form-control" id="password" placeholder aria-describedby="password_empleado" name="password" value="" required >
+                                        <input type="text" class="form-control" id="password" placeholder aria-describedby="password_empleado" name="password" value=""   >
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -183,23 +189,34 @@
 </section>
 
  <script>
- function createRandomString( length ) {
-    
-    var str = "";
-    for ( ; str.length < length; str += Math.random().toString( 36 ).substr( 2 ) );
-    return str.substr( 0, length );
-}
 
-document.addEventListener( "DOMContentLoaded", function() {
-    var button = document.querySelector( "#create" ),
-        output = document.querySelector( "#output" );
-    button.addEventListener( "click", function() {
-        var str = createRandomString( 6 );
-        output.innerHTML = str;
-    }, false)  
-});
+    // crea la cadena random
+    function createRandomString( length ) {        
+        var str = "";
+        for ( ; str.length < length; str += Math.random().toString( 36 ).substr( 2 ) );
+        return str.substr( 0, length );
+    }
 
-    /*function myFunction() {
+    // crea una cadena de 6 caracteres alfanumerica aleatoria
+    document.addEventListener( "DOMContentLoaded", function() {
+        var button = document.querySelector( "#create" ),
+            output = document.querySelector( "#output" );
+        button.addEventListener( "click", function() {
+            var str = createRandomString( 6 );
+            output.innerHTML = str;
+        }, false)  
+    });
+
+    // toma el nombre del archivo a subir y lo muestra en un label
+    document.getElementById('inputGroupFile01').onchange = function (e) {
+        var fileName = e.target.files[0].name;
+        //alert('The file "' + fileName +  '" has been selected.');
+        document.getElementById('namepicture').innerHTML = fileName;
+    };
+
+    /*
+    // manda a llamar la funcion que crea la cadena aleatoria y muestra el boton para guardar
+    function myFunction() {
         document.getElementById("password").value = createRandomString( 6 );
         document.getElementById('guardar').style.display='block';
     }*/
