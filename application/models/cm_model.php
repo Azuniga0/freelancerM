@@ -87,6 +87,14 @@
             $this->db->update('publicaciones');
         }
 
+        public function getpubli($id)
+        {
+            $this->db->select('*');
+            $this->db->from('publicaciones');
+            $this->db->where('id_publicaciones',$id);
+            $query = $this->db->get();
+            return $query->row();
+        }
 
         public function getAT($id)
         {
