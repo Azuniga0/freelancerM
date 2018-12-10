@@ -69,10 +69,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="validationTooltipUsernamePrepend">Fecha de inicio:</span>
                                         </div>
-                                        <input type="date" class="form-control" id="validationTooltipUsername" placeholder="" name="datein" aria-describedby="validationTooltipUsernamePrepend" required>
-                                        <div class="invalid-tooltip">
-                                            Por favor, inserte un usuario válido
-                                        </div>
+                                        <input type="date" class="form-control" id="fecha_ini" name="datein" min="<?php echo  date('Y-m-d'); ?>">                                        
                                     </div>
                                 </div> 
                                 <div class="col-md-6 mb-3">
@@ -80,7 +77,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="validationTooltipUsernamePrepend">Fecha de final:</span>
                                         </div>
-                                        <input type="date" class="form-control" id="validationTooltipUsername" placeholder="" name="datefin" aria-describedby="validationTooltipUsernamePrepend" required>
+                                        <input type="date" class="form-control" id="validationTooltipUsername" placeholder="" name="datefin" aria-describedby="validationTooltipUsernamePrepend" required min="<?php echo  date('Y-m-d'); ?>">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
