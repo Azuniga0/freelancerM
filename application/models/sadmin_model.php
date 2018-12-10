@@ -91,8 +91,8 @@
             $this->db->join('clientes','clientes.id_empresa_cliente = empresas.id_empresa');
             $this->db->join('usuarios','usuarios.id_usuario = empresas.administrador');
             $this->db->join('empleados','usuarios.id_usuario = empleados.id_usuario_empleado');
-            //$where = "administrador = $admin";
-            //$this->db->where($where);
+            $where = "estado_empresa = 1";
+            $this->db->where($where);/**/
             $this->db->order_by('empresas.fecha_alta','desc');
             $query = $this->db->get();
             return $query->result();
@@ -224,6 +224,23 @@
             $this->db->where($where);
             $query = $this->db->get();
             return $query->row();
+        }
+        
+        //obtiene true si la empresa tiene campañas activas
+        function activas_camp ($check){
+            $this->db->select('*');
+            $this->db->from('campain');
+            $where="id_estado_c = 1 and id_empresa_camp = $check";
+            $this->db->where($where);
+            $query=$this->db->get();
+            return $query->result();
+        }
+
+        //function para eliminar el usuario, pero cambiando el estado del mismo
+        function eliminar_empresa($id,$edo){
+            $this->db->where('id_empresa',$id);
+            //return $this->db->delete('usuarios');
+            $this->db->update('empresas',$edo);
         }
         
     }
