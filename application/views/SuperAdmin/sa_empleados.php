@@ -9,7 +9,7 @@
 
   // remueve los parametros enviados a través de la URL y deja solo la especificada
   if(typeof window.history.pushState == 'function') {
-    window.history.pushState({}, "Hide", "<?php echo base_url(); ?>/index.php/sadmin_controller/administradores");
+    window.history.pushState({}, "Hide", "<?php echo base_url(); ?>index.php/sadmin_controller/administradores");
   }
 
 </script>

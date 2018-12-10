@@ -131,9 +131,11 @@
 
         public function vista_red(){
             $id_campana = $_GET['id_camp'];
+            //$empresa = $this->cm_model->trabaja_en("empresas");
             $datos_red ['rsemantica'] = $this->cm_model->red_semantica($id_campana); 
             $datos_red ['data_camp'] = $this->cm_model->datos_campana($id_campana); 
             $datos_red ['nodos_red'] = $this->cm_model->nodos_red($id_campana); 
+
             $this->load->view('General/header_on.php');
             $this->load->view('CommunityManager/navbar_cm.php');
             $this->load->view('CommunityManager/red.php',$datos_red);            
@@ -167,8 +169,16 @@
             //redirect('index.php/cm_controller/vista_red', 'refresh'); 
         }
 
-        public function nodos(){
-            echo "mensaje";
+        public function asignacion_nodos(){
+            $id_campana = $_GET['id_camp'];
+            $datos_red ['data_camp'] = $this->cm_model->datos_campana($id_campana); 
+            $datos_red ['nodos_red'] = $this->cm_model->nodos_red($id_campana); 
+
+            $this->load->view('General/header_on.php');
+            $this->load->view('CommunityManager/navbar_cm.php');
+            $this->load->view('CommunityManager/asignacion.php',$datos_red);            
+            $this->load->view('General/footer_on.php');
         }
+
     }
 ?>

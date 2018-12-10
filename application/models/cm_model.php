@@ -131,6 +131,7 @@
             return $query->row();
         }
 
+        // trae los datos de una campaña en especifico
         public function datos_campana($id_camp){
             $this->db->select('*');
             $this->db->from('campain');
@@ -139,6 +140,7 @@
             return $query->result();
         }
 
+        // inserta los nodos creados para la red semantica
         public function insert_nodos($datos){
             $insert = $this->db->insert('nodos',$datos);
             if($insert){
