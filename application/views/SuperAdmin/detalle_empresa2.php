@@ -14,31 +14,21 @@
                                 </div>
                             </div> 
                         </div>
-                        <div class="row">
-                            <?php /*echo $this->session->flashdata('success_msg');*/ ?>
-                            <?php /*echo $this->session->flashdata('error_msg');*/ ?>
-                        </div>
                         <div class="row">   
-                        <form class="col-md-12" method="post" action="actualizar_empresa"  enctype="multipart/form-data" role="form">    
-                        <!--label for="" style="margin-right: 15px;">Foto actual:</label-->
-                            <?php
-                                //echo '<img class="imagen_edicion recetas" src="../../img/perfiles/empresas/'.$value->imagen_empresa.'">';
-                            ?>                        
+                        <form class="col-md-12" method="post" action="actualizar_empresa"  enctype="multipart/form-data" role="form">                        
                             <div class="form-row">
                                 <div class="col-md-9 mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="nombre_empleado">Razón social:</span>    
-                                        </div>
-                                        <?php  
-                                            $id=$value->id_empresa;  
-                                            $id_usuario=$value->id_usuario;  
-                                            echo "<input type='hidden' name='id_empresa' value='$id' required='required'  id='id_usuario' >";  
-                                            echo "<input type='hidden' name='id_usuario' value='$id_usuario' required='required'  id='tipo_usuario' >";  
+                                            <span class="input-group-text" id="nombre_empleado">Razón social:</span>
+                                        </div> 
+                                        <?php
+                                           echo " <input type='hidden' name='id_empresa' value='$id'    required='required'  id='id_usuario' >
+                                            '<input type='hidden' name='id_usuario' value='$id_usuario' required='required'  id='tipo_usuario' > ";  
                                             
-                                            $name=$value->razon_social;  
-                                            echo "<input type='text' name='razon_social' value='$name' required='required' class='form-control' id='nombre' aria-describedby='nombre_empleado'>";    
-                                        ?>
+                                            ?>
+                                              
+                                            <input type="text" name="razon_social" value="<?=set_value('razon_social')?>"  class="form-control" id="nombre" aria-describedby="nombre_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
                                         </div>
@@ -48,11 +38,8 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="rfc">RFC:</span>
-                                        </div>
-                                        <?php 
-                                            $rfc=$value->rfc;  
-                                            echo "<input type='text' name='rfc' value='$rfc' class='form-control' id='rfc' aria-describedby='rfc'>"; 
-                                        ?>
+                                        </div> 
+                                        <input type="text" name="rfc" value="<?=set_value('rfc')?>" class="form-control" id="rfc" aria-describedby="rfc">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un apellido válido
                                         </div>
@@ -62,12 +49,10 @@
                             <div class="form-row">
                                 <div class="input-group mb-3 col-3">
                                     <div class="custom-file">
-                                        <?php 
-                                            $img=$value->imagen_empresa;  
-                                            echo "<input type='hidden' name='imagen' value='$img' class='form-control' id='imagen'>";
-
-                                            echo "<input type='file' name='picture' class='custom-file-input' id='inputGroupFile01' aria-describedby='direccion_empleado'>"; 
-                                        ?>
+                                    <input type="hidden" name="imagen" value="$img" class="form-control" id="imagen">
+                                    
+                                    <input type="file" name="picture" class="custom-file-input" id="inputGroupFile01" aria-describedby="direccion_empleado">
+                                
                                         <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" >
                                         <label class="custom-file-label" for="inputGroupFile01"></label>
                                     </div>
@@ -83,10 +68,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="nombre_empleado">Nombre:</span>
                                         </div>
-                                        <?php 
-                                            $cliente=$value->nombre_cliente;  
-                                            echo "<input type='text' name='nombre_cliente' value='$cliente' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        <input type="text" name="nombre_cliente" value="<?=set_value('nombre_cliente')?>" class="form-control" id="username" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
                                         </div>
@@ -97,10 +79,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="nombre_empleado">A. paterno:</span>
                                         </div>
-                                        <?php 
-                                            $apaterno=$value->apaterno_cliente;  
-                                            echo "<input type='text' name='apaterno_cliente' value='$apaterno' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        <input type="text" name="apaterno_cliente" value="<?=set_value('apaterno_cliente')?>" class="form-control" id="username" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
                                         </div>
@@ -111,10 +90,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="nombre_empleado">A. materno:</span>
                                         </div>
-                                        <?php 
-                                            $amaterno=$value->amaterno_cliente;  
-                                            echo "<input type='text' name='amaterno_cliente' value='$amaterno' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        <input type="text" name="amaterno_cliente" value="<?=set_value('amaterno_cliente')?>"  class="form-control" id="username" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
                                         </div>
@@ -127,10 +103,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="usuario_empleado">Teléfono:</span>
                                         </div>
-                                        <?php 
-                                            $tel_cliente=$value->telefono_cliente;  
-                                            echo "<input type='text' name='telefono_cliente' value='$tel_cliente' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        <input type="text" name="telefono_cliente" value="$tel_cliente" class="form-control" value="<?=set_value('telefono_cliente')?>" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
@@ -141,10 +114,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="usuario_empleado">Correo:</span>
                                         </div>
-                                        <?php 
-                                            $correo_c=$value->correo_cliente;  
-                                            echo "<input type='text' name='correo_cliente' value='$correo_c' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        <input type="text" name="correo_cliente" value="<?=set_value('correo_cliente')?>"  class="form-control" id="username" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
@@ -155,10 +125,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="usuario_empleado">Usuario:</span>
                                         </div>
-                                        <?php 
-                                            $usuario=$value->username;  
-                                            echo "<input type='text' name='username' value='$usuario' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        <input type="text" name="username" value="<?=set_value('username')?>" class="form-control" id="username" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
                                         </div>
@@ -170,11 +137,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="password_empleado">Contraseña:</span>
-                                        </div>
-                                        <?php
-                                            $pass=$value->pass_decrypt;  
-                                            echo "<input type='text' name='password' value='$pass' class='form-control' id='password' aria-describedby='password_empleado' >";
-                                        ?>
+                                        </div><input type="text" name="password" value="<?=set_value('password')?>" class="form-control" id="password" aria-describedby="password_empleado" >
                                     </div>
                                 </div>
                             </div>
@@ -187,11 +150,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="contacto">Nombre:</span>
-                                        </div>
-                                        <?php 
-                                            $contacto=$value->contacto;  
-                                            echo "<input type='text' name='contacto' value='$contacto' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        </div><input type="text" name="contacto" value="<?=set_value('contacto')?>" class="form-control" id="username" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un apellido válido
                                         </div>
@@ -204,11 +163,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="direccion_empleado">Dirección:</span>
-                                        </div>
-                                        <?php 
-                                            $dir=$value->direccion_contacto;  
-                                            echo "<input type='text' name='direccion_contacto' value='$dir' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        </div><input type="text" name="direccion_contacto" value="<?=set_value('direccion_contacto')?>" class="form-control" id="username" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte una dirección válida
                                         </div>
@@ -218,11 +173,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="estado_empleado">Correo:</span>
-                                        </div> 
-                                        <?php 
-                                            $correo=$value->correo_contacto;  
-                                            echo "<input type='text' name='correo_contacto' value='$correo' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        </div> <input type="text" name="correo_contacto" value="<?=set_value('correo_contacto')?>" class="form-control" id="username" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un correo válido
                                         </div>
@@ -233,10 +184,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="telefono_empleado">Teléfono:</span>
                                         </div>
-                                        <?php 
-                                            $tel=$value->telefono_empresa;  
-                                            echo "<input type='text' name='telefono_contacto' value='$tel' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
-                                        ?>
+                                        <input type="text" name="telefono_contacto" value="<?=set_value('telefono_contacto')?>" class="form-control" id="username" aria-describedby="usuario_empleado">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un teléfono válido
                                         </div>
@@ -257,25 +205,3 @@
     </div>  
 </section>
 
- <script>
- function createRandomString( length ) {
-    
-    var str = "";
-    for ( ; str.length < length; str += Math.random().toString( 36 ).substr( 2 ) );
-    return str.substr( 0, length );
-}
-
-document.addEventListener( "DOMContentLoaded", function() {
-    var button = document.querySelector( "#create" ),
-        output = document.querySelector( "#output" );
-    button.addEventListener( "click", function() {
-        var str = createRandomString( 6 );
-        output.innerHTML = str;
-    }, false)  
-});
-
-    function myFunction() {
-        document.getElementById("password").value = createRandomString( 6 );
-        //document.getElementById('guardar').style.display='block';
-    }
- </script>   

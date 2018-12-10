@@ -99,7 +99,7 @@
                                 <button type="submit" name="ver"  id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                               </td>
                               <td>
-                              <a style="color:#fff;" class="btn-danger btn" onclick="if(confirma() == false) return false" href="<?php echo site_url('index.php/sadmin_controller/eliminar_empleado/'.$id."/".$value->rol); ?>" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a style="color:#fff;" class="btn-danger btn" onclick="if(confirma() == false) return false" href="<?php echo site_url('index.php/sadmin_controller/eliminar_empleado/'.$id."/".$value->rol); ?>" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                               </td>
                             </form>
                           </tr>

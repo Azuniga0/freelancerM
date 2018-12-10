@@ -61,14 +61,14 @@
         }
 
         // funcion que evaluar el RFC
-        public function regex_rfc($str){
+        /*public function regex_rfc($str){
             if (preg_match("([A-ZÑ&]{3,4})(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))([A-Z\d]{2})([A\d])", $str)){
                 $this->form_validation->set_message('regex_check', 'El campo %s no tiene un formato válido');
                 return FALSE;
             }else{
                 return TRUE;
             }
-        }
+        }*/
         
         //Toma los datos del formulario de empleado y los envia al modelo para la inserción
         function add(){
@@ -273,7 +273,7 @@
         public function nueva_empresa(){
         // validaciones del formulario
             $this->form_validation->set_rules('razon_social', 'Razón social', 'required|alpha_numeric');
-            $this->form_validation->set_rules('rfc', 'RFC', 'required|callback_regex_rfc');
+            $this->form_validation->set_rules('rfc', 'RFC', 'required|alpha_numeric');
             $this->form_validation->set_rules('nombre_cliente', 'Nombre', 'callback_regex_check|required');
             $this->form_validation->set_rules('apaterno_cliente', 'Apelllido paterno', 'callback_regex_check|required');
             $this->form_validation->set_rules('amaterno_cliente', 'Apellido materno', 'callback_regex_check');
@@ -368,63 +368,89 @@
 
         
         public function actualizar_empresa(){
-            $id=$_SESSION['id_usuario'];
-            if($this->input->post('register')){
-            
-                //Check whether user upload picture
-                if(!empty($_FILES['picture']['name'])){
-                    $config['upload_path'] = 'img/perfiles/empresas/';
-                    $config['allowed_types'] = '*';
-                    $config['file_name'] = $_FILES['picture']['name'];
-                    
-                    //Load upload library and initialize configuration
-                    $this->load->library('upload',$config);
-                    $this->upload->initialize($config);
-                    
-                    if($this->upload->do_upload('picture')){
-                        $uploadData = $this->upload->data();
-                        $picture = $uploadData['file_name'];
+            // validaciones del formulario
+            $this->form_validation->set_rules('razon_social', 'Razón social', 'required|alpha_numeric');
+            $this->form_validation->set_rules('rfc', 'RFC', 'required|alpha_numeric');
+            $this->form_validation->set_rules('nombre_cliente', 'Nombre', 'callback_regex_check|required');
+            $this->form_validation->set_rules('apaterno_cliente', 'Apelllido paterno', 'callback_regex_check|required');
+            $this->form_validation->set_rules('amaterno_cliente', 'Apellido materno', 'callback_regex_check');
+            $this->form_validation->set_rules('telefono_cliente', 'Número telefónico', 'required|exact_length[10]|numeric');
+            $this->form_validation->set_rules('correo_cliente', 'Correo electrónico', 'required|valid_email');
+            $this->form_validation->set_rules('username', 'Nombre de usuario', 'required');
+            $this->form_validation->set_rules('password', 'Contraseña', 'min_length[6]|max_length[24]|alpha_numeric'); //contacto
+            $this->form_validation->set_rules('contacto', 'Contacto', 'callback_regex_check|required');
+            $this->form_validation->set_rules('direccion_contacto', 'Dirección', 'required');
+            $this->form_validation->set_rules('correo_contacto', 'Correo electrónico', 'required|valid_email');
+            $this->form_validation->set_rules('telefono_contacto', 'Número telefónico', 'required|exact_length[10]|numeric');
+
+                // errores en las validaciones
+            $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+            if ($this->form_validation->run() === FALSE){                    
+                // array con los errores
+                $data["data"] = array(); 
+                $this->load->view('General/header_on.php');
+                $this->load->view('SuperAdmin/navbar_sadmin.php');
+                $this->load->view('SuperAdmin/detalle_empresa2.php', $data);
+                $this->load->view('General/footer_on.php');  
+            }else{
+                $id=$_SESSION['id_usuario'];
+                if($this->input->post('register')){
+                
+                    //Check whether user upload picture
+                    if(!empty($_FILES['picture']['name'])){
+                        $config['upload_path'] = 'img/perfiles/empresas/';
+                        $config['allowed_types'] = '*';
+                        $config['file_name'] = $_FILES['picture']['name'];
+                        
+                        //Load upload library and initialize configuration
+                        $this->load->library('upload',$config);
+                        $this->upload->initialize($config);
+                        
+                        if($this->upload->do_upload('picture')){
+                            $uploadData = $this->upload->data();
+                            $picture = $uploadData['file_name'];
+                        }else{
+                            $picture = $this->input->post('imagen');
+                        }
                     }else{
                         $picture = $this->input->post('imagen');
                     }
-                }else{
-                    $picture = $this->input->post('imagen');
+                    
+                    $id=$_SESSION['id_usuario'];
+                    $empresa=array(
+                        'razon_social'=>$this->input->post('razon_social'),
+                        'contacto'=>$this->input->post('contacto'),
+                        'direccion_contacto'=>$this->input->post('direccion_contacto'),   
+                        'correo_contacto'=>$this->input->post('correo_contacto'),
+                        'telefono_empresa'=>$this->input->post('telefono_contacto'), 
+                        'imagen_empresa'=>$picture,
+                        'rfc'=>$this->input->post('rfc')
+                    );
+                    $id_empresa = $this->input->post('id_empresa');
+                    $nueva_empresa = $this->sadmin_model->actualizar_empresa($id_empresa, $empresa);
+
+                    $usuario=array( 
+                        'username'=>$this->input->post('username'),
+                        'password'=>sha1($this->input->post('password')),         
+                        'pass_decrypt'=>$this->input->post('password')
+                    );
+                    $id_usuario= $this->input->post('id_usuario');
+                    $nuevo_usuario = $this->sadmin_model->actualizar_user($id_usuario, $usuario);
+                    
+                    $cliente=array(
+                        'nombre_cliente'=>$this->input->post('nombre_cliente'),
+                        'apaterno_cliente'=>$this->input->post('apaterno_cliente'),
+                        'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
+                        'telefono_cliente'=>$this->input->post('telefono_cliente'),
+                        'correo_cliente'=>$this->input->post('correo_cliente')
+                    );                                
+                    $nuevo_cliente = $this->sadmin_model->actualizar_cliente($id_usuario, $cliente);
+
                 }
-                
-                $id=$_SESSION['id_usuario'];
-                $empresa=array(
-                    'razon_social'=>$this->input->post('razon_social'),
-                    'contacto'=>$this->input->post('contacto'),
-                    'direccion_contacto'=>$this->input->post('direccion_contacto'),   
-                    'correo_contacto'=>$this->input->post('correo_contacto'),
-                    'telefono_empresa'=>$this->input->post('telefono_contacto'), 
-                    'imagen_empresa'=>$picture
-                );
-                $id_empresa = $this->input->post('id_empresa');
-                $nueva_empresa = $this->sadmin_model->actualizar_empresa($id_empresa, $empresa);
-
-                $usuario=array( 
-                    'username'=>$this->input->post('username'),
-                    'password'=>sha1($this->input->post('password')),         
-                    'pass_decrypt'=>$this->input->post('password')
-                );
-                $id_usuario= $this->input->post('id_usuario');
-                $nuevo_usuario = $this->sadmin_model->actualizar_user($id_usuario, $usuario);
-                
-                $cliente=array(
-                    'nombre_cliente'=>$this->input->post('nombre_cliente'),
-                    'apaterno_cliente'=>$this->input->post('apaterno_cliente'),
-                    'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
-                    'telefono_cliente'=>$this->input->post('telefono_cliente'),
-                    'correo_cliente'=>$this->input->post('correo_cliente')
-                );                                
-                $nuevo_cliente = $this->sadmin_model->actualizar_cliente($id_usuario, $cliente);
-
+                redirect('index.php/sadmin_controller/empresas', 'refresh');  
             }
-            //Form for adding user data
-            //$this->load->view('Admin/nuevo_empleado.php');            
-
-            redirect('index.php/sadmin_controller/empresas', 'refresh');     
+                
         }
 
         public function eliminar_empleado (){
@@ -506,18 +532,33 @@
                 default:
                     $this->administradores();
                 break;
-            }
-            
-
-
-            /*$estado = array('id_estado_us' => '4');
-            $this->sadmin_model->eliminar_empleado($id, $estado);
-            $this->administradores();*/
-
-            //redirect(base_url().'sadmin_controller/administradores');
-            //redirect('index.php/sadmin_controller/administradores', 'refresh');  
+            }             
         }
 
+        public function eliminar_empresa (){
+            $error = 0;
+            // obtiene el id del empleado seleccionado para eliminar y el rol que juega
+            $id = $this->uri->segment(3);
+
+            $checa_admin_u = $this->sadmin_model->activas_camp($id);
+
+            //print_r($checa_admin_u);
+            if($checa_admin_u){
+                $error ++;
+            }
+
+            if ($error != 0) {
+                $message = "No se puede eliminar, tiene campañas activas.\\nIntente de nuevo.";
+                echo "<script type='text/javascript'>alert('$message');</script>";                     //$this->administradores();
+                redirect('index.php/sadmin_controller/empresas', 'refresh');  
+            }else{
+                $estado = array('estado_empresa' => '4');
+                $this->sadmin_model->eliminar_empresa($id, $estado);
+                //$this->administradores();
+                redirect('index.php/sadmin_controller/empresas', 'refresh');
+            }
+                           
+        }
 
 }
      

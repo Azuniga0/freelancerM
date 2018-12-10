@@ -66,6 +66,17 @@
             $query = $this->db->get();
             return $query->result();
         }
+        
+        // 
+        public function busca_datos_admin($admin){
+            $this->db->select('*');
+            $this->db->from('usuarios');
+            $this->db->join('empleados','usuarios.id_usuario = empleados.id_usuario_empleado');
+            $this->db->join('estado_usuario','usuarios.id_estado_us = estado_usuario.id_estado');
+            $this->db->where('id_usuario',$admin);
+            $query = $this->db->get();
+            return $query->result();
+        }
 
         //funcion para campaña activa
         public function lista_camp($datos){

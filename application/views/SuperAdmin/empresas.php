@@ -1,6 +1,18 @@
-<?php   
- //print_r ($data);
-?>
+<script type="text/javascript">
+  function confirma(){
+    if (confirm("¿Realmente desea eliminarlo?")){ 
+      //alert("El usuario ha sido eliminado.") 
+    }else { 
+        return false
+    }
+  }
+
+  // remueve los parametros enviados a través de la URL y deja solo la especificada
+  if(typeof window.history.pushState == 'function') {
+    window.history.pushState({}, "Hide", "<?php echo base_url(); ?>index.php/sadmin_controller/empresas");
+  }
+
+</script>
 
 <section class="dashboard-counts section-padding">
   <div class="container-fluid">
@@ -42,8 +54,8 @@
                           <th scope="col">Correo del cliente</th>                          
                           <th scope="col">Responsable</th>                          
                           <th scope="col">Correo del responsable</th>
-                          <!--th scope="col">Administrador</th-->
                           <th scope="col">Fecha de alta</th>
+                          <th scope="col"></th>
                           <th scope="col"></th>
                         </tr>
                       </thead>
@@ -89,7 +101,10 @@
                                 ?>
                               </td>
                               <td>
-                                <button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <!--button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button-->
+                              </td>
+                              <td>
+                                <a style="color:#fff;" class="btn-danger btn" onclick="if(confirma() == false) return false" href="<?php echo site_url('index.php/sadmin_controller/eliminar_empresa/'.$id); ?>" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                               </td>
                             </form>
                           </tr>

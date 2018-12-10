@@ -37,9 +37,9 @@
                                             <?php  
                                                 $id=$value->id_usuario;  
                                                 echo "<input type='hidden' name='id_usuario' value='$id'   id='id_usuario' >"; 
-                                                $name=$value->nombre_empleado;  
-                                                echo "<input type='text' name='nombre_empleado' value='$name'  class='form-control' id='nombre_empleado' aria-describedby='nombre_empleado'>";    
-                                            ?>                                         
+                                                $name=$value->nombre_empleado; ?>  
+                                                <input type='text' name='nombre_empleado' value='<?=set_value('nombre_empleado')?>'  class='form-control' id='nombre_empleado' aria-describedby='nombre_empleado'>    
+                                                                                    
                                             <div class="invalid-tooltip">
                                                 Por favor, inserte un nombre válido
                                             </div>
@@ -49,11 +49,8 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="apaterno_empleado">A. Paterno:</span>
-                                            </div>
-                                            <?php     
-                                                $apaterno=$value->apaterno_empleado;  
-                                                echo "<input type='text' name='apaterno_empleado' value='$apaterno'  class='form-control' id='apaterno_empleado' aria-describedby='apaterno_empleado'>";    
-                                            ?> 
+                                            </div><input type='text' name='apaterno_empleado' value='<?=set_value('apaterno_empleado')?>'  class='form-control' id='apaterno_empleado' aria-describedby='apaterno_empleado'> 
+                                            
                                             <div class="invalid-tooltip">
                                                 Por favor, inserte un apellido válido
                                             </div>
@@ -63,11 +60,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="amaterno_empleado">A. Materno:</span>
-                                            </div>
-                                            <?php     
-                                                $amaterno=$value->amaterno_empleado;  
-                                                echo "<input type='text' name='amaterno_empleado' value='$amaterno'  class='form-control' id='amaterno_empleado' aria-describedby='amaterno_empleado'>";    
-                                            ?> 
+                                            </div><input type='text' name='amaterno_empleado' value='<?=set_value('amaterno_empleado')?>'  class='form-control' id='amaterno_empleado' aria-describedby='amaterno_empleado'>
                                             <div class="invalid-tooltip">
                                                 Por favor, inserte un apellido válido
                                             </div>
@@ -90,11 +83,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="direccion_empleado">Dirección:</span>
-                                            </div>
-                                            <?php     
-                                                $direccion=$value->direccion_empleado;  
-                                                echo "<input type='text' name='direccion_empleado' value='$direccion'  class='form-control' id='direccion_empleado' aria-describedby='direccion_empleado'>";    
-                                            ?> 
+                                            </div><input type='text' name='direccion_empleado' value='<?=set_value('direccion_empleado')?>'  class='form-control' id='direccion_empleado' aria-describedby='direccion_empleado'>
                                             <div class="invalid-tooltip">
                                                 Por favor, inserte una dirección válida
                                             </div>
@@ -105,10 +94,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="estado_empleado">Correo:</span>
                                             </div> 
-                                            <?php     
-                                                $correo=$value->correo_empleado;  
-                                                echo "<input type='text' name='correo_empleado' value='$correo'  class='form-control' id='correo_empleado' aria-describedby='correo_empleado' readonly>";
-                                            ?>
+                                            <input type='text' name='correo_empleado' value='<?=set_value('correo_empleado')?>'  class='form-control' id='correo_empleado' aria-describedby='correo_empleado' readonly>
                                             <div class="invalid-tooltip">
                                                 Por favor, inserte un correo válido
                                             </div>
@@ -119,10 +105,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="telefono_empleado">Teléfono:</span>
                                             </div>
-                                            <?php     
-                                                $telefono=$value->telefono_empleado;  
-                                                echo "<input type='text' name='telefono_empleado' value='$telefono'  class='form-control' id='telefono_empleado' aria-describedby='telefono_empleado'>";    
-                                            ?>
+                                            <input type='text' name='telefono_empleado' value='<?=set_value('telefono_empleado')?>'  class='form-control' id='telefono_empleado' aria-describedby='telefono_empleado'>
                                             <div class="invalid-tooltip">
                                                 Por favor, inserte un teléfono válido
                                             </div>
@@ -180,9 +163,9 @@
                                             </div>
                                             <?php     
                                                 $pass=$value->pass_decrypt;  
-                                                echo "<input type='hidden' name='password_original' value='$pass'  class='form-control' id='password' aria-describedby='password_emleado' readonly>";
-                                                echo "<input type='text' name='password' value  class='form-control' id='password' aria-describedby='password_emleado' >";
+                                                echo "<input type='hidden' name='password_original' value='$pass'  class='form-control' id='password' aria-describedby='password_emleado' readonly>";  
                                             ?>
+                                            <input type="text" name="password" value="<?=set_value('password')?>" class="form-control" id="password" aria-describedby="password_empleado" >
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -198,7 +181,7 @@
                                                 mysqli_set_charset($database,"utf8");
                                             ?>
 
-                                                <select class="form-control" id="id_estado_us" aria-describedby="id_estado_us" name="id_estado_us"  >                                            
+                                                <select class="form-control" id="id_estado_us" aria-describedby="rol_empleado" name="id_estado_us"  >                                            
                                                     <?php     
                                                        while ($row = mysqli_fetch_array($result)){
                                                             //echo "<option value='" . $row['id_estado'] . "'>" . $row['estado'] . "</option>";
@@ -206,7 +189,7 @@
                                                         }
                                                     ?>
                                                     <option <?php if ($estado_us == 1 ) echo 'selected' ; ?> value="1">Activo</option>
-                                                    <option <?php if ($estado_us == 2 ) echo 'selected' ; ?> value="2">Inactivo</option>
+                                                    <option <?php if ($estado_us == 2 ) echo 'selected' ; ?> value="2">Inactivc</option>
                                                     <option <?php if ($estado_us == 3 ) echo 'selected' ; ?> value="3">Despedido</option> 
                                                 </select>
                                         </div>    
