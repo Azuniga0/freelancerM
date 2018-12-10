@@ -7,6 +7,7 @@
             $this->load->helper('url','form');
   	 		$this->load->model('plataforma_model');
   	 		$this->load->model('GC_model');
+  	 		$this->load->model('cm_model');
   	 		$this->load->model('Designer_model');
             $this->load->library('session','form_validation');
         }
@@ -44,7 +45,7 @@
                         case '2':
                             $this->load->view('General/header_on.php');
                             $this->load->view('CommunityManager/navbar_cm.php');
-                            $this->load->view('CommunityManager/home_cm.php');
+                            $this->load->view('CommunityManager/home_cm.php',$dato);
                             $this->load->view('General/footer_on.php');
                         break;
                         case '3':

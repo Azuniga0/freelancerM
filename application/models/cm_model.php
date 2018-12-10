@@ -48,6 +48,8 @@
             return $query->result();
         }
 
+        
+
         public function getpublicacion($id)
         {
             $this->db->select('*');
