@@ -180,7 +180,7 @@
                     */
                     $this->load->view('General/header_on.php');
                     $this->load->view('SuperAdmin/navbar_sadmin.php');
-                    $this->load->view('SuperAdmin/detalle_sa_empleado.php',$buscar);
+                    $this->load->view('SuperAdmin/detalle_sa_empleado2.php',$buscar);
                     $this->load->view('General/footer_on.php');      
                 }else{
                     //password_original

@@ -190,5 +190,10 @@
             $this->load->view('General/footer_on.php');
         }
 
+        function eliminar_nodo (){
+            $id_campana = $_GET['id_camp'];
+            $id_nodo = $_GET['id_nodo'];
+        }
+
     }
 ?>

@@ -75,12 +75,20 @@ while($row2 = mysqli_fetch_assoc($aristas)){
                                 <div class="form-group col-1">     
                                     <br>                                  
                                     <!--input  class="btn btn-primary "  name="guardar"  type="submit" value="Guardar" id="guardar"/-->
-                                    <button class="btn-primary btn" style=" margin-top: 15px;" type="submit" id="guardar" name="register" value="">Guardar</button>
+                                    <button class="btn-primary btn" style=" margin-top: 10px;" type="submit" id="guardar" name="register" value="">Guardar</button>
+                                </div>
+                                <div class="form-group col-2">
+                                    <br>                                  
+                                    <!--input  class="btn btn-primary "  name="guardar"  type="submit" value="Guardar" id="guardar"/-->
+                                    <a class="btn-info btn" style="color:#fff; margin-top: 10px;" href="<?php echo base_url(); ?>index.php/cm_controller/asignacion_nodos/?id_camp=<?php echo $id_campana; ?>" id="" name="" >Asignar usuarios</a>       
                                 </div>
                                 <div class="form-group col-1">
                                     <br>                                  
                                     <!--input  class="btn btn-primary "  name="guardar"  type="submit" value="Guardar" id="guardar"/-->
-                                    <a class="btn-info btn" style="color:#fff; margin-top: 15px;" href="<?php echo base_url(); ?>index.php/cm_controller/asignacion_nodos/?id_camp=<?php echo $id_campana; ?>" id="" name="" >Asignar usuarios</a>       
+                                    <input type='hidden' class='form-control nodo_eliminar' id='nodo_eliminar' name='nodo_eliminar' value=''>
+                                    <!--a class="btn-danger btn trash" style="color:#fff; margin-top: 10px;" href="<?php echo base_url(); ?>index.php/cm_controller/eliminar_nodo/?id_nodo=<?php echo $id_campana; ?>/?id_camp=<?php echo $camp; ?>" id="trash" name="trash" >Eliminar</a-->   
+                                    <!--button type="button" class="btn btn-danger delbtn" id="myBtn" onclick="delenquiry()">Delete this Enquiry</button--> 
+                                    <button type="button" name="delete" style="color:#fff; margin-top: 10px;" class="btn btn-danger  delete" id="">Eliminar</button>   
                                 </div>
                             </div>
                         <hr> 
@@ -168,7 +176,7 @@ while($row2 = mysqli_fetch_assoc($aristas)){
 <script type="text/javascript">
     
 //modal script end
-
+    
        var nodes= <?php echo json_encode($nd1); ?>;
        var edges= <?php echo json_encode($nd2); ?>;
 
@@ -200,6 +208,9 @@ while($row2 = mysqli_fetch_assoc($aristas)){
 
         });
 
+    
+
+
              
         var container = document.getElementById('mynetwork');
                 
@@ -209,19 +220,7 @@ while($row2 = mysqli_fetch_assoc($aristas)){
         };
         var options = {
             autoResize: true,
-            height: '450px',
-            manipulation: {
-                enabled: false,
-                initiallyActive: false,
-                addNode: true,
-                addEdge: true,
-                editEdge: true,
-                deleteNode: true,
-                deleteEdge: true,
-                controlNodeStyle:{
-                // all node options are valid.
-                }
-            }
+            height: '450px'
         };
         var network = new vis.Network(container, data, options);        
         
@@ -254,25 +253,40 @@ $(document).ready(function() {
       });
     });
 
-    //var = id_nodo = "1";
-
-    /*network.on('click', function (properties) {
-        var nodeID = properties.nodes[0];
-            if (nodeID) {
-                alert(id_nodo);
-                var clickedNode = this.body.nodes[nodeID];
-                console.log('id_nodo', clickedNode.options.id);
-         
-           
-            }
-    });*/
-
     network.on('click', function (properties) {
          var nodeID = properties.nodes[0];
          if(nodeID){
             alert(nodeID);
             var clickedNode = this.body.nodes[nodeID];  //trae los nodos
             console.log('nodeID',clickedNode.options.id);//el nodo que seleccionaste
+            document.getElementById("nodo_eliminar").value = nodeID;
+            //var x = document.getElementById("myBtn").value = nodeID;
+            
          }
     }); 
+
+    $(document).on('click', '.delete', function(){
+        //var id_nodo_delete = nodeID; //var id_nodo_delete = $(this).attr("id");    $('#image_id').val($(this).attr("id"));
+        var nodo_example = document.getElementById("nodo_eliminar").value;
+        var id_nodo_delete = nodo_example;
+        alert (id_nodo_delete);
+        var action = "delete";
+        if(confirm("Are you sure you want to remove this node from database?")){
+            $.ajax({
+                url:"<?php echo base_url(); ?>/red/delete.php",
+                method:"POST",
+                data:{id_nodo_delete:id_nodo_delete, action:action},
+                success:function(data){
+                    //alert(data);
+                    if (data == "refresh"){
+                        window.location.reload(); // This is not jQuery but simple plain ol' JS
+                    }
+                    //fetch_data();
+                }
+            })
+        }else{
+            return false;
+        }
+    });
+    
 </script>
