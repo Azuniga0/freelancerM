@@ -188,7 +188,7 @@
         public function nueva_camp(){
             $fecha=date("Y/m/d") ;
             if(!empty($_FILES['picture']['name'])){
-                $config['upload_path'] = 'img/perfiles/';
+                $config['upload_path'] = 'img/perfiles/camp/';
                 $config['allowed_types'] = '*';
                 $config['file_name'] = $_FILES['picture']['name'];
                 

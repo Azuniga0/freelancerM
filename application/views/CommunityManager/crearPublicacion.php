@@ -28,7 +28,7 @@
                                 <div class="form-group col-6">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="cm_id">Campapña:</span>
+                                            <span class="input-group-text" id="cm_id">Campaña:</span>
                                         </div>
                                         
                                         <select class="form-control" aria-describedby="campaña_id" name="id_camp" required>                                            
@@ -75,7 +75,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Fecha de final:</span>
+                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">Fecha final:</span>
                                         </div>
                                         <input type="date" class="form-control" id="validationTooltipUsername" placeholder="" name="datefin" aria-describedby="validationTooltipUsernamePrepend" required min="<?php echo  date('Y-m-d'); ?>">
                                         <div class="invalid-tooltip">
