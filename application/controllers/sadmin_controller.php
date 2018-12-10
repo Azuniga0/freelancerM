@@ -59,6 +59,16 @@
                 return TRUE;
             }
         }
+
+        // funcion que evaluar el RFC
+        public function regex_rfc($str){
+            if (preg_match("([A-ZÑ&]{3,4})(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))([A-Z\d]{2})([A\d])", $str)){
+                $this->form_validation->set_message('regex_check', 'El campo %s no tiene un formato válido');
+                return FALSE;
+            }else{
+                return TRUE;
+            }
+        }
         
         //Toma los datos del formulario de empleado y los envia al modelo para la inserción
         function add(){
@@ -170,22 +180,13 @@
 
                     $admin=$this->input->post('id_usuario');  
                     $buscar['data'] = $this->sadmin_model->busca_datos_admin($admin);
-                    $buscar['content'] = "About My Website.......";
-                    //$data = array('planet' => $planet);
-                    /*
-                    $data = array(
-           'user_name' => $data_from_db,
-           ‘site_name => ‘Your own codes’   
-              );
-                    */
+                   
                     $this->load->view('General/header_on.php');
                     $this->load->view('SuperAdmin/navbar_sadmin.php');
                     $this->load->view('SuperAdmin/detalle_sa_empleado2.php',$buscar);
                     $this->load->view('General/footer_on.php');      
                 }else{
-                    //password_original
-                    //estado_us
-
+                    
                     //Revisa si se va a subir alguna foto
                     if(!empty($_FILES['picture']['name'])){
                         $config['upload_path'] = 'img/perfiles/admins/';
@@ -215,10 +216,11 @@
                     }
                             
                     $usuario=array(  
-                        'username'=>$this->input->post('username'),
+                        'username'=>$this->input->post('username'),                        
                         'password'=>sha1($pass),                       
                         'pass_decrypt'=>$pass,  
-                        'imagen'=>$picture
+                        'imagen'=>$picture,
+                        'id_estado_us'=>$this->input->post('id_estado_us')
                     );
 
                     $insertUserData = $this->sadmin_model->actualizar_user($id, $usuario);
@@ -232,14 +234,14 @@
                         'telefono_empleado'=>$this->input->post('telefono_empleado')
                     );
                     $insertEmpData = $this->sadmin_model->actualizar_emp($id, $empleado);  
-                    echo "good"; 
+                    //echo "good"; 
                     redirect('index.php/sadmin_controller/administradores', 'refresh'); 
                 }
                 
-                //
             }
         }
 
+        // apartado para editar la informacion de las empresas
         public function editar_empresa(){
             $admin=$this->input->post('id_empresa');  
             $buscar['data'] = $this->sadmin_model->busca_datos_empresa($admin);
@@ -266,75 +268,102 @@
             $this->load->view('SuperAdmin/nueva_empresa.php');
             $this->load->view('General/footer_on.php');
         }
-
+        
         //Toma los datos del formulario de empresa y los envia al modelo para inserción
         public function nueva_empresa(){
-            $id=$_SESSION['id_usuario'];
-            $fecha=date("Y/m/d") ;
-            if($this->input->post('register')){
+        // validaciones del formulario
+            $this->form_validation->set_rules('razon_social', 'Razón social', 'required|alpha_numeric');
+            $this->form_validation->set_rules('rfc', 'RFC', 'required|callback_regex_rfc');
+            $this->form_validation->set_rules('nombre_cliente', 'Nombre', 'callback_regex_check|required');
+            $this->form_validation->set_rules('apaterno_cliente', 'Apelllido paterno', 'callback_regex_check|required');
+            $this->form_validation->set_rules('amaterno_cliente', 'Apellido materno', 'callback_regex_check');
+            $this->form_validation->set_rules('telefono_cliente', 'Número telefónico', 'required|exact_length[10]|numeric');
+            $this->form_validation->set_rules('correo_cliente', 'Correo electrónico', 'required|valid_email|is_unique[clientes.correo_cliente]');
+            $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|is_unique[usuarios.username]');
+            $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[6]|max_length[24]|alpha_numeric'); //contacto
+            $this->form_validation->set_rules('contacto', 'Contacto', 'callback_regex_check|required');
+            $this->form_validation->set_rules('direccion_contacto', 'Dirección', 'required');
+            $this->form_validation->set_rules('correo_contacto', 'Correo electrónico', 'required|valid_email');
+            $this->form_validation->set_rules('telefono_contacto', 'Número telefónico', 'required|exact_length[10]|numeric');
+
+                // errores en las validaciones
+            $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+            if ($this->form_validation->run() === FALSE){                    
+                // array con los errores
+                $data["data"] = array(); 
+                $this->load->view('General/header_on.php');
+                $this->load->view('SuperAdmin/navbar_sadmin.php');
+                $this->load->view('SuperAdmin/nueva_empresa.php', $data);
+                $this->load->view('General/footer_on.php');     
+            }else{
+
+                $id=$_SESSION['id_usuario'];
+                $fecha=date("Y/m/d") ;
+                    
+                if($this->input->post('register')){
             
-                //Check whether user upload picture
-                if(!empty($_FILES['picture']['name'])){
-                    $config['upload_path'] = 'img/perfiles/empresas/';
-                    $config['allowed_types'] = '*';
-                    $config['file_name'] = $_FILES['picture']['name'];
-                    
-                    //Load upload library and initialize configuration
-                    $this->load->library('upload',$config);
-                    $this->upload->initialize($config);
-                    
-                    if($this->upload->do_upload('picture')){
-                        $uploadData = $this->upload->data();
-                        $picture = $uploadData['file_name'];
+                    //Check whether user upload picture
+                    if(!empty($_FILES['picture']['name'])){
+                        $config['upload_path'] = 'img/perfiles/empresas/';
+                        $config['allowed_types'] = '*';
+                        $config['file_name'] = $_FILES['picture']['name'];
+                            
+                        //Load upload library and initialize configuration
+                        $this->load->library('upload',$config);
+                        $this->upload->initialize($config);
+                            
+                        if($this->upload->do_upload('picture')){
+                            $uploadData = $this->upload->data();
+                            $picture = $uploadData['file_name'];
+                        }else{
+                            $picture = 'empresa.jpg';
+                        }
                     }else{
                         $picture = 'empresa.jpg';
                     }
-                }else{
-                    $picture = 'empresa.jpg';
+                        
+                    $id=$_SESSION['id_usuario'];
+                    $empresa=array(
+                        'razon_social'=>$this->input->post('razon_social'),
+                        'contacto'=>$this->input->post('contacto'),
+                        'direccion_contacto'=>$this->input->post('direccion_contacto'),   
+                        'correo_contacto'=>$this->input->post('correo_contacto'),
+                        'telefono_empresa'=>$this->input->post('telefono_contacto'),         
+                        'estado_empresa'=>('1'),
+                        'administrador'=>$this->input->post('admin'),       
+                        'imagen_empresa'=>$picture,
+                        'fecha_alta'=>($fecha),
+                        'rfc'=>$this->input->post('rfc')
+                    );
+                    $nueva_empresa = $this->sadmin_model->nueva_empresa($empresa);
+
+                    $usuario=array( 
+                        'username'=>$this->input->post('username'),
+                        'password'=>sha1($this->input->post('password')),         
+                        'pass_decrypt'=>$this->input->post('password'), 
+                        'rol'=>('5'),     
+                        'creador'=>($id),
+                        'fecha_creacion'=>($fecha),
+                        'id_estado_us'=>('1')
+                    );
+                    $nuevo_usuario = $this->sadmin_model->nuevo_usuario($usuario);
+                        
+                    $cliente=array(
+                        'nombre_cliente'=>$this->input->post('nombre_cliente'),
+                        'apaterno_cliente'=>$this->input->post('apaterno_cliente'),
+                        'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
+                        'telefono_cliente'=>$this->input->post('telefono_cliente'),
+                        'correo_cliente'=>$this->input->post('correo_cliente'),         
+                        'id_usuario_cliente'=>($nuevo_usuario),
+                        'id_empresa_cliente'=>($nueva_empresa)
+                    );
+                        
+                    //Pass user data to model
+                    $nuevo_cliente = $this->sadmin_model->nuevo_cliente($cliente);
                 }
-                
-                $id=$_SESSION['id_usuario'];
-                $empresa=array(
-                    'razon_social'=>$this->input->post('razon_social'),
-                    'contacto'=>$this->input->post('contacto'),
-                    'direccion_contacto'=>$this->input->post('direccion_contacto'),   
-                    'correo_contacto'=>$this->input->post('correo_contacto'),
-                    'telefono_empresa'=>$this->input->post('telefono_contacto'),         
-                    'estado_empresa'=>('1'),
-                    'administrador'=>$this->input->post('admin'),       
-                    'imagen_empresa'=>$picture,
-                    'fecha_alta'=>($fecha)
-                );
-                $nueva_empresa = $this->sadmin_model->nueva_empresa($empresa);
-
-                $usuario=array( 
-                    'username'=>$this->input->post('username'),
-                    'password'=>sha1($this->input->post('password')),         
-                    'pass_decrypt'=>$this->input->post('password'), 
-                    'rol'=>('5'),     
-                    'creador'=>($id),
-                    'fecha_creacion'=>($fecha),
-                    'id_estado_us'=>('1')
-                );
-                $nuevo_usuario = $this->sadmin_model->nuevo_usuario($usuario);
-                
-                $cliente=array(
-                    'nombre_cliente'=>$this->input->post('nombre_cliente'),
-                    'apaterno_cliente'=>$this->input->post('apaterno_cliente'),
-                    'amaterno_cliente'=>$this->input->post('amaterno_cliente'),   
-                    'telefono_cliente'=>$this->input->post('telefono_cliente'),
-                    'correo_cliente'=>$this->input->post('correo_cliente'),         
-                    'id_usuario_cliente'=>($nuevo_usuario),
-                    'id_empresa_cliente'=>($nueva_empresa)
-                );
-                
-                //Pass user data to model
-                $nuevo_cliente = $this->sadmin_model->nuevo_cliente($cliente);
+                 redirect('index.php/sadmin_controller/empresas', 'refresh');     
             }
-            //Form for adding user data
-            //$this->load->view('Admin/nuevo_empleado.php');            
-
-            redirect('index.php/sadmin_controller/empresas', 'refresh');     
         }
 
         
