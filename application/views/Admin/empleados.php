@@ -13,15 +13,15 @@
         </div>
       </div>
       <div class=" col-md-3 col-4">
-    <div class="wrapper count-title d-flex text-center">
-      <div class="name">
-        <a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/admin_controller/vista_nuevo_empleado');?>">Nuevo empleado</a>
+        <div class="wrapper count-title d-flex text-center">
+          <div class="name">
+            <a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/cm_controller/vista_nuevo_empleado');?>">Nueva campaña</a>
+          </div>
+          <div class="name">
+            <!--a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/sadmin_controller/vista_existente_sa_empleado');?>">Empleado existente</a-->
+          </div>
+        </div>
       </div>
-      <div class="name">
-        <!--a style="margin:5px;" class="btn btn-primary" href="<?php echo base_url('index.php/sadmin_controller/vista_existente_sa_empleado');?>">Empleado existente</a-->
-      </div>
-    </div>
-  </div>
     </div>
   </div>  
 </section>
@@ -99,7 +99,7 @@
                                 <?php echo $value->estado; ?>
                               </td> 
                               <td>
-                                <button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <!--button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button-->
                               </td>
                             </form>
                           </tr>

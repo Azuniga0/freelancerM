@@ -1,7 +1,7 @@
 <?php 
 $id = $_SESSION['id_usuario'];
 $db = mysqli_connect("localhost", "root","","freelancer");
-$last_users= "SELECT * FROM usuarios WHERE creador = $id AND rol = 2 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+$last_users= "SELECT * FROM usuarios WHERE creador = $id AND rol = 3 or rol = 4 or rol = 2 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
 if($result = mysqli_query($db,$last_users)){
   $rowcount=mysqli_num_rows($result);
   //printf("Result set has %d rows.\n",$rowcount);
@@ -9,8 +9,8 @@ if($result = mysqli_query($db,$last_users)){
   mysqli_free_result($result);
 }
 
-$last_susers= "SELECT * FROM usuarios WHERE creador = $id AND rol = 6 AND (fecha_creacion BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
-if($result2 = mysqli_query($db,$last_susers)){
+$campanias= "SELECT * FROM campain WHERE creador_camp = $id AND (fecha_creacion_camp BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW());";
+if($result2 = mysqli_query($db,$campanias)){
   $sucount=mysqli_num_rows($result2);
   //printf("Result set has %d rows.\n",$rowcount);
   // Free result set
@@ -21,7 +21,7 @@ if($result2 = mysqli_query($db,$last_susers)){
       <!-- Counts Section -->      
       <section class="dashboard-counts section-padding">
         <div class="">
-          <h1 style="margin: 25px;" class="display h1">Nuevos usuarios creados:</h1>
+          <h1 style="margin: 25px;" class="display h1">Nuevas creaciones:</h1>
         </div>
         <div class="container-fluid">
           <div class="row">
@@ -29,7 +29,7 @@ if($result2 = mysqli_query($db,$last_susers)){
             <div class="col-xl-4 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">Administradores</strong><span>Últimos 30 días</span>
+                <div class="name"><strong class="text-uppercase">Usuarios</strong><span>Últimos 30 días</span>
                   <div class="count-number"><?php echo $rowcount; ?></div>
                 </div>
               </div>
@@ -38,7 +38,7 @@ if($result2 = mysqli_query($db,$last_susers)){
             <div class="col-xl-4 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">Super Administradores</strong><span>Últimos 30 días</span>
+                <div class="name"><strong class="text-uppercase">Campañas</strong><span>Últimos 30 días</span>
                   <div class="count-number"><?php echo $sucount; ?></div>
                 </div>
               </div>

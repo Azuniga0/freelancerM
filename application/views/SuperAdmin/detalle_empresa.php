@@ -28,7 +28,7 @@
                                 <div class="col-md-9 mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="nombre_empleado">Razón social:</span>
+                                            <span class="input-group-text" id="nombre_empleado">Razón social:</span>    
                                         </div>
                                         <?php  
                                             $id=$value->id_empresa;  
@@ -51,7 +51,7 @@
                                         </div>
                                         <?php 
                                             $rfc=$value->rfc;  
-                                            echo "<input type='text' name='contacto' value='$rfc' class='form-control' id='rfc' aria-describedby='rfc'>"; 
+                                            echo "<input type='text' name='rfc' value='$rfc' class='form-control' id='rfc' aria-describedby='rfc'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un apellido válido
@@ -85,7 +85,7 @@
                                         </div>
                                         <?php 
                                             $cliente=$value->nombre_cliente;  
-                                            echo "<input type='text' name='nombre_cliente' value='$cliente' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='nombre_cliente' value='$cliente' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
@@ -99,7 +99,7 @@
                                         </div>
                                         <?php 
                                             $apaterno=$value->apaterno_cliente;  
-                                            echo "<input type='text' name='apaterno_cliente' value='$apaterno' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='apaterno_cliente' value='$apaterno' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
@@ -113,7 +113,7 @@
                                         </div>
                                         <?php 
                                             $amaterno=$value->amaterno_cliente;  
-                                            echo "<input type='text' name='amaterno_cliente' value='$amaterno' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='amaterno_cliente' value='$amaterno' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un nombre válido
@@ -129,7 +129,7 @@
                                         </div>
                                         <?php 
                                             $tel_cliente=$value->telefono_cliente;  
-                                            echo "<input type='text' name='telefono_cliente' value='$tel_cliente' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='telefono_cliente' value='$tel_cliente' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
@@ -143,7 +143,7 @@
                                         </div>
                                         <?php 
                                             $correo_c=$value->correo_cliente;  
-                                            echo "<input type='text' name='correo_cliente' value='$correo_c' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='correo_cliente' value='$correo_c' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
@@ -157,7 +157,7 @@
                                         </div>
                                         <?php 
                                             $usuario=$value->username;  
-                                            echo "<input type='text' name='username' value='$usuario' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='username' value='$usuario' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un usuario válido
@@ -173,7 +173,7 @@
                                         </div>
                                         <?php
                                             $pass=$value->pass_decrypt;  
-                                            echo "<input type='text' name='password' value='$pass' required='required' class='form-control' id='password' aria-describedby='password_empleado' >";
+                                            echo "<input type='text' name='password' value='$pass' class='form-control' id='password' aria-describedby='password_empleado' >";
                                         ?>
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@
                                         </div>
                                         <?php 
                                             $contacto=$value->contacto;  
-                                            echo "<input type='text' name='contacto' value='$contacto' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='contacto' value='$contacto' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un apellido válido
@@ -207,7 +207,7 @@
                                         </div>
                                         <?php 
                                             $dir=$value->direccion_contacto;  
-                                            echo "<input type='text' name='direccion_contacto' value='$dir' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='direccion_contacto' value='$dir' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte una dirección válida
@@ -221,7 +221,7 @@
                                         </div> 
                                         <?php 
                                             $correo=$value->correo_contacto;  
-                                            echo "<input type='text' name='correo_contacto' value='$correo' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='correo_contacto' value='$correo' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un correo válido
@@ -235,7 +235,7 @@
                                         </div>
                                         <?php 
                                             $tel=$value->telefono_empresa;  
-                                            echo "<input type='text' name='telefono_contacto' value='$tel' required='required' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
+                                            echo "<input type='text' name='telefono_contacto' value='$tel' class='form-control' id='username' aria-describedby='usuario_empleado'>"; 
                                         ?>
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un teléfono válido

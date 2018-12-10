@@ -61,14 +61,14 @@
         }
 
         // funcion que evaluar el RFC
-        public function regex_rfc($str){
+        /*public function regex_rfc($str){
             if (preg_match("([A-ZÑ&]{3,4})(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))([A-Z\d]{2})([A\d])", $str)){
                 $this->form_validation->set_message('regex_check', 'El campo %s no tiene un formato válido');
                 return FALSE;
             }else{
                 return TRUE;
             }
-        }
+        }*/
         
         //Toma los datos del formulario de empleado y los envia al modelo para la inserción
         function add(){
@@ -273,7 +273,7 @@
         public function nueva_empresa(){
         // validaciones del formulario
             $this->form_validation->set_rules('razon_social', 'Razón social', 'required|alpha_numeric');
-            $this->form_validation->set_rules('rfc', 'RFC', 'required|callback_regex_rfc');
+            $this->form_validation->set_rules('rfc', 'RFC', 'required|alpha_numeric');
             $this->form_validation->set_rules('nombre_cliente', 'Nombre', 'callback_regex_check|required');
             $this->form_validation->set_rules('apaterno_cliente', 'Apelllido paterno', 'callback_regex_check|required');
             $this->form_validation->set_rules('amaterno_cliente', 'Apellido materno', 'callback_regex_check');
@@ -370,13 +370,13 @@
         public function actualizar_empresa(){
             // validaciones del formulario
             $this->form_validation->set_rules('razon_social', 'Razón social', 'required|alpha_numeric');
-            $this->form_validation->set_rules('rfc', 'RFC', 'required|callback_regex_rfc');
+            $this->form_validation->set_rules('rfc', 'RFC', 'required|alpha_numeric');
             $this->form_validation->set_rules('nombre_cliente', 'Nombre', 'callback_regex_check|required');
             $this->form_validation->set_rules('apaterno_cliente', 'Apelllido paterno', 'callback_regex_check|required');
             $this->form_validation->set_rules('amaterno_cliente', 'Apellido materno', 'callback_regex_check');
             $this->form_validation->set_rules('telefono_cliente', 'Número telefónico', 'required|exact_length[10]|numeric');
-            $this->form_validation->set_rules('correo_cliente', 'Correo electrónico', 'required|valid_email|is_unique[clientes.correo_cliente]');
-            $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|is_unique[usuarios.username]');
+            $this->form_validation->set_rules('correo_cliente', 'Correo electrónico', 'required|valid_email');
+            $this->form_validation->set_rules('username', 'Nombre de usuario', 'required');
             $this->form_validation->set_rules('password', 'Contraseña', 'min_length[6]|max_length[24]|alpha_numeric'); //contacto
             $this->form_validation->set_rules('contacto', 'Contacto', 'callback_regex_check|required');
             $this->form_validation->set_rules('direccion_contacto', 'Dirección', 'required');
@@ -392,7 +392,7 @@
                 $this->load->view('General/header_on.php');
                 $this->load->view('SuperAdmin/navbar_sadmin.php');
                 $this->load->view('SuperAdmin/detalle_empresa2.php', $data);
-                $this->load->view('General/footer_on.php');     
+                $this->load->view('General/footer_on.php');  
             }else{
                 $id=$_SESSION['id_usuario'];
                 if($this->input->post('register')){

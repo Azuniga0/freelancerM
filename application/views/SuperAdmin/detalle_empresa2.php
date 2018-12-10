@@ -24,7 +24,8 @@
                                         </div> 
                                         <?php
                                            echo " <input type='hidden' name='id_empresa' value='$id'    required='required'  id='id_usuario' >
-                                            '<input type='hidden' name='id_usuario' value='$id_usuario' required='required'  id='tipo_usuario' > ";    
+                                            '<input type='hidden' name='id_usuario' value='$id_usuario' required='required'  id='tipo_usuario' > ";  
+                                            
                                             ?>
                                               
                                             <input type="text" name="razon_social" value="<?=set_value('razon_social')?>"  class="form-control" id="nombre" aria-describedby="nombre_empleado">
@@ -38,7 +39,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="rfc">RFC:</span>
                                         </div> 
-                                        <input type="text" name="contacto" value="<?=set_value('rfc')?>" class="form-control" id="rfc" aria-describedby="rfc">
+                                        <input type="text" name="rfc" value="<?=set_value('rfc')?>" class="form-control" id="rfc" aria-describedby="rfc">
                                         <div class="invalid-tooltip">
                                             Por favor, inserte un apellido válido
                                         </div>

@@ -256,7 +256,7 @@ $(document).ready(function() {
     network.on('click', function (properties) {
          var nodeID = properties.nodes[0];
          if(nodeID){
-            alert(nodeID);
+            //alert(nodeID);
             var clickedNode = this.body.nodes[nodeID];  //trae los nodos
             console.log('nodeID',clickedNode.options.id);//el nodo que seleccionaste
             document.getElementById("nodo_eliminar").value = nodeID;
@@ -269,9 +269,9 @@ $(document).ready(function() {
         //var id_nodo_delete = nodeID; //var id_nodo_delete = $(this).attr("id");    $('#image_id').val($(this).attr("id"));
         var nodo_example = document.getElementById("nodo_eliminar").value;
         var id_nodo_delete = nodo_example;
-        alert (id_nodo_delete);
+        //alert (id_nodo_delete);
         var action = "delete";
-        if(confirm("Are you sure you want to remove this node from database?")){
+        if(confirm("¿Seguro que quiere eliminar el nodo?")){
             $.ajax({
                 url:"<?php echo base_url(); ?>/red/delete.php",
                 method:"POST",

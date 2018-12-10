@@ -75,7 +75,7 @@
                               </td>
 
                               <td>
-                                <a  href="<?php echo base_url(); ?>index.php/cm_controller/vista_red/?id_camp=<?php echo $id; ?>" id="c-guardar"  class="btn btn-md" style="background-color:#272c33; color:white;   font-size: 15px;" >
+                                <a  href="<?php echo base_url(); ?>index.php/cm_controller/vista_red/?id_camp=<?php echo $id; ?>" id="c-guardar"  class="btn btn-primary" style=" color:white;   font-size: 15px;" >
                                                    Red semántica
                                 </a>
                                 <!--button type="submit" name="ver" id="ver" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button-->
