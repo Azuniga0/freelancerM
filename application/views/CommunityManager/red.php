@@ -21,6 +21,7 @@ $aristas =  mysqli_query($db, "SELECT nodo_padre as `from`, id_nodo as `to` FROM
 while($row2 = mysqli_fetch_assoc($aristas)){
     $nd2[] = $row2;
 }
+
 //print_r($nd1);
 //print_r($rsemantica);
 //echo "<br><br>";
@@ -75,6 +76,11 @@ while($row2 = mysqli_fetch_assoc($aristas)){
                                     <br>                                  
                                     <!--input  class="btn btn-primary "  name="guardar"  type="submit" value="Guardar" id="guardar"/-->
                                     <button class="btn-primary btn" style=" margin-top: 15px;" type="submit" id="guardar" name="register" value="">Guardar</button>
+                                </div>
+                                <div class="form-group col-1">
+                                    <br>                                  
+                                    <!--input  class="btn btn-primary "  name="guardar"  type="submit" value="Guardar" id="guardar"/-->
+                                    <a class="btn-info btn" style="color:#fff; margin-top: 15px;" href="<?php echo base_url(); ?>index.php/cm_controller/asignacion_nodos/?id_camp=<?php echo $id_campana; ?>" id="" name="" >Asignar usuarios</a>       
                                 </div>
                             </div>
                         <hr> 
@@ -159,13 +165,10 @@ while($row2 = mysqli_fetch_assoc($aristas)){
         </div>
       </section>
 
-
-    
-   
-
 <script type="text/javascript">
     
 //modal script end
+
        var nodes= <?php echo json_encode($nd1); ?>;
        var edges= <?php echo json_encode($nd2); ?>;
 
@@ -197,65 +200,7 @@ while($row2 = mysqli_fetch_assoc($aristas)){
 
         });
 
-        //eliminar nodo
-        /*$(function () {
-
-            $('form').on('submit', function (e) {
-
-            e.preventDefault();
-                //alert ($('form').serialize());
-            $.ajax({
-                type: 'post',
-                url: '<?php echo base_url(); ?>/red/i-red.php',
-                data: $('form').serialize(),
-                success: function (data) {
-                    //somedata = data;
-                    //alert("Guardado" );
-                   $('#form-del')[0].reset();  
-                    $("#borrar").html(data);
-                    location.reload();
-                }, error: function(xhr, status, error) {
-                    alert("Error los datos no fueron guardados"); 
-                },
-                
-            });
-
-            });
-
-        });
-
-        //actualizar nodo
-
-        
-
-        
-        $(function () {
-
-            $('edit').on('submit', function (e) {
-
-            e.preventDefault();
-                //alert ($('form').serialize());
-            $.ajax({
-                type: 'post',
-                url: '<?php echo base_url(); ?>/red/edit.php',
-                data: $('edit').serialize(),
-                success: function (data) {
-                    //somedata = data;
-                    //alert("Guardado" );
-                   $('#form-edit')[0].reset();  
-                    $("#editar_nodo").html(data);
-                    location.reload();
-                }, error: function(xhr, status, error) {
-                    alert("Error los datos no fueron guardados"); 
-                },
-                
-            });
-
-            });
-
-        });*/
-
-     
+             
         var container = document.getElementById('mynetwork');
                 
         var data = {
@@ -265,9 +210,17 @@ while($row2 = mysqli_fetch_assoc($aristas)){
         var options = {
             autoResize: true,
             height: '450px',
-            dataManipulation: true,
-            interaction: {
-                hover: true
+            manipulation: {
+                enabled: false,
+                initiallyActive: false,
+                addNode: true,
+                addEdge: true,
+                editEdge: true,
+                deleteNode: true,
+                deleteEdge: true,
+                controlNodeStyle:{
+                // all node options are valid.
+                }
             }
         };
         var network = new vis.Network(container, data, options);        
@@ -300,4 +253,26 @@ $(document).ready(function() {
       
       });
     });
+
+    //var = id_nodo = "1";
+
+    /*network.on('click', function (properties) {
+        var nodeID = properties.nodes[0];
+            if (nodeID) {
+                alert(id_nodo);
+                var clickedNode = this.body.nodes[nodeID];
+                console.log('id_nodo', clickedNode.options.id);
+         
+           
+            }
+    });*/
+
+    network.on('click', function (properties) {
+         var nodeID = properties.nodes[0];
+         if(nodeID){
+            alert(nodeID);
+            var clickedNode = this.body.nodes[nodeID];  //trae los nodos
+            console.log('nodeID',clickedNode.options.id);//el nodo que seleccionaste
+         }
+    }); 
 </script>

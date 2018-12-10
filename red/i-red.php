@@ -19,7 +19,7 @@ if(isset($_POST['padre'])) {
          
           if($padre!=0){
                //medio
-               $query3 = "UPDATE nodos set color = '#ffdab9' where id_nodo = $_POST[padre]";
+               $query3 = "UPDATE nodos set hoja = '0', color = '#ffdab9' where id_nodo = $_POST[padre]";
                $result2= mysqli_query($connect, $query3); 
           }
 
@@ -33,7 +33,7 @@ if(isset($_POST['padre'])) {
 
 }else{
 
-     $query = "INSERT INTO `nodos`(`id_red`, `nombre`, `nodo_padre`,`hoja`, color) VALUES ('$_POST[campana]', '$_POST[hijo]', '0', '1','#34a99a');";  
+     $query = "INSERT INTO `nodos`(`id_red`, `nombre`, `nodo_padre`,`hoja`, color) VALUES ('$_POST[campana]', '$_POST[hijo]', '0', '0','#34a99a');";  
        
         
      if ($connect->query($query) === TRUE) {
@@ -45,7 +45,7 @@ if(isset($_POST['padre'])) {
           }
           $output .=' </select> ';  
      }else {
-           echo json_encode("Ocurrio un error, intente mas tarde");  
+           echo json_encode("Ocurrio un error, intente más tarde");  
      }
      echo ($output);
 

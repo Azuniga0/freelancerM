@@ -52,7 +52,7 @@
 
         // funcion que evalua que sean solo letras con o sin acentos
         public function regex_check($str){
-            if (preg_match("[A-Za-z0-9áéíóú\s]", $str)){
+            if (preg_match("[A-Za-zÁÉÍÓUáéíóúÜü\s]", $str)){
                 $this->form_validation->set_message('regex_check', 'El campo %s no tiene un formato válido');
                 return FALSE;
             }else{
@@ -63,119 +63,64 @@
         //Toma los datos del formulario de empleado y los envia al modelo para la inserción
         function add(){
             $id=$_SESSION['id_usuario'];
-            /*$id_tipo_creado = $this->input->post('tipo_usuario');
-            if($id_tipo_creado){
-
-            }*/
             $error = 0;
 
             $fecha=date("Y/m/d") ;
-            $errores_array = array();
-            //$datos['data']=$this->sadmin_model->get_data("usuarios");
 
             if($this->input->post('register')){
 
+                // validaciones del formulario
                 $this->form_validation->set_rules('nombre_empleado', 'Nombre', 'required|callback_regex_check');
                 $this->form_validation->set_rules('apaterno_empleado', 'Apellido paterno', 'required|callback_regex_check');
-                $this->form_validation->set_rules('amaterno_empleado', 'Apellido materno', 'required|callback_regex_check');
+                $this->form_validation->set_rules('amaterno_empleado', 'Apellido materno', 'callback_regex_check');
                 $this->form_validation->set_rules('direccion_empleado', 'Dirección', 'required');
-                $this->form_validation->set_rules('correo_empleado', 'Correo electrónico', 'required|valid_email');
+                $this->form_validation->set_rules('correo_empleado', 'Correo electrónico', 'required|valid_email|is_unique[empleados.correo_empleado]');
                 $this->form_validation->set_rules('telefono_empleado', 'Número telefónico', 'required|exact_length[10]|numeric');
                 $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|is_unique[usuarios.username]');
-                $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[6]|alpha_numeric');
+                $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[6]|max_length[24]|alpha_numeric');
+                // errores en las validaciones
                 $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-                if ($this->form_validation->run() === FALSE){
-                    
+                if ($this->form_validation->run() === FALSE){                    
+                    // array con los errores
                     $data["data"] = array();
-
                     $this->load->view('General/header_on.php');
                     $this->load->view('SuperAdmin/navbar_sadmin.php');
                     $this->load->view('SuperAdmin/nuevo_sa_empleado.php', $data);
-                    $this->load->view('General/footer_on.php');
-
-        
+                    $this->load->view('General/footer_on.php');       
                 }else{
-                    alert("disque guarda");
-                    //redirect(base_url());
-                }
-                
-                //$dataform = $this->input->post();
-
-                /*$this->form_validation->set_rules('nombre_empleado', 'Nombre', 'required');
-                $this->form_validation->set_rules('apaterno_empleado', 'Apellido paterno', 'required');
-                $this->form_validation->set_rules('direccion_empleado', 'Dirección', 'required');
-                $this->form_validation->set_rules('correo_empleado', 'Correo electrónico', 'required|valid_email');
-                $this->form_validation->set_rules('telefono_empleado', 'Número telefónico', 'required|exact_length[10]');
-                $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|is_unique[usuarios.username]');
-                $this->form_validation->set_rules('password', 'password', 'required|min_length[6]|numeric');*/
-                //$this->form_validation->set_rules('conf_password', 'confirm password', 'required|matches[password]');
-                            
-                // Revisa el archivo que se va a subir
-                /*if(!empty($_FILES['picture']['name'])){
-                    $config['upload_path'] = 'img/perfiles/admins/';
-                    $config['allowed_types'] = 'jpeg|jpg|png';
-                    $config['file_name'] = $_FILES['picture']['name'];
-                    
-                    //Load upload library and initialize configuration
-                    $this->load->library('upload',$config);
-                    $this->upload->initialize($config);
-                    
-                    if($this->upload->do_upload('picture')){
-                        $uploadData = $this->upload->data();
-                        $picture = $uploadData['file_name'];
+                    // Revisa el archivo que se va a subir
+                    if(!empty($_FILES['picture']['name'])){
+                        $config['upload_path'] = 'img/perfiles/admins/';
+                        $config['allowed_types'] = 'jpeg|jpg|png';
+                        $config['file_name'] = $_FILES['picture']['name'];
+                        
+                        //Load upload library and initialize configuration
+                        $this->load->library('upload',$config);
+                        $this->upload->initialize($config);
+                        
+                        if($this->upload->do_upload('picture')){
+                            $uploadData = $this->upload->data();
+                            $picture = $uploadData['file_name'];
+                        }else{
+                            $picture = 'user.jpg';
+                        }
                     }else{
                         $picture = 'user.jpg';
                     }
-                }else{
-                    $picture = 'user.jpg';
-                }
-                  
-                // crea el array para llenar la tabla de usuarios en la db
-                $usuario=array(  
-                    'username'=>$this->input->post('username'),
-                    'password'=>sha1($this->input->post('password')),                       
-                    'pass_decrypt'=>$this->input->post('password'),           
-                    'rol'=>$this->input->post('tipo_usuario'),
-                    'imagen'=>$picture,
-                    'creador'=>($id),
-                    'fecha_creacion'=>(date("Y/m/d")),
-                    'id_estado_us'=>('1')                
-                );
-                
-                // revisa si el usuario y correo son únicos
-                $username_check=$this->sadmin_model->username_check_empleados($usuario['username']);
-                $email_check=$this->sadmin_model->email_check_empleados($this->input->post('correo_empleado'));
-
-
-                if($username_check){
                     
-                }else{
-                    /*$this->session->set_flashdata('error_msg', 'usuario existente');
-                    //redirect('index.php/sadmin_controller/vista_nuevo_sa_empleado');
-                    $this->load->view('General/header_on.php');
-                    $this->load->view('SuperAdmin/navbar_sadmin.php');
-                    $this->load->view('SuperAdmin/nuevo_sa_empleado.php',$data);
-                    $this->load->view('General/footer_on.php');*/
-                    /*$error ++; 
-                    $errores_array['usuario_info']=" El usuario ".$usuario['username']." ya existe";
-                }
-                if($email_check){
-                        //$insertUserData = $this->sadmin_model->nuevo_usuario($usuario);
-
-                }else{
-                        //$this->session->set_flashdata('error_msg', 'correo existente');
-                        $error ++;
-                        $errores_array['correo_info']=" El correo ".$this->input->post('correo_empleado')." ya existe";
-                }
-                if(strlen($this->input->post('telefono_empleado'))==10 || preg_match('/^[0-9]*$/',$this->input->post('telefono_empleado'))){                    
-                    
-                }else{
-                    $error ++;
-                    $errores_array['telefono_info']=" El teléfono tiene que tener 10 dígitos, contiene ".strlen($this->input->post('telefono_empleado'))." dígitos y estar compuesto solo de números";
-                }
-
-                if($error==0){
+                    // crea el array para llenar la tabla de usuarios en la db
+                    $usuario=array(  
+                        'username'=>$this->input->post('username'),
+                        'password'=>sha1($this->input->post('password')),                       
+                        'pass_decrypt'=>$this->input->post('password'),           
+                        'rol'=>$this->input->post('tipo_usuario'),
+                        'imagen'=>$picture,
+                        'creador'=>($id),
+                        'fecha_creacion'=>(date("Y/m/d")),
+                        'id_estado_us'=>('1')                
+                    );
+                                        
                     $insertUserData = $this->sadmin_model->nuevo_usuario($usuario);
                     $empleado=array(
                         'nombre_empleado'=>$this->input->post('nombre_empleado'),
@@ -188,85 +133,111 @@
                     );
 
                     $insertEmpData = $this->sadmin_model->nuevo_empleado($empleado); 
-                    echo "se inserto";
                     //redirect('index.php/sadmin_controller/administradores', 'refresh');  
-                }
-                else{
-                    echo "salieron errores";
-                    //print_r ($errores_array);
-                    foreach ($errores_array as $key => $value) {
-                        echo $value;
-                    }
-                    //redirect('index.php/sadmin_controller/vista_nuevo_sa_empleado', 'refresh');  
-                }*/
-
-                
+                    $this->administradores();
+                }             
             }
-            //Form for adding user data
-            //$this->load->view('SuperAdmin/nuevo_sa_empleado.php');
-            /*$this->load->view('General/header_on.php');
-            $this->load->view('SuperAdmin/navbar_sadmin.php');
-            $this->load->view('SuperAdmin/nuevo_sa_empleado.php',$data);
-            $this->load->view('General/footer_on.php');*/
-           //redirect('index.php/sadmin_controller/vista_nuevo_sa_empleado', 'refresh');  
         }
 
+        // carga la vista donde se pueden editar los campos del usuario
         public function editar_administrador(){
-            $admin=$this->input->post('id_usuario');  
+            $admin=$this->input->post('id_usuario');
             $buscar['data'] = $this->sadmin_model->busca_datos_admin($admin);
+            $variable = 1;
             $this->load->view('General/header_on.php');
             $this->load->view('SuperAdmin/navbar_sadmin.php');
-            $this->load->view('SuperAdmin/detalle_sa_empleado.php',$buscar);
+            $this->load->view('SuperAdmin/detalle_sa_empleado.php',$buscar,$variable);
             $this->load->view('General/footer_on.php');
         }
 
+        // metodo que toma los datos del formulario de actualizacion y los envia a la db 
         public function actualizar_empleado(){
             if($this->input->post('actualizar')){
-            
-                //Check whether user upload picture
-                if(!empty($_FILES['picture']['name'])){
-                    $config['upload_path'] = 'img/perfiles/admins/';
-                    $config['allowed_types'] = '*';
-                    $config['file_name'] = $_FILES['picture']['name'];
-                    
-                    //Load upload library and initialize configuration
-                    $this->load->library('upload',$config);
-                    $this->upload->initialize($config);
-                    
-                    if($this->upload->do_upload('picture')){
-                        $uploadData = $this->upload->data();
-                        $picture = $uploadData['file_name'];
+
+                // validaciones del formulario
+                $this->form_validation->set_rules('nombre_empleado', 'Nombre', 'required|callback_regex_check');
+                $this->form_validation->set_rules('apaterno_empleado', 'Apellido paterno', 'required|callback_regex_check');
+                $this->form_validation->set_rules('amaterno_empleado', 'Apellido materno', 'callback_regex_check');
+                $this->form_validation->set_rules('direccion_empleado', 'Dirección', 'required');
+                $this->form_validation->set_rules('telefono_empleado', 'Número telefónico', 'required|exact_length[10]|numeric');
+                $this->form_validation->set_rules('password', 'Contraseña', 'min_length[6]|max_length[24]|alpha_numeric');
+                // errores en las validaciones
+                $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+                if ($this->form_validation->run() === FALSE){                    
+                    // array con los errores
+                    $data["data"] = array();
+
+                    $admin=$this->input->post('id_usuario');  
+                    $buscar['data'] = $this->sadmin_model->busca_datos_admin($admin);
+                    $buscar['content'] = "About My Website.......";
+                    //$data = array('planet' => $planet);
+                    /*
+                    $data = array(
+           'user_name' => $data_from_db,
+           ‘site_name => ‘Your own codes’   
+              );
+                    */
+                    $this->load->view('General/header_on.php');
+                    $this->load->view('SuperAdmin/navbar_sadmin.php');
+                    $this->load->view('SuperAdmin/detalle_sa_empleado.php',$buscar);
+                    $this->load->view('General/footer_on.php');      
+                }else{
+                    //password_original
+                    //estado_us
+
+                    //Revisa si se va a subir alguna foto
+                    if(!empty($_FILES['picture']['name'])){
+                        $config['upload_path'] = 'img/perfiles/admins/';
+                        $config['allowed_types'] = '*';
+                        $config['file_name'] = $_FILES['picture']['name'];
+                        
+                        //Load upload library and initialize configuration
+                        $this->load->library('upload',$config);
+                        $this->upload->initialize($config);
+                        
+                        if($this->upload->do_upload('picture')){
+                            $uploadData = $this->upload->data();
+                            $picture = $uploadData['file_name'];
+                        }else{
+                            $picture = $this->input->post('imagen');
+                        }
                     }else{
                         $picture = $this->input->post('imagen');
                     }
-                }else{
-                    $picture = $this->input->post('imagen');
-                }
 
-                $id=$this->input->post('id_usuario');
+                    $id=$this->input->post('id_usuario');
+
+                    if($this->input->post('password') != $this->input->post('password_original')){
+                        $pass = $this->input->post('password');
+                    }else{
+                        $pass = $this->input->post('password_original');
+                    }
                             
-                $usuario=array(  
-                    'username'=>$this->input->post('username'),
-                    'password'=>sha1($this->input->post('password')),                       
-                    'pass_decrypt'=>$this->input->post('password'),  
-                    'imagen'=>$picture
-                );
+                    $usuario=array(  
+                        'username'=>$this->input->post('username'),
+                        'password'=>sha1($pass),                       
+                        'pass_decrypt'=>$pass,  
+                        'imagen'=>$picture
+                    );
 
-                $insertUserData = $this->sadmin_model->actualizar_user($id, $usuario);
+                    $insertUserData = $this->sadmin_model->actualizar_user($id, $usuario);
 
-                $empleado=array(
-                    'nombre_empleado'=>$this->input->post('nombre_empleado'),
-                    'apaterno_empleado'=>$this->input->post('apaterno_empleado'),
-                    'amaterno_empleado'=>$this->input->post('amaterno_empleado'),   
-                    'direccion_empleado'=>$this->input->post('direccion_empleado'),  
-                    'correo_empleado'=>$this->input->post('correo_empleado'),
-                    'telefono_empleado'=>$this->input->post('telefono_empleado')
-                );
-                $insertEmpData = $this->sadmin_model->actualizar_emp($id, $empleado);   
+                    $empleado=array(
+                        'nombre_empleado'=>$this->input->post('nombre_empleado'),
+                        'apaterno_empleado'=>$this->input->post('apaterno_empleado'),
+                        'amaterno_empleado'=>$this->input->post('amaterno_empleado'),   
+                        'direccion_empleado'=>$this->input->post('direccion_empleado'),  
+                        'correo_empleado'=>$this->input->post('correo_empleado'),
+                        'telefono_empleado'=>$this->input->post('telefono_empleado')
+                    );
+                    $insertEmpData = $this->sadmin_model->actualizar_emp($id, $empleado);  
+                    echo "good"; 
+                    redirect('index.php/sadmin_controller/administradores', 'refresh'); 
+                }
+                
+                //
             }
-            //Form for adding user data
-            //$this->load->view('SuperAdmin/nuevo_sa_empleado.php');
-           redirect('index.php/sadmin_controller/administradores', 'refresh');  
         }
 
         public function editar_empresa(){
@@ -433,23 +404,35 @@
             $id = $this->uri->segment(3);
             $rol = $this->uri->segment(4);
 
-            /*echo $id;
-            echo $rol;*/
-            
-            // consulta el tipo de usuario del que se quiere eliminar
-            /*$info['data']=$this->sadmin_model->tipo_usuario($id);
-            $tipo = $data->rol;*/
-
             switch ($rol) {
                 case '1':
-                    $estado = array('id_estado_us' => '4');
+                    $checa_admin_u = $this->sadmin_model->activos_admin_u($id);
+                    $checa_sadmin_c = $this->sadmin_model->activos_admin_c($id);
+
+                    print_r($checa_admin_u);
+                    if($checa_admin_u){
+                        $error ++;
+                    }
+                    if($checa_sadmin_c){
+                        $error ++;
+                    }
+
+                    if ($error != 0) {
+                        $message = "No se puede eliminar, tiene usuarios y/o campañas activas.\\nIntente de nuevo.";
+                        echo "<script type='text/javascript'>alert('$message');</script>";                     //$this->administradores();
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');  
+                    }else{
+                        $estado = array('id_estado_us' => '4');
                         $this->sadmin_model->eliminar_empleado($id, $estado);
-                        $this->administradores();
+                        //$this->administradores();
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');
+                    }
                 break;
                 case '6':
                     $checa_sadmin_e = $this->sadmin_model->activos_sadmin_e($id);
                     $checa_sadmin_u = $this->sadmin_model->activos_sadmin_u($id);
-                    $min_sadmin = $this->sadmin_model->get_min_sadmin();
+                    //$min_sadmin = $this->sadmin_model->get_min_sadmin();
+
                     if($checa_sadmin_e){
                         $error ++;
                     }
@@ -465,15 +448,34 @@
                     }else{
                         $estado = array('id_estado_us' => '4');
                         $this->sadmin_model->eliminar_empleado($id, $estado);
-                        //$this->administradores();
                         redirect('index.php/sadmin_controller/administradores', 'refresh');
                     }
                 break;
                 case '7':
-                    # code...
+                    $checa_sadmin_e = $this->sadmin_model->activos_sadmin_e($id);
+                    $checa_sadmin_u = $this->sadmin_model->activos_sadmin_u($id);
+                    //$min_sadmin = $this->sadmin_model->get_min_sadmin();
+
+                    if($checa_sadmin_e){
+                        $error ++;
+                    }
+                    if($checa_sadmin_u){
+                        $error ++;
+                    }
+
+                    if ($error != 0) {
+                        $message = "No se puede eliminar, tiene usuarios y/o empresas activas.\\nIntente de nuevo.";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        //$this->administradores();
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');  
+                    }else{
+                        $estado = array('id_estado_us' => '4');
+                        $this->sadmin_model->eliminar_empleado($id, $estado);
+                        redirect('index.php/sadmin_controller/administradores', 'refresh');
+                    }
                 break;
                 default:
-                    # code...
+                    $this->administradores();
                 break;
             }
             

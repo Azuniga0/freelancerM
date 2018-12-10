@@ -1,5 +1,4 @@
 
-
 <?php 
     $fecha=date("Y/m/d") ;
     //echo $fecha;action="nuevo_empleado" 
@@ -20,7 +19,7 @@
                     <div class="row">
                         <?php echo $this->session->flashdata('success_msg'); ?>
                         <?php echo $this->session->flashdata('error_msg'); ?>
-                        <?php echo validation_errors(); ?>
+                        <?php //echo validation_errors(); ?>
                     </div>
                     <div class="row">   
                         <form class="col-md-12" method="post" action="add"  enctype="multipart/form-data" role="form">
@@ -64,6 +63,17 @@
                                 </div>
                             </div>
                             <div class="form-row">
+                                <div class="col-md-6">
+                                    <?php echo form_error('nombre_empleado'); ?>
+                                </div>
+                                <div class="col">
+                                    <?php echo form_error('apaterno_empleado'); ?>
+                                </div>
+                                <div class="col">
+                                    <?php echo form_error('amaterno_empleado'); ?>
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col-5">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -97,7 +107,18 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>
+                            <div class="form-row">
+                                <div class="col-5">
+                                    <?php echo form_error('direccion_empleado'); ?>
+                                </div>
+                                <div class="col-4">
+                                    <?php echo form_error('correo_empleado'); ?>
+                                </div>
+                                <div class="col-3">
+                                    <?php echo form_error('telefono_empleado'); ?>
+                                </div>
+                            </div>                 
                             <div class="form-row">
                                 <div class="input-group mb-3 col-3">
                                     <div class="custom-file">
@@ -107,6 +128,7 @@
                                 </div>
                                 <div class="input-group mb-3 col-3">
                                     <div class="input-group">
+                                        <p id="namepicture"></p>
                                         <!--label for="" id="namepicture" class="form-control"></label-->
                                     </div>
                                 </div>
@@ -114,7 +136,7 @@
                             <div class="form-row" style="margin-top: 15px;">
                                 <label style="color:"><b>Datos de acceso:</b></label>
                                 <br><br>
-                            </div>                    
+                            </div>                 
                             <div class="form-row">                            
                                 <div class="form-group col-md-4">
                                     <div class="input-group">
@@ -173,6 +195,14 @@
                                     <div class="form-control" id="output" readonly-->
                                     </div>
                                 </div>
+                            </div>   
+                            <div class="form-row">
+                                <div class="col-4">
+                                    <?php echo form_error('username'); ?>
+                                </div>
+                                <div class="col-4">
+                                    <?php echo form_error('password'); ?>
+                                </div>
                             </div>
                             <!--a class="btn-info btn" onclick="myFunction()">Generar contraseña</a-->
                             <div class="form-row float-right ">                                
@@ -211,7 +241,9 @@
     document.getElementById('inputGroupFile01').onchange = function (e) {
         var fileName = e.target.files[0].name;
         //alert('The file "' + fileName +  '" has been selected.');
+        
         document.getElementById('namepicture').innerHTML = fileName;
+        
     };
 
     /*

@@ -42,7 +42,7 @@
                             <form action="editar_camp" method="post">
                               <td>
                                 <?php
-                                  echo '<img class="imagen_receta recetas" src="../../img/perfiles/camp/'.$value->imagen_camp.'">';
+                                  echo '<img class="imagen_receta recetas" src="'.base_url(). '/img/perfiles/camp/'.$value->imagen_camp.'">';
                                 //echo $value->imagen;                                 
                                 $id= $value->id_camp;
                                   echo "<input type='hidden' name='id_camp' value='$id'>";
