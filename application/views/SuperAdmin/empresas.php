@@ -29,7 +29,6 @@
           <div class="row">
             <div class="col-lg-12 col-md-12">
               <!-- Recent Updates Widget          -->
-              
               <div id="new-updates" class="card updates recent-updated">
                 <div id="updates-box" role="tabpanel" class="collapse show">
                   <div class="" style="padding:15px">
@@ -38,6 +37,7 @@
                         <tr>
                           <th scope="col"></th>
                           <th scope="col">Razón social</th>
+                          <th scope="col">Administrador</th>
                           <th scope="col">Cliente</th>
                           <th scope="col">Correo del cliente</th>                          
                           <th scope="col">Responsable</th>                          
@@ -61,6 +61,9 @@
                               </td>
                               <td>
                                 <?php echo $value->razon_social ?>
+                              </td>
+                              <td>
+                                <?php echo $value->nombre_empleado.' '.$value->apaterno_empleado ?>
                               </td>
                               <td>
                                 <?php echo $value->nombre_cliente.' '.$value->apaterno_cliente ?>

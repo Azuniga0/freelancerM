@@ -198,7 +198,7 @@
                                                 mysqli_set_charset($database,"utf8");
                                             ?>
 
-                                                <select class="form-control" id="estado_us" aria-describedby="rol_empleado" name="tipo_usuario"  >                                            
+                                                <select class="form-control" id="id_estado_us" aria-describedby="id_estado_us" name="id_estado_us"  >                                            
                                                     <?php     
                                                        while ($row = mysqli_fetch_array($result)){
                                                             //echo "<option value='" . $row['id_estado'] . "'>" . $row['estado'] . "</option>";
