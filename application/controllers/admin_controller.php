@@ -65,135 +65,123 @@
             $this->load->view('General/footer_on.php');
         } 
 
+        // funcion que evalua que sean solo letras con o sin acentos
+        public function regex_check($str){
+            if (preg_match("[A-Za-zÁÉÍÓUáéíóúÜü\s]", $str)){
+                $this->form_validation->set_message('regex_check', 'El campo %s no tiene un formato válido');
+                return FALSE;
+            }else{
+                return TRUE;
+            }
+        }
+
+        // funcion que evaluar el RFC
+        public function regex_rfc($str){
+            if (preg_match("([A-ZÑ&]{3,4})(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))([A-Z\d]{2})([A\d])", $str)){
+                $this->form_validation->set_message('regex_check', 'El campo %s no tiene un formato válido');
+                return FALSE;
+            }else{
+                return TRUE;
+            }
+        }
                 
         //Toma los datos del formulario de empleado y los envia al modelo para la inserción
         function add(){
-
-            /*$validator = array('success' => false, 'messages' => array());
-
-            $validate_data = array(
-                array(
-                    'field' => 'username',
-                    'label' => 'Usuario',
-                    'rules' => 'required|is_unique[usuarios.username]'
-                ),
-                array(
-                    'field' => 'password',
-                    'label' => 'Contraseña',
-                    'rules' => 'required|matches[passwordAgain]'
-                ),
-                array(
-                    'field' => 'passwordAgain',
-                    'label' => 'Confirmar contraseña',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'nombre_empleado',
-                    'label' => 'Nombre',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'telefono_empleado',
-                    'label' => 'Teléfono del empleado',
-                    'rules' => 'required|integer|exact_length[10]'
-                )
-            );
-
-            $this->form_validation->set_rules($validate_data);
-            $this->form_validation->set_message('is_unique', 'The {field} already exists');
-            $this->form_validation->set_message('integer', 'The {field} must be number');		
-            $this->form_validation->set_message('exact_length', 'The {field} must be lenght 10');		
-            $this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
-
-            if($this->form_validation->run() === true) {
-
-                $this->model_users->register();
-
-                $validator['success'] = true;
-                $validator['messages'] = 'Successfully Registered';
-            }
-            else {
-                $validator['success'] = false;
-                foreach ($_POST as $key => $value) {
-                    $validator['messages'][$key] = form_error($key);
-                }
-            }
-
-            echo json_encode($validator);*/
-
-
             $id=$_SESSION['id_usuario'];
+            $error = 0;
 
             $fecha=date("Y/m/d") ;
+
             if($this->input->post('register')){
-            
-            $path = '';
-            switch ($this->input->post('tipo_usuario')) {
-                case '2':
-                    $path = 'img/perfiles/cm/';
-                break;
-                case '3':
-                    $path = 'img/perfiles/designer/';
-                break;
-                case '4':
-                    $path = 'img/perfiles/gc/';
-                break;                
-                default:
-                    # code...
-                break;
-            }
-            //Check whether user upload picture
-            if(!empty($_FILES['picture']['name'])){
-                $config['upload_path'] = $path;
-                //$config['upload_path'] = 'img/perfiles/admins/';
-                $config['allowed_types'] = '*';
-                $config['file_name'] = $_FILES['picture']['name'];
-                
-                //Load upload library and initialize configuration
-                $this->load->library('upload',$config);
-                $this->upload->initialize($config);
-                
-                if($this->upload->do_upload('picture')){
-                    $uploadData = $this->upload->data();
-                    $picture = $uploadData['file_name'];
+
+                // validaciones del formulario
+                $this->form_validation->set_rules('nombre_empleado', 'Nombre', 'required|callback_regex_check');
+                $this->form_validation->set_rules('apaterno_empleado', 'Apellido paterno', 'required|callback_regex_check');
+                $this->form_validation->set_rules('amaterno_empleado', 'Apellido materno', 'callback_regex_check');
+                $this->form_validation->set_rules('direccion_empleado', 'Dirección', 'required');
+                $this->form_validation->set_rules('correo_empleado', 'Correo electrónico', 'required|valid_email|is_unique[empleados.correo_empleado]');
+                $this->form_validation->set_rules('telefono_empleado', 'Número telefónico', 'required|exact_length[10]|numeric');
+                $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|is_unique[usuarios.username]');
+                $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[6]|max_length[24]|alpha_numeric');
+                // errores en las validaciones
+                $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+                if ($this->form_validation->run() === FALSE){                    
+                    // array con los errores
+                    $data["data"] = array();
+                    $this->load->view('General/header_on.php');
+                    $this->load->view('Admin/navbar_admin.php');
+                    $this->load->view('Admin/nuevo_empleado.php', $data);
+                    $this->load->view('General/footer_on.php');  
+                    echo "nop";     
                 }else{
-                    $picture = 'user.jpg';
-                }
-            }else{
-                $picture = 'user.jpg';
+
+                    echo "sip";
+                    // Revisa el archivo que se va a subir
+                    $path = '';
+                    switch ($this->input->post('tipo_usuario')) {
+                        case '2':
+                            $path = 'img/perfiles/cm/';
+                        break;
+                        case '3':
+                            $path = 'img/perfiles/designer/';
+                        break;
+                        case '4':
+                            $path = 'img/perfiles/gc/';
+                        break;                
+                        default:
+                            # code...
+                        break;
+                    }
+                    //Check whether user upload picture
+                    if(!empty($_FILES['picture']['name'])){
+                        $config['upload_path'] = $path;
+                        //$config['upload_path'] = 'img/perfiles/admins/';
+                        $config['allowed_types'] = '*';
+                        $config['file_name'] = $_FILES['picture']['name'];
+                        
+                        //Load upload library and initialize configuration
+                        $this->load->library('upload',$config);
+                        $this->upload->initialize($config);
+                        
+                        if($this->upload->do_upload('picture')){
+                            $uploadData = $this->upload->data();
+                            $picture = $uploadData['file_name'];
+                        }else{
+                            $picture = 'user.jpg';
+                        }
+                    }else{
+                        $picture = 'user.jpg';
+                    }
+                    
+                    // crea el array para llenar la tabla de usuarios en la db
+                    $usuario=array(  
+                        'username'=>$this->input->post('username'),
+                        'password'=>sha1($this->input->post('password')),                       
+                        'pass_decrypt'=>$this->input->post('password'),           
+                        'rol'=>$this->input->post('tipo_usuario'),
+                        'imagen'=>$picture,
+                        'creador'=>($id),
+                        'fecha_creacion'=>(date("Y/m/d")),
+                        'id_estado_us'=>('1')                
+                    );
+                                        
+                    $insertUserData = $this->admin_model->nuevo_usuario($usuario);
+                    $empleado=array(
+                        'nombre_empleado'=>$this->input->post('nombre_empleado'),
+                        'apaterno_empleado'=>$this->input->post('apaterno_empleado'),
+                        'amaterno_empleado'=>$this->input->post('amaterno_empleado'),   
+                        'direccion_empleado'=>$this->input->post('direccion_empleado'),  
+                        'correo_empleado'=>$this->input->post('correo_empleado'),
+                        'telefono_empleado'=>$this->input->post('telefono_empleado'),
+                        'id_usuario_empleado'=>($insertUserData)
+                    );
+
+                    $insertEmpData = $this->admin_model->nuevo_empleado($empleado); 
+                    //redirect('index.php/sadmin_controller/administradores', 'refresh');  
+                    $this->empleados();
+                }             
             }
-            
-            $id=$_SESSION['id_usuario'];
-            
-            $usuario=array(  
-                'username'=>$this->input->post('username'),
-                'password'=>sha1($this->input->post('password')),                       
-                'pass_decrypt'=>$this->input->post('password'),           
-                'rol'=>$this->input->post('tipo_usuario'),
-                'imagen'=>$picture,
-                'creador'=>($id),
-                'fecha_creacion'=>(date("Y/m/d")),
-                'id_estado_us'=>('1')                
-            );
-
-            $insertUserData = $this->admin_model->nuevo_usuario($usuario);
-            //echo $insertUserData;
-
-            $empleado=array(
-                'nombre_empleado'=>$this->input->post('nombre_empleado'),
-                'apaterno_empleado'=>$this->input->post('apaterno_empleado'),
-                'amaterno_empleado'=>$this->input->post('amaterno_empleado'),   
-                'direccion_empleado'=>$this->input->post('direccion_empleado'),  
-                'correo_empleado'=>$this->input->post('correo_empleado'),
-                'telefono_empleado'=>$this->input->post('telefono_empleado'),
-                'id_usuario_empleado'=>($insertUserData)
-            );
-            $insertEmpData = $this->admin_model->nuevo_empleado($empleado);            
-            
-        }
-            //Form for adding user data
-            //$this->load->view('SuperAdmin/nuevo_sa_empleado.php');
-           redirect('index.php/admin_controller/empleados', 'refresh');  
         }
         
         //Toma los datos del formulario de campaña y los envia al modelo para inserción
