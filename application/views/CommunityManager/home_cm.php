@@ -2,7 +2,7 @@
 <?php 
 $id = $_SESSION['id_usuario'];
 $db = mysqli_connect("localhost", "root","","freelancer");
-$last_users= "SELECT * FROM campain as c join nodos as n on c.id_camp = n.id_nodo join publicaciones as p on p.id_nodo = n.id_nodo WHERE id_community = $id AND id_estado = 2;";
+$last_users= "SELECT * FROM campain as c join nodos as n on c.id_camp = n.id_red join publicaciones as p on p.id_nodo = n.id_nodo WHERE id_community = $id AND id_estado = 2;";
 if($result = mysqli_query($db,$last_users)){
   $rowcount=mysqli_num_rows($result);
   //printf("Result set has %d rows.\n",$rowcount);
