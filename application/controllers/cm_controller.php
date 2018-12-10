@@ -93,6 +93,14 @@
         }
 
         public function aprobar($id){
+                $publi = $this->cm_model->getpubli($id);
+                $base=base_url();
+                $ruta="http://localhost/freelancer/assets/img/img_des/".$publi->imagen; 
+                $this->load->library('facebook');
+        $array = array('message' => $publi->contenido,'source' => $this->facebook->object()->fileToUpload($ruta));
+                $userProfile = $this->facebook->request('post', '435197416580742'.'/photos/', $array, 'EAADDccDBPtsBAGZBxCmg3TXre3ngA3gWq3EMhrHeoRJhxZA6dqjL4M7PUYNMHIbO2BRMIQdqFVqNAsZCDZABlJjzAsDXjO9Bm85n6nVQgHLffByW4zlkYNeqZAK2ZBF3ghu6FQ46uRoAt4s8EjlXLn3YOELz0JHZCdxZA45A6Q1B8ZBtGtdfw6aGr0Vc5wI06h1uqNXB0NIMwBgZDZD');
+                // print_r($userProfile); 
+            // echo json_encode($publi);
             $this->cm_model->aprobar($id);
             $data['pendientes'] = $this->cm_model->pedientes($_SESSION['id_usuario']);
             $data['pendientes2'] = $this->cm_model->pedientes2($_SESSION['id_usuario']);
@@ -123,6 +131,8 @@
 
         public function tarea($id){
             $data ['at'] = $this->cm_model->getAT($id);
+            $data ['ur'] = $this->cm_model->getUR($id);
+            // echo json_encode($data);
             $this->load->view('General/header_on.php');
             $this->load->view('CommunityManager/tarea.php', $data);
             $this->load->view('CommunityManager/navbar_cm.php');

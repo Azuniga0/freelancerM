@@ -36,7 +36,6 @@
                                             <option value="<?= $row->id_camp ?>"> <?= $row->nombre_camp ?> </option>
                                           <?php } ?> 
                                         </select>
-
                                     </div>
                                 </div>
                                 <div class="form-group col-6">

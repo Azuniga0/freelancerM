@@ -4,7 +4,7 @@
       <!-- Count item widget-->
       <div class=" col-md-9 col-8">
         <div class="wrapper count-title d-flex text-center">
-          <div class="name"><strong class="text-uppercase">Asignar tarea</strong></div>
+          <div class="name"><strong class="text-uppercase">Asignar tarea: <?= $at->nombrep ?> </strong></div>
         </div>
       </div>
   </div> 
@@ -22,7 +22,7 @@
         
         <div class="col-lg-6 col-md-6" style=" float:left;">
             <p class="font-weight-bold cmptitulo">Contenido</p>
-            <p class="font-weight-normal cmptxt"><?=$at->contenido ?></p>
+            <p class="font-weight-normal cmptxt"><?= $at->contenido ?></p>
         </div>
         <div class="col-lg-6 col-md-6" style=" float:right;">
             <p class="font-weight-bold cmptitulo">Imagen Actual</p>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="row">  
                         <form class="col-12" action="<?php  echo base_url('index.php/cm_controller/asignarTarea/'.$at->id_publicaciones) ?>" method="post">
-                            <div class="form-row">                                
+                            <!-- <div class="form-row">                                
                                 <div class="form-group col-12">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -69,6 +69,20 @@
                                                     echo "<option value='" . $row['id_usuario'] . "'>" . $row['nombre_empleado'].' '.$row['apaterno_empleado'].' '.$row['amaterno_empleado'].' '.$row['n_tipo_usuario']. "</option>";
                                                 }
                                             ?>        
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="form-row">                                
+                                <div class="form-group col-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="cm_id">Respopnsable:</span>
+                                        </div>
+                                        <select class="form-control" aria-describedby="usuario_id" name="id_usuario" required>                                            
+                                                <?php foreach ($ur as $row ) { ?>
+                                                   <option value="<?=  $row->id_usuario?>"><?= $row->nombre_empleado ?> <?= $row->apaterno_empleado ?> <?= $row->amaterno_empleado ?> <?= $row->n_tipo_usuario ?></option>
+                                               <?php }?>
                                         </select>
                                     </div>
                                 </div>
@@ -100,7 +114,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" >Descripción</span>
                                         </div>
-                                        <textarea name="des"  cols="119" rows="5"></textarea>
+                                        <textarea name="des"  cols="192" rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>
